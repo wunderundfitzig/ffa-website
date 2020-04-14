@@ -1,30 +1,26 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { getPages } from 'lib/wordpressApi'
+import { getBlocks, WordpressBlock } from 'lib/wordpressApi'
 import Layout from 'components/Layout/Layout'
-import NewsBanner from 'components/NewsBanner/NewsBanner'
+import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
 
-const Home = () => (
+const Home = (props: { blocks: WordpressBlock[] }) => (
   <div className='container'>
     <Head>
       <title>Abenteuerzentrum Berlin</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
     <Layout>
-      <NewsBanner
-        title='geschlossen'
-        text='lorem ipsum'
-        imageURL='https://source.unsplash.com/w9KEokhajKw/400x200'
-      />
+      <BlockRenderer blocks={props.blocks} />
     </Layout>
   </div>
 )
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const content = await getPages()
-  console.log(content)
+  const blocks = await getBlocks('5')
+
   return {
-    props: {}, // will be passed to the page component as props
+    props: { blocks }, // will be passed to the page component as props
   }
 }
 
