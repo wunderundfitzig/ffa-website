@@ -4,18 +4,24 @@ import NewsBanner from 'components/NewsBanner/NewsBanner'
 const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
   return (
     <>
-      {props.blocks.map((block) => {
+      {props.blocks.map((block, idx) => {
         switch (block.blockName) {
           case 'lazyblock/news':
             return (
               <NewsBanner
-                title='geschlossen'
-                text='lorem ipsum'
-                imageURL='https://source.unsplash.com/w9KEokhajKw/400x200'
+                key={idx}
+                title={block.attrs.title}
+                text={block.attrs.content}
+                imageURL={block.attrs.image.url}
               />
             )
           default:
-            return <div dangerouslySetInnerHTML={{ __html: block.innerHTML }} />
+            return (
+              <div
+                key={idx}
+                dangerouslySetInnerHTML={{ __html: block.innerHTML }}
+              />
+            )
         }
       })}
     </>
