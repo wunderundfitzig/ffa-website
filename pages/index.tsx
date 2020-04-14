@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Layout from 'components/Layout/Layout'
 
 const Home = () => (
   <div className='container'>
@@ -6,7 +7,7 @@ const Home = () => (
       <title>Abenteuerzentrum Berlin</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
-    Hello World
+    <Layout>Hello World: {process.env.WP_API_URL}</Layout>
   </div>
 )
 

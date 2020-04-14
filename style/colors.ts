@@ -1,0 +1,7 @@
+export const lightGreen = '#B0D23B'
+export const darkGreen = '#406324'
+export const brown = '#422C16'
+export const beige = '#FDF9F0'
+export const blue = '#4D93AF'
+export const violett = '#773172'
+export const orange = '#F3920D'
