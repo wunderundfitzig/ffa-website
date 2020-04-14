@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { getPages } from 'lib/wordpressApi'
 import Layout from 'components/Layout/Layout'
+import NewsBanner from 'components/NewsBanner/NewsBanner'
 
 const Home = () => (
   <div className='container'>
@@ -9,7 +10,13 @@ const Home = () => (
       <title>Abenteuerzentrum Berlin</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
-    <Layout>Hello World: {process.env.WP_API_URL}</Layout>
+    <Layout>
+      <NewsBanner
+        title='geschlossen'
+        text='lorem ipsum'
+        imageURL='https://source.unsplash.com/w9KEokhajKw/400x200'
+      />
+    </Layout>
   </div>
 )
 
