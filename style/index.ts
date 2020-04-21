@@ -7,3 +7,6 @@ export const layout = _layout
 
 import * as _typography from './typography'
 export const typography = _typography
+
+import * as _breakpoints from './breakpoints'
+export const breakpoints = _breakpoints

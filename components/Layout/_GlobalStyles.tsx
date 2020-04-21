@@ -47,7 +47,8 @@ const GlobalStyles = () => (
           font-family: Museo, sans-serif;
           background-image: url(${woodBackground});
           background-size: 100%;
-          font-size: 13px;
+          font-size: 14px;
+          line-height: 1.5em;
           color: ${colors.brown};
         }
       `}
