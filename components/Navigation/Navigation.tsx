@@ -79,6 +79,10 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   }
 `
 
+interface NavigationItem {
+  url: string
+  displayName: string
+}
 const navigationItems = [
   {
     url: '',
@@ -102,7 +106,19 @@ const navigationItems = [
   },
 ]
 
-const Header = (props: { className?: string }) => {
+const NavigationLink = (props: {
+  isActive: boolean
+  navigationItem: NavigationItem
+}) => {
+  const linkStyle = navigationLinkStyle({ isActive: props.isActive })
+  return (
+    <a css={linkStyle} href={props.navigationItem.url}>
+      {props.navigationItem.displayName}
+    </a>
+  )
+}
+
+const Navigation = (props: { className?: string }) => {
   const [isExpanded, setIsExpanded] = useState(false)
   return (
     <nav className={props.className}>
@@ -123,19 +139,19 @@ const Header = (props: { className?: string }) => {
         >
           <img src={closeIcon} />
         </button>
-        {navigationItems.map((navigationItem, i) => (
-          <li key={i}>
-            <a
-              css={navigationLinkStyle({ isActive: i === 0 })}
-              href={navigationItem.url}
-            >
-              {navigationItem.displayName}
-            </a>
-          </li>
-        ))}
+        {navigationItems.map((navigationItem, i) => {
+          return (
+            <li key={i}>
+              <NavigationLink
+                isActive={i === 0}
+                navigationItem={navigationItem}
+              />
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )
 }
 
-export default Header
+export default Navigation
