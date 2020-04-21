@@ -46,6 +46,11 @@ const headerStyle = css`
     grid-column: span 6;
     padding-left: 5px;
   }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    padding-top: 22px;
+    min-height: 70px;
+  }
 `
 
 const titleStyle = css`
