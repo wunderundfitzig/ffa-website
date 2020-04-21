@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
 import { colors, layout, typography, breakpoints } from 'style'
+import { NewsBlock } from 'lib/models/newsBlock'
 import banderole from './_banderole.png'
-import { NewsBlock } from 'lib/wordpressApi'
 
 const newsBannerStyle = css`
   ${layout.container};

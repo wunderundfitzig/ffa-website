@@ -1,9 +1,9 @@
-import { TitleBlock } from 'lib/wordpressApi'
+import { TitleBlock } from 'lib/models/titleBlock'
 
 const Title = (props: TitleBlock) => {
   return (
     <header>
-      <p>{props.roofline}</p>
+      <span>{props.roofline}</span>
       <h1>{props.title}</h1>
     </header>
   )

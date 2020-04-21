@@ -1,32 +1,13 @@
 import fetch from 'isomorphic-unfetch'
-import { object, array, string, parseJson, FefeError } from 'fefe'
+import { object, array, string } from 'fefe'
+import { newsBlock } from './models/newsBlock'
+import { titleBlock } from './models/titleBlock'
 
 type DefaultName = 'default'
 const defaultBlock = object(
   {
     blockName: (): DefaultName => 'default',
     innerHTML: string(),
-  },
-  { allowExcessProperties: true }
-)
-const image = object({ url: string() }, { allowExcessProperties: true })
-const newsBlock = object(
-  {
-    title: string(),
-    content: string(),
-    image: (str: unknown) => {
-      if (typeof str !== 'string') throw FefeError
-      const jsonString = decodeURIComponent(str)
-      const obj = parseJson()(jsonString)
-      return image(obj)
-    },
-  },
-  { allowExcessProperties: true }
-)
-const titleBlock = object(
-  {
-    roofline: string(),
-    title: string(),
   },
   { allowExcessProperties: true }
 )
@@ -58,8 +39,7 @@ const validatePage = object(
   { blocks: array(block) },
   { allowExcessProperties: true }
 )
-export type NewsBlock = ReturnType<typeof newsBlock>
-export type TitleBlock = ReturnType<typeof titleBlock>
+
 export type WordpressBlock = ReturnType<typeof block>
 
 export async function getBlocks(pageId: string): Promise<WordpressBlock[]> {
