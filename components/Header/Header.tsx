@@ -9,7 +9,7 @@ const headerStyle = css`
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  padding: 20px;
+  padding: 20px 30px;
   background-color: ${colors.lightGreen};
   background-image: url(${pattern});
   background-size: auto 100%;
@@ -38,21 +38,42 @@ const headerStyle = css`
 
 const wrapperStyle = css`
   ${layout.container}
+  ${layout.grid()};
 `
 
 const logoStyle = css`
   width: 100px;
   height: 50px;
+
   @media (min-width: ${breakpoints.breakpointM}px) {
     width: 150px;
     height: 70px;
+    grid-column: span 4;
+  }
+
+  @media (min-width: ${breakpoints.breakpointXXL}px) {
+    margin-left: -75px;
   }
 `
 
 const titleStyle = css`
   display: none;
   @media (min-width: ${breakpoints.breakpointL}px) {
-    display: block;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    grid-column: span 8;
+    margin: 15px 0 0 0;
+    color: ${colors.darkGreen};
+  }
+`
+
+const navigationStyle = css`
+  grid-column: span 1 / 13;
+  place-self: center end;
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    grid-column: span 12;
+    place-self: end start;
   }
 `
 
@@ -61,7 +82,7 @@ const Header = () => (
     <div css={wrapperStyle}>
       <img css={logoStyle} alt='Fahrten Ferne Abenteuer' src={logo} />
       <h1 css={titleStyle}>Abenteuerzentrum Berlin</h1>
-      <Navigation />
+      <Navigation css={navigationStyle} />
     </div>
   </header>
 )

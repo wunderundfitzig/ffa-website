@@ -4,7 +4,6 @@ import mobileNavigationButton from './_mobileNavigationButton.svg'
 import closeIcon from './_closeIcon.svg'
 import { useState } from 'react'
 
-const navigationStyle = css``
 const buttonStyle = css`
   ${helpers.resetButtonStyles};
   cursor: pointer;
@@ -20,9 +19,6 @@ const buttonStyle = css`
 
 const navButtonStyle = css`
   ${buttonStyle};
-  position: absolute;
-  top: 25px;
-  right: 20px;
   width: 50px;
 `
 
@@ -73,9 +69,13 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
     border-bottom: none;
     width: auto;
     font-size: 1.1em;
-    padding: 5px 10px;
+    padding: 0.5em 0.7em;
     margin: 0;
-    margin-right: 15px;
+    margin-right: 1em;
+  }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    font-size: 1.3em;
   }
 `
 
@@ -102,10 +102,10 @@ const navigationItems = [
   },
 ]
 
-const Header = () => {
+const Header = (props: { className?: string }) => {
   const [isExpanded, setIsExpanded] = useState(false)
   return (
-    <nav css={navigationStyle}>
+    <nav className={props.className}>
       <button
         css={navButtonStyle}
         onClick={() => {
