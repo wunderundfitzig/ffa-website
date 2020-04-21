@@ -1,5 +1,6 @@
 import { css } from '@emotion/core'
-import { colors, layout } from 'style'
+import { colors, layout, breakpoints } from 'style'
+import Navigation from 'components/Navigation/Navigation'
 import logo from './_logo.svg'
 import dash from './_dash.svg'
 import pattern from './_pattern.svg'
@@ -25,6 +26,14 @@ const headerStyle = css`
     background-image: url(${dash});
     background-position: 0 7px;
   }
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    padding-bottom: 30px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    padding-bottom: 10px;
+  }
 `
 
 const wrapperStyle = css`
@@ -34,10 +43,17 @@ const wrapperStyle = css`
 const logoStyle = css`
   width: 100px;
   height: 50px;
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    width: 150px;
+    height: 70px;
+  }
 `
 
 const titleStyle = css`
   display: none;
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    display: block;
+  }
 `
 
 const Header = () => (
@@ -45,6 +61,7 @@ const Header = () => (
     <div css={wrapperStyle}>
       <img css={logoStyle} alt='Fahrten Ferne Abenteuer' src={logo} />
       <h1 css={titleStyle}>Abenteuerzentrum Berlin</h1>
+      <Navigation />
     </div>
   </header>
 )
