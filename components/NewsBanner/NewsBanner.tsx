@@ -1,6 +1,7 @@
 import { css } from '@emotion/core'
 import { colors, layout, typography, breakpoints } from 'style'
 import banderole from './_banderole.png'
+import { NewsBlock } from 'lib/wordpressApi'
 
 const newsBannerStyle = css`
   ${layout.container};
@@ -85,20 +86,16 @@ const textStyle = css`
   }
 `
 
-const NewsBanner = (props: {
-  title: string
-  text: string
-  imageURL: string
-}) => {
+const NewsBanner = (props: NewsBlock) => {
   return (
     <section css={newsBannerStyle}>
-      <figure css={imageStyle(props.imageURL)} />
+      <figure css={imageStyle(props.image.url)} />
       <header css={headerStyle}>
         <img css={banderoleStyle} src={banderole} />
         <h2 css={titleStyle}>{props.title}</h2>
       </header>
 
-      <p css={textStyle}>{props.text}</p>
+      <p css={textStyle}>{props.content}</p>
     </section>
   )
 }

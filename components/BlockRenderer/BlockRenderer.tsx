@@ -3,6 +3,7 @@ import { css } from '@emotion/core'
 import { WordpressBlock } from 'lib/wordpressApi'
 import { layout, colors } from 'style'
 import NewsBanner from 'components/NewsBanner/NewsBanner'
+import Title from 'components/Title/Title'
 
 const defaultBlockStyle = css`
   ${layout.container};
@@ -18,14 +19,9 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
       {props.blocks.map((block, idx) => {
         switch (block.blockName) {
           case 'lazyblock/news':
-            return (
-              <NewsBanner
-                key={idx}
-                title={block.attrs.title}
-                text={block.attrs.content}
-                imageURL={block.attrs.image.url}
-              />
-            )
+            return <NewsBanner key={idx} {...block.attrs} />
+          case 'lazyblock/title':
+            return <Title key={idx} {...block.attrs} />
           default:
             return (
               <div
