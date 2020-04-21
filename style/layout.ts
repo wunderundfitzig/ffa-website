@@ -18,5 +18,5 @@ export const grid = ({
   grid-template-columns: repeat(${columns}, minmax(0, 1fr));
   grid-template-rows: repeat(${rows}, minmax(0, auto));
   grid-auto-columns: 1fr;
-  grid-auto-rows: 1fr;
+  grid-auto-rows: auto;
 `

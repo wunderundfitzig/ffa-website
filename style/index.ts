@@ -4,3 +4,6 @@ export const colors = _colors
 
 import * as _layout from './layout'
 export const layout = _layout
+
+import * as _typography from './typography'
+export const typography = _typography
