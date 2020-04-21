@@ -1,16 +1,13 @@
-import { transparentize } from 'polished'
 import { css } from '@emotion/core'
 import { WordpressBlock } from 'lib/wordpressApi'
-import { layout, colors } from 'style'
+import { layout } from 'style'
 import NewsBanner from 'components/NewsBanner/NewsBanner'
 import Title from 'components/Title/Title'
 
 const defaultBlockStyle = css`
   ${layout.container};
-  box-sizing: border-box;
-  background-color: ${transparentize(0.2, colors.beige)};
+  ${layout.block};
   overflow: hidden;
-  padding: 20px;
 `
 
 const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {

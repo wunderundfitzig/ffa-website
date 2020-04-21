@@ -12,6 +12,7 @@ const defaultBlock = object(
   { allowExcessProperties: true }
 )
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function block(block: any) {
   switch (block.blockName) {
     case 'lazyblock/news':

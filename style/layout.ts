@@ -1,9 +1,18 @@
 import { css } from '@emotion/core'
+import { transparentize } from 'polished'
+import * as colors from './colors'
 
 export const container = css`
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+`
+
+export const block = css`
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: ${transparentize(0.2, colors.beige)};
+  padding: 20px;
 `
 
 export const grid = ({
