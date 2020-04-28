@@ -6,6 +6,11 @@ import flag from './_flag.png'
 const titleBlockStyle = css`
   ${layout.container};
   ${layout.block};
+  padding-top: 40px;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    padding-top: 60px;
+  }
 `
 
 const rooflineStyle = css`

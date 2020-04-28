@@ -1,16 +1,12 @@
-import { object, string, parseJson, FefeError } from 'fefe'
+import { object, string } from 'fefe'
 import { image } from './image'
+import { parseJsonURLString } from './jsonURLString'
 
 export const newsBlock = object(
   {
     title: string(),
     content: string(),
-    image: (str: unknown) => {
-      if (typeof str !== 'string') throw FefeError
-      const jsonString = decodeURIComponent(str)
-      const obj = parseJson()(jsonString)
-      return image(obj)
-    },
+    image: parseJsonURLString(image),
   },
   { allowExcessProperties: true }
 )

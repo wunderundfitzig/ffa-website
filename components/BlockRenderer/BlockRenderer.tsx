@@ -1,8 +1,9 @@
 import { css } from '@emotion/core'
-import { WordpressBlock } from 'lib/wordpressApi'
+import { WordpressBlock } from 'lib/models/wordpressBlock'
 import { layout } from 'style'
 import NewsBanner from 'components/NewsBanner/NewsBanner'
 import Title from 'components/Title/Title'
+import Columns from 'components/Columns/Columns'
 
 const defaultBlockStyle = css`
   ${layout.container};
@@ -19,6 +20,8 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
             return <NewsBanner key={idx} {...block.attrs} />
           case 'lazyblock/title':
             return <Title key={idx} {...block.attrs} />
+          case 'lazyblock/columns':
+            return <Columns key={idx} {...block.attrs} />
           default:
             return (
               <div

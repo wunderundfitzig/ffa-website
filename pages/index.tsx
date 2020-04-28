@@ -1,8 +1,9 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { getBlocks, WordpressBlock } from 'lib/wordpressApi'
+import { getBlocks } from 'lib/wordpressApi'
 import Layout from 'components/Layout/Layout'
 import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
+import { WordpressBlock } from 'lib/models/wordpressBlock'
 
 const Home = (props: { blocks: WordpressBlock[] }) => (
   <div className='container'>
