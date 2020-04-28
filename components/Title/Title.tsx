@@ -50,7 +50,7 @@ const titleStyle = css`
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
     padding-left: 80px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
 
   &::before {

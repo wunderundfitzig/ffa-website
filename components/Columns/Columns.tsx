@@ -5,9 +5,14 @@ import { ColumnsBlock } from 'lib/models/columnsBlock'
 const wrapperStyle = css`
   ${layout.container};
   ${layout.block};
+  padding-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
-    display: flex;
+    ${layout.grid({ columns: 3 })}
+  }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    padding-bottom: 30px;
   }
 `
 
