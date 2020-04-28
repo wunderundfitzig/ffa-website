@@ -1,5 +1,6 @@
 import { css } from '@emotion/core'
 import { transparentize } from 'polished'
+import * as breakpoints from './breakpoints'
 import * as colors from './colors'
 
 export const container = css`
@@ -12,7 +13,10 @@ export const block = css`
   padding: 20px;
   box-sizing: border-box;
   background-color: ${transparentize(0.2, colors.beige)};
-  padding: 20px;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    padding: 20px 45px;
+  }
 `
 
 export const grid = ({
