@@ -2,7 +2,7 @@ import { css } from '@emotion/core'
 import * as breakpoints from './breakpoints'
 
 export const heading1 = css`
-  font-size: 1.2em;
+  font-size: 1.3em;
   line-height: 1.3em;
   font-weight: 700;
 
@@ -16,6 +16,6 @@ export const heading1 = css`
 `
 
 export const heading2 = css`
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 700;
 `

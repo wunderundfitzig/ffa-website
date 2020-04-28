@@ -16,9 +16,13 @@ const titleBlockStyle = css`
 const rooflineStyle = css`
   display: block;
   color: ${colors.darkGreen};
-  padding-left: 35px;
+  padding-left: 10px;
   margin-bottom: 0.7em;
   line-height: 1.1em;
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    padding-left: 35px;
+  }
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     font-size: 1.15em;
@@ -32,16 +36,21 @@ const rooflineStyle = css`
 const titleStyle = css`
   ${typography.heading1};
   position: relative;
-  padding-left: 35px;
-  min-height: 80px;
+  padding-left: 10px;
+  min-height: 70px;
   margin: 0;
+  margin-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
+    min-height: 80px;
+    padding-left: 35px;
     padding-right: 25%;
+    margin-bottom: 40px;
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
     padding-left: 80px;
+    margin-bottom: 80px;
   }
 
   &::before {
@@ -49,11 +58,15 @@ const titleStyle = css`
     position: absolute;
     left: -95px;
     top: -8px;
-    width: 120px;
+    width: 100px;
     height: 100px;
     background-image: url(${flag});
     background-repeat: no-repeat;
     background-size: 100%;
+
+    @media (min-width: ${breakpoints.breakpointM}px) {
+      width: 120px;
+    }
 
     @media (min-width: ${breakpoints.breakpointXL}px) {
       left: -64px;

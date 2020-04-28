@@ -10,12 +10,13 @@ export const container = css`
 `
 
 export const block = css`
-  padding: 20px;
+  padding: 0 30px;
   box-sizing: border-box;
   background-color: ${transparentize(0.2, colors.beige)};
+  overflow: hidden;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
-    padding: 20px 45px;
+    padding: 0 45px;
   }
 `
 

@@ -1,6 +1,6 @@
 import { Global, css } from '@emotion/core'
 import woodBackground from './_woodBackground.jpg'
-import { colors } from 'style'
+import { colors, breakpoints } from 'style'
 
 const fonts = [
   {
@@ -47,9 +47,13 @@ const GlobalStyles = () => (
           font-family: Museo, sans-serif;
           background-image: url(${woodBackground});
           background-size: 100%;
-          font-size: 16px;
+          font-size: 14px;
           line-height: 1.5em;
           color: ${colors.brown};
+
+          @media (min-width: ${breakpoints.breakpointM}px) {
+            font-size: 16px;
+          }
         }
       `}
     />
