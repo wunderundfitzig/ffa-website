@@ -4,6 +4,7 @@ import { layout } from 'style'
 import NewsBanner from 'components/NewsBanner/NewsBanner'
 import Title from 'components/Title/Title'
 import Columns from 'components/Columns/Columns'
+import Collage from 'components/Collage/Collage'
 
 const defaultBlockStyle = css`
   ${layout.container};
@@ -22,6 +23,8 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
             return <Title key={idx} {...block.attrs} />
           case 'lazyblock/columns':
             return <Columns key={idx} {...block.attrs} />
+          case 'lazyblock/collage':
+            return <Collage key={idx} {...block.attrs} />
           default:
             return (
               <div

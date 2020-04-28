@@ -8,5 +8,6 @@ export const parseJsonURLString = <R>(validator: Validator<R>) => (
   }
   const jsonString = decodeURIComponent(str)
   const obj = parseJson()(jsonString)
+  console.log(obj)
   return validator(obj)
 }

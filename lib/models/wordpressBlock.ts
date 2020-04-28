@@ -1,7 +1,8 @@
-import { object, string, FefeError, parseJson, Validator } from 'fefe'
+import { object, string } from 'fefe'
 import { newsBlock } from './newsBlock'
 import { titleBlock } from './titleBlock'
 import { columnsBlock } from './columnsBlock'
+import { collageBlock } from './collageBlock'
 
 const defaultBlock = object(
   {
@@ -26,6 +27,7 @@ const blockValidators = [
   makeValidator('lazyblock/news' as 'lazyblock/news', newsBlock),
   makeValidator('lazyblock/title' as 'lazyblock/title', titleBlock),
   makeValidator('lazyblock/columns' as 'lazyblock/columns', columnsBlock),
+  makeValidator('lazyblock/collage' as 'lazyblock/collage', collageBlock),
 ]
 
 export function wordpressBlock(block: { blockName: string }) {
@@ -33,7 +35,7 @@ export function wordpressBlock(block: { blockName: string }) {
     (validator) => validator.name === block.blockName
   )
   if (!validator) return defaultBlock(block)
-  if (validator.name === 'lazyblock/columns') console.log(block)
+  if (validator.name === 'lazyblock/collage') console.log(block)
   return validator.validate(block)
 }
 
