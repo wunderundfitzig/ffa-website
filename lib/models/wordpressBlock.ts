@@ -40,7 +40,6 @@ export function wordpressBlock(block: { blockName: string }) {
     (validator) => validator.name === block.blockName
   )
   if (!validator) return defaultBlock(block)
-  if (validator.name === 'lazyblock/image-links') console.log(block)
   return validator.validate(block)
 }
 
