@@ -3,6 +3,7 @@ import { newsBlock } from './newsBlock'
 import { titleBlock } from './titleBlock'
 import { columnsBlock } from './columnsBlock'
 import { collageBlock } from './collageBlock'
+import { imageLinksBlock } from './imageLinksBlock'
 
 const defaultBlock = object(
   {
@@ -28,6 +29,10 @@ const blockValidators = [
   makeValidator('lazyblock/title' as 'lazyblock/title', titleBlock),
   makeValidator('lazyblock/columns' as 'lazyblock/columns', columnsBlock),
   makeValidator('lazyblock/collage' as 'lazyblock/collage', collageBlock),
+  makeValidator(
+    'lazyblock/image-links' as 'lazyblock/image-links',
+    imageLinksBlock
+  ),
 ]
 
 export function wordpressBlock(block: { blockName: string }) {
@@ -35,7 +40,7 @@ export function wordpressBlock(block: { blockName: string }) {
     (validator) => validator.name === block.blockName
   )
   if (!validator) return defaultBlock(block)
-  if (validator.name === 'lazyblock/collage') console.log(block)
+  if (validator.name === 'lazyblock/image-links') console.log(block)
   return validator.validate(block)
 }
 
