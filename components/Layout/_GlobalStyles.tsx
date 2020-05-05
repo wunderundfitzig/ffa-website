@@ -50,10 +50,6 @@ const GlobalStyles = () => (
           font-size: 14px;
           line-height: 1.5em;
           color: ${colors.brown};
-
-          @media (min-width: ${breakpoints.breakpointM}px) {
-            font-size: 16px;
-          }
         }
       `}
     />

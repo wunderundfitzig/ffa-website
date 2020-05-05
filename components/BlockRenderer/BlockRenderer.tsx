@@ -3,9 +3,10 @@ import { WordpressBlock } from 'lib/models/wordpressBlock'
 import { layout } from 'style'
 import NewsBanner from 'components/NewsBanner/NewsBanner'
 import Title from 'components/Title/Title'
-import Columns from 'components/Columns/Columns'
+import TextColumns from 'components/TextColumns/TextColumns'
 import Collage from 'components/Collage/Collage'
 import ImageLinks from 'components/ImageLinks/ImageLinks'
+import Contact from 'components/Contact/Contact'
 
 const defaultBlockStyle = css`
   ${layout.container};
@@ -23,11 +24,13 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
           case 'lazyblock/title':
             return <Title key={idx} {...block.attrs} />
           case 'lazyblock/columns':
-            return <Columns key={idx} {...block.attrs} />
+            return <TextColumns key={idx} {...block.attrs} />
           case 'lazyblock/collage':
             return <Collage key={idx} {...block.attrs} />
           case 'lazyblock/image-links':
             return <ImageLinks key={idx} {...block.attrs} />
+          case 'lazyblock/contact':
+            return <Contact key={idx} {...block.attrs} />
           default:
             return (
               <div

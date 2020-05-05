@@ -14,6 +14,15 @@ export const resetListStyles = css`
   padding: 0;
 `
 
+export const resetDefinitionListStyles = css`
+  margin: 0;
+  padding: 0;
+
+  dd {
+    margin: 0;
+  }
+`
+
 export const resetButtonStyles = css`
   padding: 0;
   background: none;

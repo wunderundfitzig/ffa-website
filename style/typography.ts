@@ -11,11 +11,12 @@ export const heading1 = css`
   }
 
   @media (min-width: ${breakpoints.breakpointL}px) {
-    font-size: 1.8em;
+    font-size: 2em;
   }
 `
 
 export const heading2 = css`
-  font-size: 1.1em;
+  font-size: 1.2em;
+  margin: 0.2em 0 0.4em;
   font-weight: 700;
 `

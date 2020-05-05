@@ -1,14 +1,14 @@
+import React, { ReactNode } from 'react'
 import { css } from '@emotion/core'
-import { layout, colors, typography, breakpoints } from 'style'
-import { ColumnsBlock } from 'lib/models/columnsBlock'
+import { layout, colors, breakpoints } from 'style'
 
-const wrapperStyle = css`
+const wrapperStyle = (childCount: number) => css`
   ${layout.container};
   ${layout.block};
   padding-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
-    ${layout.grid({ columns: 3 })}
+    ${layout.grid({ columns: childCount })}
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
@@ -23,8 +23,9 @@ const columnStyle = css`
   margin-bottom: 30px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
+    margin-left: 0;
     border-width: 12px;
-    padding-left: 38px;
+    padding-left: 26px;
   }
 
   @media (min-width: ${breakpoints.breakpointL}px) {
@@ -38,17 +39,13 @@ const columnStyle = css`
   }
 `
 
-const titleStyle = css`
-  ${typography.heading2};
-`
-
-const Columns = (props: ColumnsBlock) => {
+const Columns = (props: { children: ReactNode }) => {
+  const childCount = React.Children.count(props.children)
   return (
-    <div css={wrapperStyle}>
-      {props.columns.map((column, idx) => (
+    <div css={wrapperStyle(childCount)}>
+      {React.Children.map(props.children, (child, idx) => (
         <div key={idx} css={columnStyle}>
-          <h2 css={titleStyle}>{column.title}</h2>
-          <p>{column.text}</p>
+          {child}
         </div>
       ))}
     </div>
