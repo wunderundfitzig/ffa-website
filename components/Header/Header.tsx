@@ -13,6 +13,7 @@ const headerStyle = css`
   background-color: ${colors.lightGreen};
   background-image: url(${pattern});
   background-size: auto 100%;
+  margin-bottom: 20px;
 
   &::after {
     content: '';

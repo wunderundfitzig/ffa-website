@@ -9,6 +9,7 @@ const footerStyle = css`
   background-color: ${colors.darkGreen};
   color: white;
   padding: 20px 20px 30px;
+  margin-top: 60px;
 `
 
 const titleStyle = css`
