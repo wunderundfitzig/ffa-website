@@ -23,8 +23,35 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on ZEIT Now
+## Setup Wordpress
 
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Plugins
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Lazy Blocks
+
+https://wordpress.org/plugins/lazy-blocks/
+
+used to create custom blocks that can then be rendered by this page
+
+#### REST Gutenberg
+
+https://de.wordpress.org/plugins/rest-gutenberg/
+
+Add blocks data to pages in wordpress api
+
+### Setup
+
+The blocks used by this page must be created with lazy-blocks
+TODO: mabe add a backup of the cinfuguration here
+
+Set the Site URl in settings to the frontend url
+This will break gutenberg because it will look for the rest_url under
+the frontend domain.
+To fix this add the following to the functions.php of the template
+
+```
+add_filter('rest_url', function($url) {
+    $url = str_replace(home_url(), site_url().'/index.php', $url);
+    return $url;
+})`
+```
