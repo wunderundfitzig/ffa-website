@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const baseURL = 'https://ffaback.uber.space/wp-json/'
   const location = baseURL + pathString + '?' + queryString
 
-  context.res.writeHead(308, { Location: location })
+  context.res.writeHead(301, { Location: location })
   context.res.end()
   return { props: {} }
 }
