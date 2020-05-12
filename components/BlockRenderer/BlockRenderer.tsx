@@ -7,6 +7,7 @@ import TextColumns from 'components/TextColumns/TextColumns'
 import Collage from 'components/Collage/Collage'
 import ImageLinks from 'components/ImageLinks/ImageLinks'
 import Contact from 'components/Contact/Contact'
+import WideImage from 'components/WideImage/WideImage'
 
 const defaultBlockStyle = css`
   ${layout.container};
@@ -31,6 +32,8 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
             return <ImageLinks key={idx} {...block.attrs} />
           case 'lazyblock/contact':
             return <Contact key={idx} {...block.attrs} />
+          case 'lazyblock/wide-image':
+            return <WideImage key={idx} {...block.attrs} />
           default:
             return (
               <div

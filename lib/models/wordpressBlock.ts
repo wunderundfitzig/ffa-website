@@ -5,6 +5,7 @@ import { columnsBlock } from './columnsBlock'
 import { collageBlock } from './collageBlock'
 import { imageLinksBlock } from './imageLinksBlock'
 import { contactBlock } from './contactBlock'
+import { wideImageBlock } from './wideImageBlock'
 
 const defaultBlock = object(
   {
@@ -31,6 +32,10 @@ const blockValidators = [
   makeValidator('lazyblock/columns' as 'lazyblock/columns', columnsBlock),
   makeValidator('lazyblock/collage' as 'lazyblock/collage', collageBlock),
   makeValidator('lazyblock/contact' as 'lazyblock/contact', contactBlock),
+  makeValidator(
+    'lazyblock/wide-image' as 'lazyblock/wide-image',
+    wideImageBlock
+  ),
   makeValidator(
     'lazyblock/image-links' as 'lazyblock/image-links',
     imageLinksBlock
