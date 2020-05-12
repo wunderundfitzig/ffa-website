@@ -18,31 +18,31 @@ const pageLinks: NavigationItem[] = [
   {
     type: 'internal',
     slug: '/',
-    route: 'index',
+    route: '/index',
     displayName: 'Willkommen',
   },
   {
     type: 'internal',
     slug: '/ueber-uns',
-    route: '[...page]',
+    route: '/[...page]',
     displayName: 'Über Uns',
     children: [
       {
         type: 'internal',
         slug: '/ueber-uns/philosophie-methoden',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Philosophie & Methoden',
       },
       {
         type: 'internal',
         slug: '/ueber-uns/team',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Unser Team',
       },
       {
         type: 'internal',
         slug: '/ueber-uns/gelaende',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Unser Gelände',
       },
     ],
@@ -50,31 +50,31 @@ const pageLinks: NavigationItem[] = [
   {
     type: 'internal',
     slug: '/angebote',
-    route: '[...page]',
+    route: '/[...page]',
     displayName: 'Unsere Angebote',
     children: [
       {
         type: 'internal',
         slug: '/angebote/erlebnispadagogik',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Erlebnispädagogik',
       },
       {
         type: 'internal',
         slug: '/angebote/fortbildungen',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Fortbildungen',
       },
       {
         type: 'internal',
         slug: '/angebote/veranstaltungen',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Übergangsbegleitung',
       },
       {
         type: 'internal',
         slug: '/angebote/jobs-praktika',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Jobs & Praktika',
       },
     ],
@@ -82,25 +82,25 @@ const pageLinks: NavigationItem[] = [
   {
     type: 'internal',
     slug: '/projekte',
-    route: '[...page]',
+    route: '/[...page]',
     displayName: 'Unsere Projekte',
     children: [
       {
         type: 'internal',
         slug: '/projekte/inisek',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'INISEK',
       },
       {
         type: 'internal',
         slug: '/projekte/internationaler-jugendaustausch',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Internationaler Jugendaustausch',
       },
       {
         type: 'internal',
         slug: '/projekte/natur-und-wildnispadagogik',
-        route: '[...page]',
+        route: '/[...page]',
         displayName: 'Natur- und Wildnispädagogik',
       },
     ],
