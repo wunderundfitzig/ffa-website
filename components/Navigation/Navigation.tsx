@@ -49,6 +49,7 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
   @media (min-width: ${breakpoints.breakpointL}px) {
     position: static;
     display: flex;
+    overflow: visible;
     background-color: transparent;
     padding: 0;
     margin-top: 30px;
