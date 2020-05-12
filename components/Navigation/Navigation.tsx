@@ -36,13 +36,14 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
   ${helpers.resetListStyles};
   display: ${isExpanded ? 'block' : 'none'};
   position: fixed;
+  overflow: auto;
   top: 0;
   left: 0;
   background-color: ${colors.beige};
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 80px 30px;
+  padding: 40px 30px;
   z-index: 100;
 
   @media (min-width: ${breakpoints.breakpointL}px) {

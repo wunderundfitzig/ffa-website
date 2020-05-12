@@ -12,7 +12,7 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   font-size: 1.3em;
   margin: 35px 0;
   text-decoration: none;
-  color: ${isActive ? colors.orange : colors.brown};
+  color: ${isActive ? colors.darkGreen : colors.brown};
   transition: background-color 1s, border-color 1s;
 
   &:hover {
