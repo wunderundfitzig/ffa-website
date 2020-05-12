@@ -17,6 +17,7 @@ export const heading1 = css`
 
 export const heading2 = css`
   font-size: 1.2em;
-  margin: 0.2em 0 0.4em;
+  margin-top: 0.2em;
+  margin-bottom: 0.4em;
   font-weight: 700;
 `
