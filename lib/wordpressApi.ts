@@ -1,12 +1,27 @@
 import fetch from 'isomorphic-unfetch'
 import { WordpressBlock, wordpressBlock } from './models/wordpressBlock'
 
-export async function getBlocks(pageId: string): Promise<WordpressBlock[]> {
-  const url = `${process.env.WP_API_URL}/pages/${pageId}?_fields=content.raw,blocks`
-  const res = await fetch(url)
-  const json = await res.json()
+export async function getBlocks(
+  slugs: string[]
+): Promise<WordpressBlock[] | null> {
+  try {
+    const pageSlug = slugs[slugs.length - 1]
+    const wpLink = `https://ffaback.uber.space/${slugs.join('/')}/`
+    const url = `${process.env.WP_API_URL}/pages?slug=${pageSlug}&_fields=content.raw,blocks,link`
+    const res = await fetch(url)
+    let pages = await res.json()
 
-  return json.blocks
-    .filter((block: { blockName: string | null }) => block.blockName !== null)
-    .map((block: { blockName: string }) => wordpressBlock(block))
+    // we can only filter pages by the last part of the slug
+    // but this is not unique so make shure we only get the page matching
+    // the real link we need
+    if (pages.length > 1) {
+      pages = pages.filter((p: { link: string }) => p.link === wpLink)
+    }
+
+    return pages[0].blocks
+      .filter((block: { blockName: string | null }) => block.blockName !== null)
+      .map((block: { blockName: string }) => wordpressBlock(block))
+  } catch (error) {
+    return null
+  }
 }

@@ -7,20 +7,18 @@ import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
 import Map from 'components/Map/Map'
 
 const Home = (props: { blocks: WordpressBlock[] }) => (
-  <div className='container'>
+  <Layout>
     <Head>
       <title>Abenteuerzentrum Berlin</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
-    <Layout>
-      <BlockRenderer blocks={props.blocks} />
-      <Map />
-    </Layout>
-  </div>
+    <BlockRenderer blocks={props.blocks} />
+    <Map />
+  </Layout>
 )
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const blocks = await getBlocks('5')
+  const blocks = await getBlocks(['home'])
 
   return {
     props: { blocks }, // will be passed to the page component as props

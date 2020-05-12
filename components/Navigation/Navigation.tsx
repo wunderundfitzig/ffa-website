@@ -85,23 +85,23 @@ interface NavigationItem {
 }
 const navigationItems = [
   {
-    url: '',
+    url: '/',
     displayName: 'Willkommen',
   },
   {
-    url: '',
+    url: 'ueber-uns',
     displayName: 'Über Uns',
   },
   {
-    url: '',
+    url: 'angebote',
     displayName: 'Unsere Angebote',
   },
   {
-    url: '',
+    url: 'projekte',
     displayName: 'Unsere Projekte',
   },
   {
-    url: '',
+    url: 'https://waldkita-berlin.de/',
     displayName: 'Waldkita Fila',
   },
 ]
