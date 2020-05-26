@@ -66,6 +66,9 @@ const Navigation = (props: { className?: string }) => {
     }
 
     Router.events.on('routeChangeStart', handleRouteChange)
+    return () => {
+      Router.events.off('routeChangeStart', handleRouteChange)
+    }
   }, [])
 
   return (
