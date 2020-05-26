@@ -4,6 +4,7 @@ import Navigation from 'components/Navigation/Navigation'
 import logo from './_logo.svg'
 import dash from './_dash.svg'
 import pattern from './_pattern.svg'
+import Link from 'next/link'
 
 const headerStyle = css`
   box-sizing: border-box;
@@ -81,7 +82,11 @@ const navigationStyle = css`
 const Header = () => (
   <header css={headerStyle}>
     <div css={wrapperStyle}>
-      <img css={logoStyle} alt='Fahrten Ferne Abenteuer' src={logo} />
+      <Link href='/'>
+        <a>
+          <img css={logoStyle} alt='Fahrten Ferne Abenteuer' src={logo} />
+        </a>
+      </Link>
       <h1 css={titleStyle}>Abenteuerzentrum Berlin</h1>
       <Navigation css={navigationStyle} />
     </div>
