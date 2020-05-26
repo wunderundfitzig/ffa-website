@@ -1,8 +1,9 @@
 import { css } from '@emotion/core'
+import { useState, useEffect } from 'react'
+import { Router } from 'next/router'
 import { colors, breakpoints, helpers } from 'style'
 import mobileNavigationButton from './_mobileNavigationButton.svg'
 import closeIcon from './_closeIcon.svg'
-import { useState } from 'react'
 import NavigationLink from './_NavigationLink'
 import navigationItems from './_navigationItems'
 
@@ -58,6 +59,15 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
 
 const Navigation = (props: { className?: string }) => {
   const [isExpanded, setIsExpanded] = useState(false)
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsExpanded(false)
+    }
+
+    Router.events.on('routeChangeStart', handleRouteChange)
+  }, [])
+
   return (
     <nav className={props.className}>
       <button
