@@ -47,6 +47,10 @@ const logoStyle = css`
   width: 100px;
   height: 50px;
 
+  img {
+    width: 100%;
+  }
+
   @media (min-width: ${breakpoints.breakpointM}px) {
     width: 150px;
     height: 70px;
@@ -82,9 +86,9 @@ const navigationStyle = css`
 const Header = () => (
   <header css={headerStyle}>
     <div css={wrapperStyle}>
-      <Link href='/'>
-        <a>
-          <img css={logoStyle} alt='Fahrten Ferne Abenteuer' src={logo} />
+      <Link passHref href='/'>
+        <a css={logoStyle}>
+          <img alt='Fahrten Ferne Abenteuer' src={logo} />
         </a>
       </Link>
       <h1 css={titleStyle}>Abenteuerzentrum Berlin</h1>
