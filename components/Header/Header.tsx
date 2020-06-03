@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { colors, layout, breakpoints, pattern } from 'style'
+import { colors, layout, breakpoints, pattern, typography } from 'style'
 import Navigation from 'components/Navigation/Navigation'
 import logo from './_logo.svg'
 import bgPattern from './_pattern.svg'
@@ -62,6 +62,7 @@ const logoStyle = css`
 const titleStyle = css`
   display: none;
   @media (min-width: ${breakpoints.breakpointL}px) {
+    ${typography.heading1}
     display: flex;
     justify-content: end;
     align-items: center;

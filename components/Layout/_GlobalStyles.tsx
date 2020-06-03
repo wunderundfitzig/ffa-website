@@ -1,8 +1,14 @@
 import { Global, css } from '@emotion/core'
 import woodBackground from './_woodBackground.jpg'
-import { colors, breakpoints } from 'style'
+import { colors } from 'style'
 
 const fonts = [
+  {
+    family: 'Museo Sans',
+    style: 'normal',
+    weight: 500,
+    fileName: 'museo-sans500',
+  },
   {
     family: 'Museo',
     style: 'normal',
@@ -44,7 +50,7 @@ const GlobalStyles = () => (
         body {
           margin: 0;
           padding: 0;
-          font-family: Museo, sans-serif;
+          font-family: Museo Sans, sans-serif;
           background-image: url(${woodBackground});
           background-size: 100%;
           font-size: 14px;
