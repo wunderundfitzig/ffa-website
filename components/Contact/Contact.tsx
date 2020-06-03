@@ -1,9 +1,8 @@
 import { css } from '@emotion/core'
-import { typography, breakpoints, helpers } from 'style'
+import { typography, breakpoints, helpers, colors } from 'style'
 import { ContactBlock } from 'lib/models/contactBlock'
 import Columns from 'components/Columns/Columns'
-import instagramLogo from './_instagram.svg'
-import facebookLogo from './_facebook.svg'
+import SocialLinks from 'components/SocialLinks/SocialLinks'
 
 const titleStyle = css`
   ${typography.heading2};
@@ -40,17 +39,6 @@ const linkStyle = css`
   ${helpers.resetLinkStyles};
 `
 
-const socialLinkStyle = css`
-  ${helpers.resetLinkStyles};
-  display: inline-block;
-  margin: 15px 15px 0 0;
-  width: 20px;
-
-  img {
-    width: 100%;
-  }
-`
-
 const Contact = (props: ContactBlock) => {
   return (
     <Columns>
@@ -69,22 +57,23 @@ const Contact = (props: ContactBlock) => {
             </a>
           </dd>
         </dl>
-        <a
-          css={socialLinkStyle}
-          href={props.instagram}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <img src={instagramLogo} alt='instagram' />
-        </a>
-        <a
-          css={socialLinkStyle}
-          href={props.facebook}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <img src={facebookLogo} alt='facebook' />
-        </a>
+        <SocialLinks
+          links={[
+            {
+              platform: 'instagram',
+              url: props.instagram,
+            },
+            {
+              platform: 'facebook',
+              url: props.facebook,
+            },
+            {
+              platform: 'youtube',
+              url: props.youtube,
+            },
+          ]}
+          color={colors.brown}
+        />
       </div>
     </Columns>
   )
