@@ -1,15 +1,8 @@
 import { AppProps } from 'next/app'
 import { Router } from 'next/router'
-import { css } from '@emotion/core'
 import { useEffect, useState } from 'react'
 import Layout from 'components/Layout/Layout'
-
-const LoadingIndicator = function () {
-  const loadingStyle = css`
-    min-height: 80vh;
-  `
-  return <div css={loadingStyle} />
-}
+import LoadingPlaceholder from 'components/LoadingPlaceholder/LoadingPlaceholder'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false)
@@ -28,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [])
   return (
     <Layout>
-      {isLoading ? <LoadingIndicator /> : <Component {...pageProps} />}
+      {isLoading ? <LoadingPlaceholder /> : <Component {...pageProps} />}
     </Layout>
   )
 }
