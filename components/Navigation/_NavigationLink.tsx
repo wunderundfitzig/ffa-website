@@ -48,6 +48,10 @@ const externalLinkStyle = css`
     background-color: ${colors.brown};
     color: ${colors.beige};
     border-color: ${colors.brown};
+
+    &:hover {
+      color: ${colors.lightGreen};
+    }
   }
 `
 
