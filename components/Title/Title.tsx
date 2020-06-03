@@ -14,13 +14,14 @@ const titleBlockStyle = css`
 `
 
 const rooflineStyle = css`
+  ${typography.museoSlab};
   display: block;
   color: ${colors.darkGreen};
   padding-left: 10px;
   margin-bottom: 0.7em;
   line-height: 1.1em;
 
-  @media (min-width: ${breakpoints.breakpointL}px) {
+  @media (min-width: ${breakpoints.breakpointM}px) {
     padding-left: 35px;
   }
 
