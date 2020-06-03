@@ -39,7 +39,7 @@ https://de.wordpress.org/plugins/rest-gutenberg/
 
 Add blocks data to pages in wordpress api
 
-### Setup
+#### Setup
 
 - The blocks used by this page must be created with lazy-blocks
   TODO: mabe add a backup of the confuguration here
