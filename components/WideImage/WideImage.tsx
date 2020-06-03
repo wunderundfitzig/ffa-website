@@ -37,6 +37,11 @@ const textOverlayStyle = css`
     line-height: 1.4em;
   }
 
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    font-size: 2em;
+    line-height: 1.3em;
+  }
+
   &::before {
     content: '';
     position: absolute;
