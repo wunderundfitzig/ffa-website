@@ -49,7 +49,7 @@ Add blocks data to pages in wordpress api
 
   To fix this add the following to the functions.php of the template
 
-  ```
+  ```php
   add_filter('rest_url', function($url) {
       $url = str_replace(home_url(), site_url().'/index.php', $url);
       return $url;
