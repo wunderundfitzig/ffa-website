@@ -19,7 +19,7 @@ export default function LoadingPlaceholder() {
     min-height: 80vh;
     opacity: 0;
     animation: ${fadeIn} 3s infinite;
-    animation-delay: 1s;
+    animation-delay: 0.3s;
   `
   return <div css={loadingStyle} />
 }
