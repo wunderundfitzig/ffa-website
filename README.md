@@ -27,19 +27,17 @@ You can check out [the Next.js GitHub repository](https://github.com/zeit/next.j
 
 ### Plugins
 
-#### Lazy Blocks
+- **Lazy Blocks**
 
-https://wordpress.org/plugins/lazy-blocks/
+  https://wordpress.org/plugins/lazy-blocks/  
+  used to create custom blocks that can then be rendered by this page
 
-used to create custom blocks that can then be rendered by this page
+- **REST Gutenberg**
 
-#### REST Gutenberg
+  https://de.wordpress.org/plugins/rest-gutenberg/  
+  Add blocks data to pages in wordpress api
 
-https://de.wordpress.org/plugins/rest-gutenberg/
-
-Add blocks data to pages in wordpress api
-
-#### Setup
+### Setup
 
 - The blocks used by this page must be created with lazy-blocks
   TODO: mabe add a backup of the confuguration here
