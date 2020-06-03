@@ -63,13 +63,13 @@ const titleStyle = css`
 const banderoleStyle = css`
   position: absolute;
   width: 120px;
-  top: -6px;
-  right: -15px;
+  top: -7px;
+  right: -14px;
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
     width: 140px;
-    top: -7px;
-    right: -18px;
+    top: -8px;
+    right: -17px;
   }
 `
 
