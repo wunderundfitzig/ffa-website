@@ -58,7 +58,7 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
 `
 
 const navigationSectionStyle = css`
-  border-bottom: 1px solid ${colors.lightGreen};
+  border-bottom: 1px solid ${colors.brown};
   overflow: hidden;
 
   @media (min-width: ${breakpoints.breakpointL}px) {

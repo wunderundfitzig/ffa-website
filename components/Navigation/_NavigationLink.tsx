@@ -14,7 +14,7 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   text-decoration: none;
   color: ${colors.brown};
   transition: background-color 1s, border-color 1s;
-  color: ${isActive ? colors.darkGreen : colors.brown};
+  color: ${isActive ? colors.lightGreen : colors.brown};
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     background-color: ${isActive ? colors.darkGreen : colors.lightGreen};
