@@ -44,7 +44,7 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 40px 0;
+  padding: 40px 30px;
   z-index: 100;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
@@ -58,20 +58,12 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
 `
 
 const navigationSectionStyle = css`
-  padding: 0 30px;
+  border-bottom: 1px solid ${colors.lightGreen};
   overflow: hidden;
 
-  &:nth-of-type(2n) {
-    background-color: ${colors.lightGreen};
-  }
-
   @media (min-width: ${breakpoints.breakpointL}px) {
-    padding: 0;
     overflow: visible;
-
-    &:nth-of-type(2n) {
-      background-color: transparent;
-    }
+    border: 0;
   }
 `
 

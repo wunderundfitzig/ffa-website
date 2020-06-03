@@ -7,26 +7,17 @@ import { NavigationItem, InternalPage, ExternalPage } from './_navigationItems'
 const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   box-sizing: border-box;
   display: block;
-  text-align: left;
+  text-align: center;
   width: 100%;
   font-size: 1.3em;
   margin: 35px 0;
   text-decoration: none;
   color: ${colors.brown};
   transition: background-color 1s, border-color 1s;
-
-  &::before {
-    content: ${isActive ? '"- "' : ''};
-  }
-
-  &::after {
-    content: ${isActive ? '" -"' : ''};
-  }
+  color: ${isActive ? colors.darkGreen : colors.brown};
 
   @media (min-width: ${breakpoints.breakpointL}px) {
-    text-align: center;
     background-color: ${isActive ? colors.darkGreen : colors.lightGreen};
-    color: white;
     border: 1px solid;
     border-color: ${isActive ? colors.darkGreen : 'white'};
     border-bottom: none;
@@ -35,7 +26,7 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
     padding: 0.5em 0.7em;
     margin: 0;
     margin-right: 1em;
-    color: ${isActive ? colors.darkGreen : colors.brown};
+    color: ${isActive ? 'white' : colors.brown};
 
     &:hover {
       color: ${isActive ? 'white' : colors.darkGreen};
@@ -58,7 +49,6 @@ const linkGroupStyle = css`
 
   & > a {
     font-weight: bold;
-    text-align: center;
     text-transform: uppercase;
 
     @media (min-width: ${breakpoints.breakpointL}px) {
