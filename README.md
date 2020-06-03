@@ -39,12 +39,12 @@ You can check out [the Next.js GitHub repository](https://github.com/zeit/next.j
 
 ### Setup
 
-- The blocks used by this page must be created with lazy-blocks
-  TODO: mabe add a backup of the confuguration here
+- The blocks used by this page must be created with lazy-blocks  
+ *TODO: mabe add a backup of the confuguration here*
 
 - Set the "Site URl" in the wordpress page settings to the frontend url: https://abenteuerzentrum.berlin.  
   
-  This will break gutenberg because it will look for the `rest_url` under the frontend domain.
+  This will break gutenberg because it will look for the `rest_url` under the frontend domain.  
   To fix this add the following to the functions.php of the template:
 
   ```php
