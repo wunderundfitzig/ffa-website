@@ -38,6 +38,19 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   }
 `
 
+const externalLinkStyle = css`
+  font-weight: bold;
+  text-transform: uppercase;
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    font-weight: normal;
+    text-transform: none;
+    background-color: ${colors.brown};
+    color: ${colors.beige};
+    border-color: ${colors.brown};
+  }
+`
+
 const linkGroupStyle = css`
   @media (min-width: ${breakpoints.breakpointL}px) {
     position: relative;
@@ -81,7 +94,7 @@ function ExternalLink(page: ExternalPage) {
   const linkStyle = navigationLinkStyle({ isActive: false })
   return (
     <a
-      css={linkStyle}
+      css={[linkStyle, externalLinkStyle]}
       href={page.url}
       target='_blank'
       rel='noopener noreferrer'
