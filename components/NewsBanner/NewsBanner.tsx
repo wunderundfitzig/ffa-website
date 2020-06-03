@@ -84,6 +84,11 @@ const textStyle = css`
     padding-left: 5px;
     padding-right: 40px;
   }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
 `
 
 const NewsBanner = (props: NewsBlock) => {
