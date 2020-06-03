@@ -31,6 +31,17 @@ const textOverlayStyle = css`
   text-shadow: 1px 1px 2px black;
   font-size: 1.3em;
 
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    max-width: 60%;
+    font-size: 1.6em;
+    line-height: 1.4em;
+  }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    font-size: 2em;
+    line-height: 1.3em;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -38,7 +49,7 @@ const textOverlayStyle = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: ${transparentize(0.8, 'black')};
+    background-color: ${transparentize(0.7, 'black')};
     z-index: -1;
   }
 `

@@ -1,6 +1,6 @@
 import { css } from '@emotion/core'
 import Link from 'next/link'
-import { colors, typography, layout, breakpoints } from 'style'
+import { colors, typography, layout, breakpoints, pattern } from 'style'
 import SocialLinks from 'components/SocialLinks/SocialLinks'
 
 const footerStyle = css`
@@ -8,6 +8,17 @@ const footerStyle = css`
   color: white;
   padding: 20px 20px 30px;
   margin-top: 60px;
+  position: relative;
+
+  &::before {
+    ${pattern.dashedLine};
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top: 2px solid ${colors.darkGreen};
+  }
 `
 
 const titleStyle = css`

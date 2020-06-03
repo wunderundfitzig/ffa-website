@@ -1,7 +1,6 @@
 import { css } from '@emotion/core'
-import { layout, colors, typography, breakpoints, helpers } from 'style'
+import { layout, colors, breakpoints, helpers } from 'style'
 import { ImageLinksBlock } from 'lib/models/imageLinksBlock'
-import { image } from 'lib/models/image'
 import { transparentize } from 'polished'
 
 const wrapperStyle = css`
@@ -49,6 +48,11 @@ const linkTextStyle = css`
   left: 0;
   width: 100%;
   height: 100%;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: transparent;
+  }
 `
 
 // TODO: if links are local detect this and convert them to slugs

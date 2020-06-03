@@ -1,9 +1,8 @@
 import { css } from '@emotion/core'
-import { colors, layout, breakpoints } from 'style'
+import { colors, layout, breakpoints, pattern } from 'style'
 import Navigation from 'components/Navigation/Navigation'
 import logo from './_logo.svg'
-import dash from './_dash.svg'
-import pattern from './_pattern.svg'
+import bgPattern from './_pattern.svg'
 import Link from 'next/link'
 
 const headerStyle = css`
@@ -12,21 +11,19 @@ const headerStyle = css`
   width: 100%;
   padding: 20px 30px;
   background-color: ${colors.lightGreen};
-  background-image: url(${pattern});
+  background-image: url(${bgPattern});
   background-size: auto 100%;
   margin-bottom: 20px;
 
   &::after {
+    ${pattern.dashedLine}
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 10px;
-    background-repeat: repeat-x;
-    background-color: ${colors.darkGreen};
-    background-image: url(${dash});
-    background-position: 0 7px;
+    border-top: 7px solid ${colors.darkGreen};
+    border-bottom: 2px solid ${colors.darkGreen};
   }
 
   @media (min-width: ${breakpoints.breakpointM}px) {
