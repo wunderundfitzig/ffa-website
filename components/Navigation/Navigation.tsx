@@ -57,6 +57,16 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
   }
 `
 
+const navigationSectionStyle = css`
+  border-bottom: 1px solid ${colors.brown};
+  overflow: hidden;
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    overflow: visible;
+    border: 0;
+  }
+`
+
 const Navigation = (props: { className?: string }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -92,7 +102,7 @@ const Navigation = (props: { className?: string }) => {
         </button>
         {navigationItems.map((navigationItem, i) => {
           return (
-            <li key={i}>
+            <li css={navigationSectionStyle} key={i}>
               <NavigationLink {...navigationItem} />
             </li>
           )

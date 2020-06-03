@@ -12,16 +12,12 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   font-size: 1.3em;
   margin: 35px 0;
   text-decoration: none;
-  color: ${isActive ? colors.darkGreen : colors.brown};
+  color: ${colors.brown};
   transition: background-color 1s, border-color 1s;
-
-  &:hover {
-    color: ${isActive ? 'white' : colors.darkGreen};
-  }
+  color: ${isActive ? colors.lightGreen : colors.brown};
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     background-color: ${isActive ? colors.darkGreen : colors.lightGreen};
-    color: white;
     border: 1px solid;
     border-color: ${isActive ? colors.darkGreen : 'white'};
     border-bottom: none;
@@ -30,6 +26,11 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
     padding: 0.5em 0.7em;
     margin: 0;
     margin-right: 1em;
+    color: ${isActive ? 'white' : colors.brown};
+
+    &:hover {
+      color: ${isActive ? 'white' : colors.darkGreen};
+    }
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
@@ -43,6 +44,16 @@ const linkGroupStyle = css`
 
     &:hover ul {
       display: block;
+    }
+  }
+
+  & > a {
+    font-weight: bold;
+    text-transform: uppercase;
+
+    @media (min-width: ${breakpoints.breakpointL}px) {
+      font-weight: normal;
+      text-transform: none;
     }
   }
 
