@@ -24,6 +24,7 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   }
 
   @media (min-width: ${breakpoints.breakpointL}px) {
+    text-align: center;
     background-color: ${isActive ? colors.darkGreen : colors.lightGreen};
     color: white;
     border: 1px solid;
@@ -59,6 +60,11 @@ const linkGroupStyle = css`
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
+
+    @media (min-width: ${breakpoints.breakpointL}px) {
+      font-weight: normal;
+      text-transform: none;
+    }
   }
 
   ul {

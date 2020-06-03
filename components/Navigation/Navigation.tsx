@@ -64,6 +64,15 @@ const navigationSectionStyle = css`
   &:nth-of-type(2n) {
     background-color: ${colors.lightGreen};
   }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    padding: 0;
+    overflow: visible;
+
+    &:nth-of-type(2n) {
+      background-color: transparent;
+    }
+  }
 `
 
 const Navigation = (props: { className?: string }) => {
