@@ -1,4 +1,9 @@
 {
-  "presets": ["next/babel", "@emotion/babel-preset-css-prop"],
-  "plugins": [["emotion", { "labelFormat": "[dirname]_[filename]" }]]
+  "presets": [
+    "next/babel",
+    [
+      "@emotion/babel-preset-css-prop",
+      { "labelFormat": "[dirname]_[filename]" }
+    ]
+  ]
 }
