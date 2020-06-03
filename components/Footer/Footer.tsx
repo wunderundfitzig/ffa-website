@@ -1,9 +1,7 @@
 import { css } from '@emotion/core'
 import Link from 'next/link'
-import { colors, typography, layout } from 'style'
-import instagramLogo from './_instagram.svg'
-import facebookLogo from './_facebook.svg'
-import { breakpointL } from 'style/breakpoints'
+import { colors, typography, layout, breakpoints } from 'style'
+import SocialLinks from 'components/SocialLinks/SocialLinks'
 
 const footerStyle = css`
   background-color: ${colors.darkGreen};
@@ -22,7 +20,7 @@ const footerColsStyle = css`
   font-size: 1em;
   line-height: 1.3em;
 
-  @media (min-width: ${breakpointL}px) {
+  @media (min-width: ${breakpoints.breakpointL}px) {
     display: flex;
   }
 
@@ -32,15 +30,6 @@ const footerColsStyle = css`
 
   a {
     color: white;
-  }
-`
-
-const socialLinkStyle = css`
-  display: inline-block;
-  width: 25px;
-  margin-right: 10px;
-  img {
-    width: 100%;
   }
 `
 
@@ -67,22 +56,23 @@ export default function Footer() {
           </Link>
         </p>
         <div>
-          <a
-            css={socialLinkStyle}
-            href=''
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <img src={instagramLogo} alt='instagram' />
-          </a>
-          <a
-            css={socialLinkStyle}
-            href=''
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <img src={facebookLogo} alt='facebook' />
-          </a>
+          <SocialLinks
+            links={[
+              {
+                platform: 'instagram',
+                url: 'https://www.instagram.com/abenteuerzentrum_im_grunewald/',
+              },
+              {
+                platform: 'facebook',
+                url: 'https://www.facebook.com/abenteuerzentrumgrunewald',
+              },
+              {
+                platform: 'youtube',
+                url: 'https://www.youtube.com/channel/UCjxdcpNTrGA2Go9njDYYWcA',
+              },
+            ]}
+            color='white'
+          />
         </div>
       </div>
     </footer>

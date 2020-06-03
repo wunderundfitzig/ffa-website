@@ -7,6 +7,7 @@ export const contactBlock = object(
     mail: string(),
     instagram: string(),
     facebook: string(),
+    youtube: string(),
   },
   { allowExcessProperties: true }
 )
