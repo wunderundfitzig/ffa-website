@@ -3,7 +3,7 @@ export type Breakpoint = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'
 export const breakpointS = 400
 export const breakpointM = 550
 export const breakpointL = 750
-export const breakpointXL = 1000
+export const breakpointXL = 1040
 export const breakpointXXL = 1200
 
 export function getBreakpoint(windowWidth: number): Breakpoint {

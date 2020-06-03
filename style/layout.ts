@@ -5,8 +5,11 @@ import * as colors from './colors'
 
 export const container = css`
   width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    max-width: 1000px;
+  }
 `
 
 export const block = css`
