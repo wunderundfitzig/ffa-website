@@ -13,3 +13,6 @@ export const breakpoints = _breakpoints
 
 import * as _helpers from './helpers'
 export const helpers = _helpers
+
+import * as _pattern from './pattern'
+export const pattern = _pattern
