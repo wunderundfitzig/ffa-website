@@ -2,6 +2,7 @@ import { css } from '@emotion/core'
 import * as breakpoints from './breakpoints'
 
 export const heading1 = css`
+  font-family: Museo, sans-serif;
   font-size: 1.3em;
   line-height: 1.3em;
   font-weight: 700;
@@ -16,8 +17,18 @@ export const heading1 = css`
 `
 
 export const heading2 = css`
+  font-family: Museo, sans-serif;
   font-size: 1.2em;
   margin-top: 0.2em;
   margin-bottom: 0.4em;
   font-weight: 700;
+`
+
+export const heading = css`
+  font-family: Museo, sans-serif;
+  font-weight: 700;
+`
+
+export const museoSlab = css`
+  font-family: Museo, sans-serif;
 `

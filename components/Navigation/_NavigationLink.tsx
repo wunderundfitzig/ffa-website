@@ -1,10 +1,11 @@
 import { css } from '@emotion/core'
 import Link from 'next/link'
-import { colors, breakpoints, helpers } from 'style'
+import { colors, breakpoints, helpers, typography } from 'style'
 import useCurrentSlug from 'lib/hooks/useCurrentSlug'
 import { NavigationItem, InternalPage, ExternalPage } from './_navigationItems'
 
 const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
+  ${typography.museoSlab};
   box-sizing: border-box;
   display: block;
   text-align: center;

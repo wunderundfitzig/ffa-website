@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { layout, colors, breakpoints, helpers } from 'style'
+import { layout, colors, breakpoints, helpers, typography } from 'style'
 import { ImageLinksBlock } from 'lib/models/imageLinksBlock'
 import { transparentize } from 'polished'
 
@@ -35,6 +35,7 @@ const LinkStlye = (imgURL: string) => css`
 `
 
 const linkTextStyle = css`
+  ${typography.museoSlab};
   background-color: ${transparentize(0.3, colors.darkGreen)};
   font-size: 1.3em;
   box-sizing: border-box;

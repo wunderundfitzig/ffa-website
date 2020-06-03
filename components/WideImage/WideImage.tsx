@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { layout, colors, breakpoints } from 'style'
+import { layout, colors, breakpoints, typography } from 'style'
 import { WideImageBlock } from 'lib/models/wideImageBlock'
 import { transparentize } from 'polished'
 
@@ -25,6 +25,7 @@ const wideImageStyle = (url: string) => css`
 `
 
 const textOverlayStyle = css`
+  ${typography.museoSlab};
   margin: 0;
   margin-bottom: 15px;
   color: white;
