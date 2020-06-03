@@ -44,7 +44,7 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 40px 30px;
+  padding: 40px 0;
   z-index: 100;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
@@ -54,6 +54,15 @@ const navigationListStyle = ({ isExpanded }: { isExpanded: boolean }) => css`
     background-color: transparent;
     padding: 0;
     margin-top: 30px;
+  }
+`
+
+const navigationSectionStyle = css`
+  padding: 0 30px;
+  overflow: hidden;
+
+  &:nth-of-type(2n) {
+    background-color: ${colors.lightGreen};
   }
 `
 
@@ -92,7 +101,7 @@ const Navigation = (props: { className?: string }) => {
         </button>
         {navigationItems.map((navigationItem, i) => {
           return (
-            <li key={i}>
+            <li css={navigationSectionStyle} key={i}>
               <NavigationLink {...navigationItem} />
             </li>
           )

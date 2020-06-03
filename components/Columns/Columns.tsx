@@ -31,7 +31,7 @@ const columnStyle = css`
   @media (min-width: ${breakpoints.breakpointL}px) {
     margin-left: 0;
 
-    &:not(:first-child) {
+    &:not(:first-of-type) {
       border: 0;
       margin-left: 40px;
       padding-left: 0;
