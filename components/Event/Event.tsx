@@ -12,6 +12,8 @@ const eventStyle = css`
 
 const contentStyle = css`
   ${layout.block};
+  padding-top: 10px;
+  padding-bottom: 25px;
 `
 
 const dateStyle = css`

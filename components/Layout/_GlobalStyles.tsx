@@ -57,6 +57,11 @@ const GlobalStyles = () => (
           line-height: 1.5em;
           color: ${colors.brown};
         }
+
+        p {
+          font-size: 1.15em;
+          line-height: 1.45em;
+        }
       `}
     />
   </>
