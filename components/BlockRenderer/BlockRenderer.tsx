@@ -8,6 +8,8 @@ import Collage from 'components/Collage/Collage'
 import ImageLinks from 'components/ImageLinks/ImageLinks'
 import Contact from 'components/Contact/Contact'
 import WideImage from 'components/WideImage/WideImage'
+import Event from 'components/Event/Event'
+import ParseErrorDisplay from 'components/ParseErrorDisplay/ParseErrorDisplay'
 
 const defaultBlockStyle = css`
   ${layout.container};
@@ -34,6 +36,10 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
             return <Contact key={idx} {...block.attrs} />
           case 'lazyblock/wide-image':
             return <WideImage key={idx} {...block.attrs} />
+          case 'lazyblock/event':
+            return <Event key={idx} {...block.attrs} />
+          case 'error':
+            return <ParseErrorDisplay key={idx} {...block.attrs} />
           default:
             return (
               <div
