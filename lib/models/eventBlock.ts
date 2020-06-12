@@ -4,8 +4,8 @@ import { parseJsonURLString } from './jsonURLString'
 
 const column = object(
   {
-    title: optional(string()),
-    text: optional(string()),
+    title: string(),
+    description: string(),
   },
   { allowExcessProperties: true }
 )
@@ -20,7 +20,7 @@ export const eventBlock = object(
     time: optional(string()),
     place: optional(string()),
     content: optional(string()),
-    info: optional(parseJsonURLString(array(column))),
+    info: parseJsonURLString(array(column)),
   },
   { allowExcessProperties: true }
 )

@@ -2,6 +2,8 @@ import { css } from '@emotion/core'
 import { colors, layout, typography, breakpoints } from 'style'
 import { EventBlock } from 'lib/models/eventBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
+import Columns from 'components/Columns/Columns'
+import { Fragment } from 'react'
 
 const eventStyle = css`
   ${layout.container};
@@ -15,6 +17,10 @@ const contentStyle = css`
 const dateStyle = css`
   color: ${colors.darkBlue};
   font-size: 1.5em;
+`
+
+const columnTitleStyle = css`
+  ${typography.heading2};
 `
 
 function getColor(category: string) {
@@ -47,6 +53,14 @@ const Event = (props: EventBlock) => {
         </p>
         <p>{props.content}</p>
       </div>
+      <Columns>
+        {props.info.map((column, idx) => (
+          <Fragment key={idx}>
+            <h2 css={columnTitleStyle}>{column.title}</h2>
+            <p>{column.description}</p>
+          </Fragment>
+        ))}
+      </Columns>
     </article>
   )
 }
