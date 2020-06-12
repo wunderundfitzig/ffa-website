@@ -53,7 +53,7 @@ const Event = (props: EventBlock) => {
         </p>
         <p>{props.content}</p>
       </div>
-      <Columns>
+      <Columns borderColor={color}>
         {props.info.map((column, idx) => (
           <Fragment key={idx}>
             <h2 css={columnTitleStyle}>{column.title}</h2>
