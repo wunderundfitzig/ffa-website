@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,18 +27,7 @@ jobs:
           cp package.json ./deploy
           cp -a node_modules ./deploy
           cp -a public ./deploy
-      - uses: actions/upload-artifact@v2
-        with:
-          name: deploy-folder
-          path: ./deploy
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-         name: deploy-folder
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
