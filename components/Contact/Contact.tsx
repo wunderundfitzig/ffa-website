@@ -5,9 +5,10 @@ import Columns from 'components/Columns/Columns'
 import SocialLinks from 'components/SocialLinks/SocialLinks'
 
 const titleStyle = css`
-  ${typography.heading2};
+  ${typography.heading3};
   height: 30px;
-  margin-bottom: 0;
+  margin: 0;
+  margin-bottom: 0.5em;
 `
 
 const textStyle = css`

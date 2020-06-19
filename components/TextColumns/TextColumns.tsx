@@ -5,7 +5,9 @@ import Columns from 'components/Columns/Columns'
 import { Fragment } from 'react'
 
 const titleStyle = css`
-  ${typography.heading2};
+  ${typography.heading3};
+  margin: 0;
+  margin-bottom: 0.5em;
 `
 
 const TextColumns = (props: ColumnsBlock) => {
@@ -13,7 +15,7 @@ const TextColumns = (props: ColumnsBlock) => {
     <Columns>
       {props.columns.map((column, idx) => (
         <Fragment key={idx}>
-          <h2 css={titleStyle}>{column.title}</h2>
+          <h3 css={titleStyle}>{column.title}</h3>
           <p>{column.text}</p>
         </Fragment>
       ))}

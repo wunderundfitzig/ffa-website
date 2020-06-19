@@ -1,14 +1,15 @@
 import { css } from '@emotion/core'
-import { layout, typography, breakpoints } from 'style'
+import { layout, typography, breakpoints, colors } from 'style'
 import banderole from './_banderole.png'
 
-const splitBannerStyle = (backgroundColor: string) => css`
+const splitBannerStyle = (backgroundColor: string, textColor: string) => css`
   ${layout.container};
   ${layout.grid({ columns: 12, rows: 2 })};
   grid-template-rows: auto 1fr;
   width: 100%;
   min-height: 250px;
   background-color: ${backgroundColor};
+  color: ${textColor};
 `
 
 const imageStyle = (imageURL: string) => css`
@@ -47,7 +48,7 @@ const headerStyle = css`
 `
 
 const titleStyle = css`
-  ${typography.heading1};
+  ${typography.heading2};
   margin: 0;
   margin-bottom: 0.4em;
 `
@@ -76,11 +77,6 @@ const textStyle = css`
     padding-left: 5px;
     padding-right: 40px;
   }
-
-  @media (min-width: ${breakpoints.breakpointL}px) {
-    font-size: 1.2em;
-    line-height: 1.4em;
-  }
 `
 
 interface Props {
@@ -89,11 +85,14 @@ interface Props {
   content: string
   showBanderole?: boolean
   color: string
+  textColor?: string
 }
 
 const SplitBanner = (props: Props) => {
+  const textColor = props.textColor || colors.brown
+
   return (
-    <div css={splitBannerStyle(props.color)}>
+    <div css={splitBannerStyle(props.color, textColor)}>
       <figure css={imageStyle(props.image.url)} />
       <header css={headerStyle}>
         {props.showBanderole && <img css={banderoleStyle} src={banderole} />}

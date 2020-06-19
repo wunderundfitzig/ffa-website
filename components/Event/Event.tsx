@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { colors, layout, typography, breakpoints } from 'style'
+import { colors, layout, typography, breakpoints, helpers } from 'style'
 import { EventBlock } from 'lib/models/eventBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import Columns from 'components/Columns/Columns'
@@ -17,22 +17,39 @@ const contentStyle = css`
 `
 
 const dateStyle = css`
+  ${typography.heading3};
+  ${helpers.resetDefinitionListStyles};
   color: ${colors.darkBlue};
-  font-size: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+
+  span {
+    display: block;
+  }
+
+  dt {
+    font-size: 0.9em;
+    width: 90px;
+    margin-bottom: 3px;
+  }
+
+  dd {
+    font-weight: 300;
+  }
 `
 
 const columnTitleStyle = css`
-  ${typography.heading2};
+  ${typography.heading3};
 `
 
 function getColor(category: string) {
   switch (category) {
     case 'educators':
-      return colors.blue
+      return { main: colors.darkBlue, text: 'white' }
     case 'family':
-      return colors.orange
+      return { main: colors.orange, text: colors.brown }
     default:
-      return colors.darkGreen
+      return { main: colors.darkGreen, text: colors.brown }
   }
 }
 
@@ -42,23 +59,34 @@ const Event = (props: EventBlock) => {
   return (
     <article css={eventStyle}>
       <SplitBanner
-        color={color}
+        color={color.main}
+        textColor={color.text}
         title={props.title}
         image={props.image}
         content={props.description}
       />
       <div css={contentStyle}>
-        <p css={dateStyle}>
-          Termin: {props.date}
-          {props.place ? ` | Ort: ${props.place}` : ''}
-          {props.time ? ` | Uhrzeit: ${props.time}` : ''}
-        </p>
+        <dl css={dateStyle}>
+          <span>
+            <dt>Termin:</dt> <dd>{props.date}</dd>
+          </span>
+          {props.place && (
+            <span>
+              <dt>Ort:</dt> <dd>{props.place}</dd>
+            </span>
+          )}
+          {props.time && (
+            <span>
+              <dt>Uhrzeit:</dt> <dd>{props.time}</dd>
+            </span>
+          )}
+        </dl>
         <p>{props.content}</p>
       </div>
-      <Columns borderColor={color}>
+      <Columns borderColor={color.main}>
         {props.info.map((column, idx) => (
           <Fragment key={idx}>
-            <h2 css={columnTitleStyle}>{column.title}</h2>
+            <h3 css={columnTitleStyle}>{column.title}</h3>
             <p>{column.description}</p>
           </Fragment>
         ))}

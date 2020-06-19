@@ -36,8 +36,9 @@ const LinkStlye = (imgURL: string) => css`
 
 const linkTextStyle = css`
   ${typography.museoSlab};
-  background-color: ${transparentize(0.3, colors.darkGreen)};
-  font-size: 1.3em;
+  background-color: ${transparentize(0.2, colors.darkGreen)};
+  font-weight: 300;
+  font-size: 1.15em;
   box-sizing: border-box;
   padding: 20px;
   position: absolute;

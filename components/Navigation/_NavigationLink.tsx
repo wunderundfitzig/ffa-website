@@ -10,7 +10,7 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   display: block;
   text-align: center;
   width: 100%;
-  font-size: 1.3em;
+  font-size: 1.1em;
   margin: 35px 0;
   text-decoration: none;
   color: ${colors.brown};
@@ -23,7 +23,7 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
     border-color: ${isActive ? colors.darkGreen : 'white'};
     border-bottom: none;
     width: auto;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 0.5em 0.7em;
     margin: 0;
     margin-right: 1em;
@@ -35,7 +35,7 @@ const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
-    font-size: 1.3em;
+    font-size: 1.1em;
   }
 `
 

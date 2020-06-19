@@ -16,6 +16,7 @@ const titleBlockStyle = css`
 const rooflineStyle = css`
   ${typography.museoSlab};
   display: block;
+  font-weight: 300;
   color: ${colors.darkGreen};
   padding-left: 10px;
   margin-bottom: 0.7em;
@@ -46,19 +47,17 @@ const titleStyle = css`
     min-height: 80px;
     padding-left: 35px;
     padding-right: 25%;
-    margin-bottom: 40px;
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
     padding-left: 80px;
-    margin-bottom: 60px;
   }
 
   &::before {
     content: '';
     position: absolute;
     left: -95px;
-    top: -8px;
+    top: -25px;
     width: 100px;
     height: 100px;
     background-image: url(${flag});

@@ -28,8 +28,7 @@ const titleStyle = css`
 
 const footerColsStyle = css`
   ${layout.container};
-  font-size: 1em;
-  line-height: 1.3em;
+  font-weight: 300;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     display: flex;

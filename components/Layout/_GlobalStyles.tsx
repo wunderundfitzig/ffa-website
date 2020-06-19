@@ -53,14 +53,14 @@ const GlobalStyles = () => (
           font-family: Museo Sans, sans-serif;
           background-image: url(${woodBackground});
           background-size: 100%;
-          font-size: 14px;
+          font-size: 16px;
+          font-weight: 500;
           line-height: 1.5em;
           color: ${colors.brown};
         }
 
         p {
-          font-size: 1.15em;
-          line-height: 1.45em;
+          margin: 0 0 1em 0;
         }
       `}
     />

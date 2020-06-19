@@ -18,6 +18,11 @@ export const resetDefinitionListStyles = css`
   margin: 0;
   padding: 0;
 
+  dt,
+  dd {
+    display: inline-block;
+  }
+
   dd {
     margin: 0;
   }
