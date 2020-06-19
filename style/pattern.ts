@@ -9,3 +9,15 @@ export const dashedLine = css`
   background-position: 0 0;
   height: 1px;
 `
+
+export const button = css`
+  background: ${colors.red};
+  background: linear-gradient(90deg, ${colors.red} 0%, ${colors.darkRed} 100%);
+  box-shadow: 2px 2px 5px -2px black;
+  color: white;
+  padding: 7px 15px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1.2em;
+  cursor: pointer;
+`

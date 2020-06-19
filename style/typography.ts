@@ -5,6 +5,10 @@ export const museoSlab = css`
   font-family: Museo, sans-serif;
 `
 
+export const museoSans = css`
+  font-family: 'Museo Sans', sans-serif;
+`
+
 export const heading = css`
   ${museoSlab};
   font-family: Museo, sans-serif;

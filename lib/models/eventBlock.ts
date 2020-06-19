@@ -21,6 +21,8 @@ export const eventBlock = object(
     place: optional(string()),
     content: optional(string()),
     info: parseJsonURLString(array(column)),
+    mail: optional(string()),
+    pdf: optional(string()),
   },
   { allowExcessProperties: true }
 )

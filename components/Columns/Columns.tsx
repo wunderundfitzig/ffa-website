@@ -3,8 +3,6 @@ import { css } from '@emotion/core'
 import { layout, colors, breakpoints } from 'style'
 
 const wrapperStyle = (childCount: number) => css`
-  ${layout.container};
-  ${layout.block};
   padding-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {

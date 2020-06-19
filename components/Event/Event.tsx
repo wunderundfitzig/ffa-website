@@ -1,13 +1,33 @@
 import { css } from '@emotion/core'
-import { colors, layout, typography, breakpoints, helpers } from 'style'
+import {
+  colors,
+  layout,
+  typography,
+  breakpoints,
+  helpers,
+  pattern,
+} from 'style'
 import { EventBlock } from 'lib/models/eventBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import Columns from 'components/Columns/Columns'
 import { Fragment } from 'react'
+import MailtoButton from './MailtoButton'
 
 const eventStyle = css`
   ${layout.container};
   margin-top: 20px;
+`
+
+const bannerContentStyle = css`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100%;
+`
+
+const registerButtonStyle = css`
+  ${pattern.button}
 `
 
 const contentStyle = css`
@@ -18,24 +38,27 @@ const contentStyle = css`
 
 const dateStyle = css`
   ${typography.heading3};
+  ${typography.museoSans};
   ${helpers.resetDefinitionListStyles};
   color: ${colors.darkBlue};
   margin-top: 1em;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 
   span {
-    display: block;
+    margin-right: 20px;
   }
 
   dt {
     font-size: 0.9em;
-    width: 90px;
-    margin-bottom: 3px;
   }
 
   dd {
     font-weight: 300;
   }
+`
+
+const textStyle = css`
+  margin-bottom: 40px;
 `
 
 const columnTitleStyle = css`
@@ -63,8 +86,20 @@ const Event = (props: EventBlock) => {
         textColor={color.text}
         title={props.title}
         image={props.image}
-        content={props.description}
-      />
+      >
+        <div css={bannerContentStyle}>
+          <p>{props.description}</p>
+          {props.mail && (
+            <MailtoButton
+              css={registerButtonStyle}
+              mail={props.mail}
+              subject={`Anmeldung: ${props.title}`}
+            >
+              Anmelden
+            </MailtoButton>
+          )}
+        </div>
+      </SplitBanner>
       <div css={contentStyle}>
         <dl css={dateStyle}>
           <span>
@@ -81,16 +116,16 @@ const Event = (props: EventBlock) => {
             </span>
           )}
         </dl>
-        <p>{props.content}</p>
+        <p css={textStyle}>{props.content}</p>
+        <Columns borderColor={color.main}>
+          {props.info.map((column, idx) => (
+            <Fragment key={idx}>
+              <h3 css={columnTitleStyle}>{column.title}</h3>
+              <p>{column.description}</p>
+            </Fragment>
+          ))}
+        </Columns>
       </div>
-      <Columns borderColor={color.main}>
-        {props.info.map((column, idx) => (
-          <Fragment key={idx}>
-            <h3 css={columnTitleStyle}>{column.title}</h3>
-            <p>{column.description}</p>
-          </Fragment>
-        ))}
-      </Columns>
     </article>
   )
 }
