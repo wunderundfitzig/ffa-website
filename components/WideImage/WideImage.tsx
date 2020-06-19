@@ -31,15 +31,16 @@ const textOverlayStyle = css`
   color: white;
   text-shadow: 1px 1px 2px black;
   font-size: 1.3em;
+  font-weight: 300;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
     max-width: 60%;
-    font-size: 1.6em;
-    line-height: 1.4em;
+    font-size: 1.4em;
+    line-height: 1.2em;
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
-    font-size: 2em;
+    font-size: 1.6em;
     line-height: 1.3em;
   }
 

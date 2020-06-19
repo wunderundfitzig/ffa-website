@@ -47,9 +47,9 @@ function getColor(category: string) {
     case 'educators':
       return { main: colors.darkBlue, text: 'white' }
     case 'family':
-      return { main: colors.orange, text: colors.brown }
+      return { main: colors.blue, text: 'black' }
     default:
-      return { main: colors.darkGreen, text: colors.brown }
+      return { main: colors.darkGreen, text: 'white' }
   }
 }
 
