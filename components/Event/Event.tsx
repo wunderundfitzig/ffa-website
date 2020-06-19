@@ -26,6 +26,18 @@ const bannerContentStyle = css`
   height: 100%;
 `
 
+const registerLinkStyles = css`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+
+  a {
+    color: white;
+  }
+`
+
 const registerButtonStyle = css`
   ${pattern.button}
 `
@@ -65,6 +77,10 @@ const columnTitleStyle = css`
   ${typography.heading3};
 `
 
+const columnContentStyle = css`
+  ${pattern.wysiwygContent};
+`
+
 function getColor(category: string) {
   switch (category) {
     case 'educators':
@@ -89,15 +105,24 @@ const Event = (props: EventBlock) => {
       >
         <div css={bannerContentStyle}>
           <p>{props.description}</p>
-          {props.mail && (
-            <MailtoButton
-              css={registerButtonStyle}
-              mail={props.mail}
-              subject={`Anmeldung: ${props.title}`}
-            >
-              Anmelden
-            </MailtoButton>
-          )}
+          <div css={registerLinkStyles}>
+            {props.pdf ? (
+              <a href={props.pdf.url} target='_blank'>
+                Anmeldeformular herunterladen
+              </a>
+            ) : (
+              <span></span>
+            )}
+            {props.mail && (
+              <MailtoButton
+                css={registerButtonStyle}
+                mail={props.mail}
+                subject={`Anmeldung: ${props.title}`}
+              >
+                Anmelden
+              </MailtoButton>
+            )}
+          </div>
         </div>
       </SplitBanner>
       <div css={contentStyle}>
@@ -121,7 +146,10 @@ const Event = (props: EventBlock) => {
           {props.info.map((column, idx) => (
             <Fragment key={idx}>
               <h3 css={columnTitleStyle}>{column.title}</h3>
-              <p>{column.description}</p>
+              <div
+                css={columnContentStyle}
+                dangerouslySetInnerHTML={{ __html: column.description }}
+              />
             </Fragment>
           ))}
         </Columns>

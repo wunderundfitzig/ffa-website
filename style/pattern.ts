@@ -21,3 +21,13 @@ export const button = css`
   font-size: 1.2em;
   cursor: pointer;
 `
+
+export const wysiwygContent = css`
+  ul {
+    padding-left: 15px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+`

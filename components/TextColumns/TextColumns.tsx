@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { typography, layout } from 'style'
+import { typography, layout, pattern } from 'style'
 import { ColumnsBlock } from 'lib/models/columnsBlock'
 import Columns from 'components/Columns/Columns'
 import { Fragment } from 'react'
@@ -16,13 +16,7 @@ const titleStyle = css`
 `
 
 const contentStyle = css`
-  ul {
-    padding-left: 15px;
-  }
-
-  li {
-    margin-bottom: 4px;
-  }
+  ${pattern.wysiwygContent};
 `
 
 const TextColumns = (props: ColumnsBlock) => {
