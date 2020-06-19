@@ -70,11 +70,11 @@ export default function Footer() {
             links={[
               {
                 platform: 'instagram',
-                url: 'https://www.instagram.com/abenteuerzentrum_im_grunewald/',
+                url: 'https://www.instagram.com/abenteuerzentrum_berlin/',
               },
               {
                 platform: 'facebook',
-                url: 'https://www.facebook.com/abenteuerzentrumgrunewald',
+                url: 'https://www.facebook.com/abenteuerzentrumberlin',
               },
               {
                 platform: 'youtube',
