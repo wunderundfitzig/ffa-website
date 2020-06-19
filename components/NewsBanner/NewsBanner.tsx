@@ -22,8 +22,9 @@ const NewsBanner = (props: NewsBlock) => {
         color={colors.lightGreen}
         title={props.title}
         image={props.image}
-        content={props.content}
-      />
+      >
+        {props.content}
+      </SplitBanner>
     </article>
   )
 }

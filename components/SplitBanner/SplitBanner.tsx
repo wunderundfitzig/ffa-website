@@ -66,7 +66,7 @@ const banderoleStyle = css`
   }
 `
 
-const textStyle = css`
+const contentStyle = css`
   grid-column: span 12;
   grid-row: 2 / span 1;
   margin: 0;
@@ -82,10 +82,10 @@ const textStyle = css`
 interface Props {
   image: { url: string }
   title: string
-  content: string
   showBanderole?: boolean
   color: string
   textColor?: string
+  children: React.ReactNode
 }
 
 const SplitBanner = (props: Props) => {
@@ -99,7 +99,7 @@ const SplitBanner = (props: Props) => {
         <h2 css={titleStyle}>{props.title}</h2>
       </header>
 
-      <p css={textStyle}>{props.content}</p>
+      <div css={contentStyle}>{props.children}</div>
     </div>
   )
 }
