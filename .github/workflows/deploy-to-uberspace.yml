@@ -38,7 +38,7 @@ jobs:
         with:
           token: "${{ github.token }}"
           target_url: https://abenteuerzentrum.berlin
-          environment: production
+          environment: uberspace
       
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.1
@@ -64,6 +64,7 @@ jobs:
         with:
           token: "${{ github.token }}"
           state: "success"
+          target_url: https://abenteuerzentrum.berlin
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Update deployment status (failure)
@@ -72,4 +73,5 @@ jobs:
         with:
           token: "${{ github.token }}"
           state: "failure"
+          target_url: https://abenteuerzentrum.berlin
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
