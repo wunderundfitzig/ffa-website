@@ -21,7 +21,7 @@ export const eventBlock = object(
   {
     title: string(),
     description: string(),
-    category: string(),
+    colorName: string(),
     image: parseJsonURLString(image),
     date: string(),
     time: optional(string()),

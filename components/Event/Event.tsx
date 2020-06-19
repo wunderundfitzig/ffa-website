@@ -26,20 +26,20 @@ const bannerContentStyle = css`
   height: 100%;
 `
 
-const registerLinkStyles = (textColor: string) => css`
+const registerLinkStyles = css`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
   margin-top: 20px;
+`
 
-  a {
-    color: ${textColor};
-  }
+const pdfLinkStyle = (textColor: string) => css`
+  color: ${textColor};
 `
 
 const registerButtonStyle = css`
-  ${pattern.button}
+  ${pattern.button};
 `
 
 const contentStyle = css`
@@ -48,11 +48,11 @@ const contentStyle = css`
   padding-bottom: 25px;
 `
 
-const dateStyle = css`
+const dateStyle = (textColor: string) => css`
   ${typography.heading3};
   ${typography.museoSans};
   ${helpers.resetDefinitionListStyles};
-  color: ${colors.darkBlue};
+  color: ${textColor};
   margin-top: 1em;
   margin-bottom: 1em;
 
@@ -84,15 +84,35 @@ const columnContentStyle = css`
 interface Color {
   main: string
   text: string
+  colorfullText: string
 }
-function getColor(category: string): Color {
-  switch (category) {
-    case 'educators':
-      return { main: colors.darkBlue, text: 'white' }
-    case 'family':
-      return { main: colors.blue, text: 'black' }
+function getColor(colorName: string): Color {
+  switch (colorName) {
+    case 'darkBlue':
+      return {
+        main: colors.darkBlue,
+        text: 'white',
+        colorfullText: colors.darkBlue,
+      }
+    case 'lightBlue':
+      return {
+        main: colors.blue,
+        text: colors.brown,
+        colorfullText: colors.darkBlue,
+      }
+    case 'darkGreen':
+      return {
+        main: colors.darkGreen,
+        text: 'white',
+        colorfullText: colors.darkGreen,
+      }
+    case 'lightGreen':
     default:
-      return { main: colors.darkGreen, text: 'white' }
+      return {
+        main: colors.lightGreen,
+        text: colors.brown,
+        colorfullText: colors.darkGreen,
+      }
   }
 }
 
@@ -106,9 +126,13 @@ function EventBanner(props: { color: Color; event: EventBlock }) {
     >
       <div css={bannerContentStyle}>
         <p>{props.event.description}</p>
-        <div css={registerLinkStyles(props.color.text)}>
+        <div css={registerLinkStyles}>
           {props.event.pdf ? (
-            <a href={props.event.pdf.url} target='_blank'>
+            <a
+              css={pdfLinkStyle(props.color.text)}
+              href={props.event.pdf.url}
+              target='_blank'
+            >
               Anmeldeformular herunterladen
             </a>
           ) : (
@@ -129,9 +153,9 @@ function EventBanner(props: { color: Color; event: EventBlock }) {
   )
 }
 
-function WhenAndWhere(props: { event: EventBlock }) {
+function WhenAndWhere(props: { color: Color; event: EventBlock }) {
   return (
-    <dl css={dateStyle}>
+    <dl css={dateStyle(props.color.colorfullText)}>
       <span>
         <dt>Termin:</dt> <dd>{props.event.date}</dd>
       </span>
@@ -150,13 +174,13 @@ function WhenAndWhere(props: { event: EventBlock }) {
 }
 
 export default function Event(props: EventBlock) {
-  const color = getColor(props.category)
+  const color = getColor(props.colorName)
 
   return (
     <article css={eventStyle}>
       <EventBanner event={props} color={color} />
       <div css={contentStyle}>
-        <WhenAndWhere event={props} />
+        <WhenAndWhere event={props} color={color} />
         <p css={textStyle}>{props.content}</p>
         <Columns borderColor={color.main}>
           {props.info.map((column, idx) => (
