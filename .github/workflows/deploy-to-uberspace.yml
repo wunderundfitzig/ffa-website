@@ -37,3 +37,11 @@ jobs:
           REMOTE_HOST: ffaback.uber.space
           REMOTE_USER: ffaback
           TARGET: 'ffa-website'
+        
+      - name: Restart Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ffaback.uber.space
+          username: ffaback
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: supervisorctl restart ffa-website
