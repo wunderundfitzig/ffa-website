@@ -26,7 +26,7 @@ const bannerContentStyle = css`
   height: 100%;
 `
 
-const registerLinkStyles = css`
+const registerLinkStyles = (textColor: string) => css`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -34,7 +34,7 @@ const registerLinkStyles = css`
   margin-top: 20px;
 
   a {
-    color: white;
+    color: ${textColor};
   }
 `
 
@@ -81,7 +81,11 @@ const columnContentStyle = css`
   ${pattern.wysiwygContent};
 `
 
-function getColor(category: string) {
+interface Color {
+  main: string
+  text: string
+}
+function getColor(category: string): Color {
   switch (category) {
     case 'educators':
       return { main: colors.darkBlue, text: 'white' }
@@ -92,55 +96,67 @@ function getColor(category: string) {
   }
 }
 
-const Event = (props: EventBlock) => {
+function EventBanner(props: { color: Color; event: EventBlock }) {
+  return (
+    <SplitBanner
+      color={props.color.main}
+      textColor={props.color.text}
+      title={props.event.title}
+      image={props.event.image}
+    >
+      <div css={bannerContentStyle}>
+        <p>{props.event.description}</p>
+        <div css={registerLinkStyles(props.color.text)}>
+          {props.event.pdf ? (
+            <a href={props.event.pdf.url} target='_blank'>
+              Anmeldeformular herunterladen
+            </a>
+          ) : (
+            <span></span>
+          )}
+          {props.event.mail && (
+            <MailtoButton
+              css={registerButtonStyle}
+              mail={props.event.mail}
+              subject={`Anmeldung: ${props.event.title}`}
+            >
+              Anmelden
+            </MailtoButton>
+          )}
+        </div>
+      </div>
+    </SplitBanner>
+  )
+}
+
+function WhenAndWhere(props: { event: EventBlock }) {
+  return (
+    <dl css={dateStyle}>
+      <span>
+        <dt>Termin:</dt> <dd>{props.event.date}</dd>
+      </span>
+      {props.event.place && (
+        <span>
+          <dt>Ort:</dt> <dd>{props.event.place}</dd>
+        </span>
+      )}
+      {props.event.time && (
+        <span>
+          <dt>Uhrzeit:</dt> <dd>{props.event.time}</dd>
+        </span>
+      )}
+    </dl>
+  )
+}
+
+export default function Event(props: EventBlock) {
   const color = getColor(props.category)
 
   return (
     <article css={eventStyle}>
-      <SplitBanner
-        color={color.main}
-        textColor={color.text}
-        title={props.title}
-        image={props.image}
-      >
-        <div css={bannerContentStyle}>
-          <p>{props.description}</p>
-          <div css={registerLinkStyles}>
-            {props.pdf ? (
-              <a href={props.pdf.url} target='_blank'>
-                Anmeldeformular herunterladen
-              </a>
-            ) : (
-              <span></span>
-            )}
-            {props.mail && (
-              <MailtoButton
-                css={registerButtonStyle}
-                mail={props.mail}
-                subject={`Anmeldung: ${props.title}`}
-              >
-                Anmelden
-              </MailtoButton>
-            )}
-          </div>
-        </div>
-      </SplitBanner>
+      <EventBanner event={props} color={color} />
       <div css={contentStyle}>
-        <dl css={dateStyle}>
-          <span>
-            <dt>Termin:</dt> <dd>{props.date}</dd>
-          </span>
-          {props.place && (
-            <span>
-              <dt>Ort:</dt> <dd>{props.place}</dd>
-            </span>
-          )}
-          {props.time && (
-            <span>
-              <dt>Uhrzeit:</dt> <dd>{props.time}</dd>
-            </span>
-          )}
-        </dl>
+        <WhenAndWhere event={props} />
         <p css={textStyle}>{props.content}</p>
         <Columns borderColor={color.main}>
           {props.info.map((column, idx) => (
@@ -157,5 +173,3 @@ const Event = (props: EventBlock) => {
     </article>
   )
 }
-
-export default Event
