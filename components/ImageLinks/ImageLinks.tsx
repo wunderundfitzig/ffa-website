@@ -25,7 +25,7 @@ const LinkStlye = (imgURL: string) => css`
   background-blend-mode: hard-light;
   background-size: cover;
   background-position: center;
-  margin: 0 0 20px;
+  margin: 20px 0;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     margin-bottom: 30px;
@@ -58,7 +58,6 @@ const linkTextStyle = css`
 // TODO: if links are local detect this and convert them to slugs
 
 const ImageLinks = (props: ImageLinksBlock) => {
-  console.log(props.links[0].external)
   return (
     <ul css={wrapperStyle}>
       {props.links.map((link, idx) => (
