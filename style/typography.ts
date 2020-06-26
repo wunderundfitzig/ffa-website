@@ -34,7 +34,7 @@ export const heading1 = css`
 export const heading2 = css`
   ${heading};
   font-size: 1.2em;
-  margin-top: 0.2em;
+  margin-top: 0.7em;
   margin-bottom: 0.5em;
   font-weight: 700;
 

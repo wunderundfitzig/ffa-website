@@ -7,15 +7,9 @@ const wrapperStyle = css`
   ${helpers.resetListStyles};
   ${layout.container};
   ${layout.block};
-  padding-top: 20px;
-  padding-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointS}px) {
     ${layout.grid({ columns: 3 })}
-  }
-
-  @media (min-width: ${breakpoints.breakpointXL}px) {
-    padding-bottom: 30px;
   }
 `
 
@@ -31,7 +25,11 @@ const LinkStlye = (imgURL: string) => css`
   background-blend-mode: hard-light;
   background-size: cover;
   background-position: center;
-  margin: 20px 0;
+  margin: 0 0 20px;
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    margin-bottom: 30px;
+  }
 `
 
 const linkTextStyle = css`
@@ -60,11 +58,16 @@ const linkTextStyle = css`
 // TODO: if links are local detect this and convert them to slugs
 
 const ImageLinks = (props: ImageLinksBlock) => {
+  console.log(props.links[0].external)
   return (
     <ul css={wrapperStyle}>
       {props.links.map((link, idx) => (
         <li key={idx}>
-          <a css={LinkStlye(link.image.url)} href={link.url}>
+          <a
+            css={LinkStlye(link.image.url)}
+            href={link.url}
+            target={link.external ? '_blank' : ''}
+          >
             <span css={linkTextStyle}>{link.title}</span>
           </a>
         </li>
