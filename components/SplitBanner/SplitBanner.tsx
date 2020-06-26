@@ -22,9 +22,13 @@ const imageStyle = (imageURL: string) => css`
   margin: 0;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
-    grid-column: span 6;
+    grid-column: span 4;
     grid-row: 1 / span 2;
     height: 100%;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    grid-column: span 6;
   }
 `
 
@@ -37,6 +41,11 @@ const headerStyle = css`
   padding: 20px 120px 0 20px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
+    grid-column: span 8;
+    padding-left: 5px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
     grid-column: span 6;
     padding-left: 5px;
   }
@@ -69,13 +78,26 @@ const banderoleStyle = css`
 const contentStyle = css`
   grid-column: span 12;
   grid-row: 2 / span 1;
-  margin: 0;
-  padding: 0 20px 20px;
+  margin: 10px 0 20px;
+  padding: 0 20px;
+
+  @media (min-width: ${breakpoints.breakpointS}px) {
+    margin-bottom: 30px;
+  }
 
   @media (min-width: ${breakpoints.breakpointM}px) {
+    grid-column: span 8;
+    padding-left: 5px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
     grid-column: span 6;
     padding-left: 5px;
     padding-right: 40px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    margin-bottom: 40px;
   }
 `
 
