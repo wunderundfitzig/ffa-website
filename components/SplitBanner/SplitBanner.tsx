@@ -3,7 +3,6 @@ import { layout, typography, breakpoints, colors } from 'style'
 import banderole from './_banderole.png'
 
 const splitBannerStyle = (backgroundColor: string, textColor: string) => css`
-  ${layout.container};
   ${layout.grid({ columns: 12, rows: 2 })};
   grid-template-rows: auto 1fr;
   width: 100%;

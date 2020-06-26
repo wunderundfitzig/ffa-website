@@ -3,6 +3,7 @@ import { css } from '@emotion/core'
 export const resetLinkStyles = css`
   color: inherit;
   text-decoration: none;
+
   &:hover {
     text-decoration: none;
   }
