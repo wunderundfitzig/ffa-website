@@ -28,6 +28,7 @@ export const eventBlock = object(
     place: optional(string()),
     content: optional(string()),
     info: parseJsonURLString(array(column)),
+    registration_type: string(),
     mail: optional(string()),
     pdf: optional(parseJsonURLString(pdf)),
   },

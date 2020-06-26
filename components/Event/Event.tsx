@@ -31,14 +31,6 @@ const bannerContentStyle = css`
   }
 `
 
-const registerLinkStyles = css`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 20px;
-`
-
 const pdfLinkStyle = (textColor: string) => css`
   color: ${textColor};
 `
@@ -120,6 +112,47 @@ function getColor(colorName: string): Color {
   }
 }
 
+function ActionButton(props: { event: EventBlock }) {
+  console.log(props.event.registration_type)
+  switch (props.event.registration_type) {
+    default:
+    case 'mail':
+      if (!props.event.mail) return null
+      return (
+        <MailtoButton
+          css={registerButtonStyle}
+          mail={props.event.mail}
+          subject={`Anmeldung: ${props.event.title}`}
+        >
+          Anmelden
+        </MailtoButton>
+      )
+    case 'request':
+      if (!props.event.mail) return null
+      return (
+        <MailtoButton
+          css={registerButtonStyle}
+          mail={props.event.mail}
+          subject={`Anfrage für: ${props.event.title}`}
+        >
+          Anfrage senden
+        </MailtoButton>
+      )
+    case 'pdf':
+      if (!props.event.pdf) return null
+      return (
+        <a
+          download
+          target='_blank'
+          href={props.event.pdf.url}
+          css={registerButtonStyle}
+        >
+          Anmeldeformular
+        </a>
+      )
+  }
+}
+
 function EventBanner(props: { color: Color; event: EventBlock }) {
   return (
     <SplitBanner
@@ -130,28 +163,7 @@ function EventBanner(props: { color: Color; event: EventBlock }) {
     >
       <div css={bannerContentStyle}>
         <p>{props.event.description}</p>
-        <div css={registerLinkStyles}>
-          {props.event.pdf ? (
-            <a
-              css={pdfLinkStyle(props.color.text)}
-              href={props.event.pdf.url}
-              target='_blank'
-            >
-              Anmeldeformular herunterladen
-            </a>
-          ) : (
-            <span></span>
-          )}
-          {props.event.mail && (
-            <MailtoButton
-              css={registerButtonStyle}
-              mail={props.event.mail}
-              subject={`Anmeldung: ${props.event.title}`}
-            >
-              Anmelden
-            </MailtoButton>
-          )}
-        </div>
+        <ActionButton event={props.event} />
       </div>
     </SplitBanner>
   )
