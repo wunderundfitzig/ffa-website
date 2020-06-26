@@ -24,6 +24,10 @@ const bannerContentStyle = css`
   align-items: flex-end;
   justify-content: space-between;
   height: 100%;
+
+  p {
+    width: 100%;
+  }
 `
 
 const registerLinkStyles = css`
