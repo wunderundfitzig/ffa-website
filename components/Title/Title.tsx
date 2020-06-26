@@ -38,12 +38,10 @@ const rooflineStyle = (primary: boolean) => css`
 
 const _titleStyle = css`
   position: relative;
-  min-height: 70px;
   margin: 0;
   margin-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
-    min-height: 80px;
     padding-right: 25%;
   }
 
@@ -64,9 +62,11 @@ const _titleStyle = css`
 const primaryTitleStyle = css`
   ${_titleStyle};
   ${typography.heading1};
+  min-height: 70px;
   padding-left: 10px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
+    min-height: 80px;
     padding-left: 35px;
   }
 
