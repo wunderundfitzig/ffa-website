@@ -1,6 +1,6 @@
 import { Global, css } from '@emotion/core'
 import woodBackground from './_woodBackground.jpg'
-import { colors } from 'style'
+import { colors, typography } from 'style'
 
 const fonts = [
   {
@@ -48,9 +48,9 @@ const GlobalStyles = () => (
     <Global
       styles={css`
         body {
+          ${typography.museoSans};
           margin: 0;
           padding: 0;
-          font-family: Museo Sans, sans-serif;
           background-image: url(${woodBackground});
           background-size: 100%;
           font-size: 16px;
@@ -61,6 +61,18 @@ const GlobalStyles = () => (
 
         p {
           margin: 0 0 1em 0;
+        }
+
+        h1 {
+          ${typography.heading1};
+        }
+
+        h2 {
+          ${typography.heading2};
+        }
+
+        h3 {
+          ${typography.heading3};
         }
       `}
     />

@@ -44,7 +44,7 @@ export const heading2 = css`
   }
 
   @media (min-width: ${breakpoints.breakpointL}px) {
-    font-size: 1.5em;
+    font-size: 1.6em;
     line-height: 1.3em;
   }
 `
