@@ -16,6 +16,7 @@ import MailtoButton from './MailtoButton'
 const eventStyle = css`
   ${layout.container};
   margin-top: 20px;
+  margin-bottom: 20px;
 `
 
 const bannerContentStyle = css`
@@ -49,7 +50,6 @@ const registerButtonStyle = css`
 const contentStyle = css`
   ${layout.block};
   padding-top: 10px;
-  padding-bottom: 25px;
 `
 
 const dateStyle = (textColor: string) => css`
@@ -187,7 +187,12 @@ export default function Event(props: EventBlock) {
       <EventBanner event={props} color={color} />
       <div css={contentStyle}>
         <WhenAndWhere event={props} color={color} />
-        <p css={textStyle}>{props.content}</p>
+        {props.content && (
+          <p
+            css={textStyle}
+            dangerouslySetInnerHTML={{ __html: props.content }}
+          />
+        )}
         <Columns borderColor={color.main}>
           {props.info.map((column, idx) => (
             <Fragment key={idx}>
