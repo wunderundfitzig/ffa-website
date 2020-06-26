@@ -156,9 +156,11 @@ function EventBanner(props: { color: Color; event: EventBlock }) {
 function WhenAndWhere(props: { color: Color; event: EventBlock }) {
   return (
     <dl css={dateStyle(props.color.colorfullText)}>
-      <span>
-        <dt>Termin:</dt> <dd>{props.event.date}</dd>
-      </span>
+      {props.event.date && (
+        <span>
+          <dt>Termin:</dt> <dd>{props.event.date}</dd>
+        </span>
+      )}
       {props.event.place && (
         <span>
           <dt>Ort:</dt> <dd>{props.event.place}</dd>
