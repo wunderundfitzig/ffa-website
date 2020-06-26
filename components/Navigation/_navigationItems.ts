@@ -47,7 +47,7 @@ const pageLinks: NavigationItem[] = [
       },
       {
         type: 'internal',
-        slug: '/angebote/jobs-praktika',
+        slug: '/ueber-uns/jobs-praktika',
         route: '/[...page]',
         displayName: 'Jobs & Praktika',
       },
