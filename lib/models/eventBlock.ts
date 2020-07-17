@@ -28,6 +28,7 @@ export const eventBlock = object(
     place: optional(string()),
     content: optional(string()),
     info: parseJsonURLString(array(column)),
+    // eslint-disable-next-line @typescript-eslint/camelcase
     registration_type: string(),
     mail: optional(string()),
     pdf: optional(parseJsonURLString(pdf)),
