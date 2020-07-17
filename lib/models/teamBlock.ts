@@ -13,9 +13,11 @@ const member = object(
   { allowExcessProperties: true }
 )
 
+const category = enumerate('house', 'educators', 'kita', 'others')
+
 export const teamBlock = object(
   {
-    category: enumerate('house', 'educators', 'kita', 'others'),
+    category: category,
     title: string(),
     image: parseJsonURLString(image),
     members: parseJsonURLString(array(member)),
@@ -24,3 +26,4 @@ export const teamBlock = object(
 )
 
 export type TeamBlock = ReturnType<typeof teamBlock>
+export type TeamCategory = ReturnType<typeof category>
