@@ -24,13 +24,13 @@ const memberListStyle = (leaveImage: string) => css`
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
-    background-attachment: scroll;
-    background-position: right 40px center;
-    position: sticky;
-    top: 0;
-    height: 500px;
-    max-height: 500px;
-    overflow: scroll;
+    background-size: 470px;
+    background-position: right calc(50% - 230px) top calc(50% - 50px);
+    /* position: sticky; */
+    /* top: 0; */
+    /* height: 500px; */
+    /* max-height: 500px; */
+    /* overflow: scroll; */
   }
 `
 
