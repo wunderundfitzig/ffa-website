@@ -89,7 +89,7 @@ const Header = () => (
           <img alt='Fahrten Ferne Abenteuer' src={logo} />
         </a>
       </Link>
-      <h1 css={titleStyle}>Abenteuerzentrum Berlin</h1>
+      <p css={titleStyle}>Abenteuerzentrum Berlin</p>
       <Navigation css={navigationStyle} />
     </div>
   </header>

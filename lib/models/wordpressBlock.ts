@@ -46,8 +46,8 @@ const blockValidators = [
 
 function makeErrorBlock(
   message: string,
-  block: any
-): { blockName: 'error'; attrs: { errorMessage: string; block: any } } {
+  block: object
+): { blockName: 'error'; attrs: { errorMessage: string; block: object } } {
   return { blockName: 'error', attrs: { errorMessage: message, block: block } }
 }
 
