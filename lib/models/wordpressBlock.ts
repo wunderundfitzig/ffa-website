@@ -7,7 +7,6 @@ import { collageBlock } from './collageBlock'
 import { imageLinksBlock } from './imageLinksBlock'
 import { contactBlock } from './contactBlock'
 import { wideImageBlock } from './wideImageBlock'
-import { teamBlock } from './teamBlock'
 
 const defaultBlock = object(
   {
@@ -35,7 +34,6 @@ const blockValidators = [
   makeValidator('lazyblock/collage' as 'lazyblock/collage', collageBlock),
   makeValidator('lazyblock/contact' as 'lazyblock/contact', contactBlock),
   makeValidator('lazyblock/event' as 'lazyblock/event', eventBlock),
-  makeValidator('lazyblock/team' as 'lazyblock/team', teamBlock),
   makeValidator(
     'lazyblock/wide-image' as 'lazyblock/wide-image',
     wideImageBlock
