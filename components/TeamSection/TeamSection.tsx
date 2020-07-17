@@ -12,14 +12,26 @@ const memberListStyle = (leaveImage: string) => css`
   ${layout.container};
   ${layout.block};
   background-color: ${colors.lightGreen};
-  background-image: url(${leaveImage});
-  background-repeat: no-repeat;
-  background-size: calc(60% - 80px) 450px;
-  background-position: right 40px center;
-  height: 100vh;
-  max-height: 500px;
-  overflow: scroll;
-  padding-top: 40px;
+  padding-top: 20px;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    background-image: url(${leaveImage});
+    background-repeat: no-repeat;
+    background-size: calc(50% - 40px);
+    background-position: right 20px top 40px;
+    background-attachment: fixed;
+    padding-top: 40px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    background-attachment: scroll;
+    background-position: right 40px center;
+    position: sticky;
+    top: 0;
+    height: 500px;
+    max-height: 500px;
+    overflow: scroll;
+  }
 `
 
 function getColor(category: TeamCategory) {
@@ -31,7 +43,7 @@ function getColor(category: TeamCategory) {
     case 'kita':
       return colors.brown
     case 'others':
-      return colors.lightGreen
+      return colors.orange
   }
 }
 
