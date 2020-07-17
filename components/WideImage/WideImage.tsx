@@ -3,7 +3,7 @@ import { layout, colors, breakpoints, typography } from 'style'
 import { WideImageBlock } from 'lib/models/wideImageBlock'
 import { transparentize } from 'polished'
 
-const wideImageStyle = (url: string) => css`
+const wideImageStyle = (url: string, color: string) => css`
   ${layout.container};
   box-sizing: border-box;
   height: 200px;
@@ -15,7 +15,7 @@ const wideImageStyle = (url: string) => css`
   background-image: url(${url});
   background-size: cover;
   background-position: center;
-  border-right: 12px solid ${colors.lightGreen};
+  border-right: 12px solid ${color};
   z-index: -2;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
@@ -63,9 +63,10 @@ const textOverlayStyle = css`
 
 function Header(props: WideImageBlock) {
   const hasText = props.text !== undefined && props.text !== ''
+  const color = props.color || colors.darkGreen
 
   return (
-    <div css={[wideImageStyle(props.image.url), headerStyle]}>
+    <div css={[wideImageStyle(props.image.url, color), headerStyle]}>
       {hasText && <h2 css={textOverlayStyle}>{props.text}</h2>}
     </div>
   )
@@ -73,15 +74,16 @@ function Header(props: WideImageBlock) {
 
 function Image(props: WideImageBlock) {
   const hasText = props.text !== undefined && props.text !== ''
+  const color = props.color || colors.lightGreen
 
   return (
-    <figure css={wideImageStyle(props.image.url)}>
+    <figure css={wideImageStyle(props.image.url, color)}>
       {hasText && <p css={textOverlayStyle}>{props.text}</p>}
     </figure>
   )
 }
 
 export default function WideImage(props: WideImageBlock) {
-  if (props.isHeader) return <Header {...props} />
+  if (props.asHeader) return <Header {...props} />
   return <Image {...props} />
 }
