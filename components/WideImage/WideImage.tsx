@@ -24,12 +24,17 @@ const wideImageStyle = (url: string) => css`
   }
 `
 
+const headerStyle = css`
+  margin-bottom: 0;
+`
+
 const textOverlayStyle = css`
   ${typography.museoSlab};
   margin: 0;
   margin-bottom: 15px;
   color: white;
   text-shadow: 1px 1px 2px black;
+  white-space: pre-line;
   font-size: 1.3em;
   font-weight: 300;
 
@@ -56,13 +61,27 @@ const textOverlayStyle = css`
   }
 `
 
-export default function WideImage(props: WideImageBlock) {
-  const imgURL = props.image ? props.image.url : ''
+function Header(props: WideImageBlock) {
   const hasText = props.text !== undefined && props.text !== ''
 
   return (
-    <figure css={wideImageStyle(imgURL)}>
+    <div css={[wideImageStyle(props.image.url), headerStyle]}>
+      {hasText && <h2 css={textOverlayStyle}>{props.text}</h2>}
+    </div>
+  )
+}
+
+function Image(props: WideImageBlock) {
+  const hasText = props.text !== undefined && props.text !== ''
+
+  return (
+    <figure css={wideImageStyle(props.image.url)}>
       {hasText && <p css={textOverlayStyle}>{props.text}</p>}
     </figure>
   )
+}
+
+export default function WideImage(props: WideImageBlock) {
+  if (props.isHeader) return <Header {...props} />
+  return <Image {...props} />
 }
