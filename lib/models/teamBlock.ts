@@ -6,9 +6,9 @@ const member = object(
   {
     name: string(),
     role: string(),
-    image: optional(parseJsonURLString(image)),
+    headshot: optional(image),
     text: string(),
-    quote: string(),
+    quote: optional(string()),
   },
   { allowExcessProperties: true }
 )
@@ -26,4 +26,5 @@ export const teamBlock = object(
 )
 
 export type TeamBlock = ReturnType<typeof teamBlock>
+export type TeamMember = ReturnType<typeof member>
 export type TeamCategory = ReturnType<typeof category>
