@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { layout, colors, typography, breakpoints, helpers } from 'style'
+import { layout, typography, breakpoints } from 'style'
 import { TeamMember } from 'lib/models/teamBlock'
 
 const memberStyle = css`
