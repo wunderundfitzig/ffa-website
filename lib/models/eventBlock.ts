@@ -10,17 +10,27 @@ const column = object(
   { allowExcessProperties: true }
 )
 
+const pdf = object(
+  {
+    url: string(),
+  },
+  { allowExcessProperties: true }
+)
+
 export const eventBlock = object(
   {
     title: string(),
     description: string(),
-    category: string(),
+    colorName: string(),
     image: parseJsonURLString(image),
-    date: string(),
+    date: optional(string()),
     time: optional(string()),
     place: optional(string()),
     content: optional(string()),
     info: parseJsonURLString(array(column)),
+    registration_type: string(),
+    mail: optional(string()),
+    pdf: optional(parseJsonURLString(pdf)),
   },
   { allowExcessProperties: true }
 )

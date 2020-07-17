@@ -7,22 +7,24 @@ const titleBlockStyle = css`
   ${layout.container};
   ${layout.block};
   padding-top: 40px;
+  margin-top: 20px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
-    padding-top: 60px;
+    padding-top: 50px;
   }
 `
 
-const rooflineStyle = css`
+const rooflineStyle = (primary: boolean) => css`
   ${typography.museoSlab};
   display: block;
+  font-weight: 300;
   color: ${colors.darkGreen};
-  padding-left: 10px;
-  margin-bottom: 0.7em;
+  padding-left: ${primary ? '10px' : '0'};
+  margin-bottom: ${primary ? '0.7em' : '0.2em'};
   line-height: 1.1em;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
-    padding-left: 35px;
+    padding-left: ${primary ? '35px' : '0'};
   }
 
   @media (min-width: ${breakpoints.breakpointL}px) {
@@ -30,40 +32,53 @@ const rooflineStyle = css`
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
-    padding-left: 80px;
+    padding-left: ${primary ? '80px' : '15px'};
   }
 `
 
-const titleStyle = css`
-  ${typography.heading1};
+const _titleStyle = css`
   position: relative;
-  padding-left: 10px;
-  min-height: 70px;
   margin: 0;
   margin-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
-    min-height: 80px;
-    padding-left: 35px;
     padding-right: 25%;
-    margin-bottom: 40px;
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
     padding-left: 80px;
-    margin-bottom: 60px;
   }
 
   &::before {
     content: '';
     position: absolute;
-    left: -95px;
-    top: -8px;
-    width: 100px;
     height: 100px;
     background-image: url(${flag});
     background-repeat: no-repeat;
     background-size: 100%;
+  }
+`
+
+const primaryTitleStyle = css`
+  ${_titleStyle};
+  ${typography.heading1};
+  min-height: 70px;
+  padding-left: 10px;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    min-height: 80px;
+    padding-left: 35px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    padding-left: 80px;
+  }
+
+  &::before {
+    left: -95px;
+    top: -25px;
+    width: 100px;
+    height: 100px;
 
     @media (min-width: ${breakpoints.breakpointM}px) {
       width: 120px;
@@ -75,11 +90,45 @@ const titleStyle = css`
   }
 `
 
+const secondaryTitleStyle = css`
+  ${_titleStyle};
+  ${typography.heading2};
+  margin-top: 0;
+  padding-left: 0;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    padding-left: 0;
+  }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    padding-left: 15px;
+  }
+
+  &::before {
+    left: -65px;
+    top: -25px;
+    width: 60px;
+    height: 100px;
+
+    @media (min-width: ${breakpoints.breakpointM}px) {
+      left: -70px;
+    }
+
+    @media (min-width: ${breakpoints.breakpointXL}px) {
+      left: -54px;
+    }
+  }
+`
+
 const Title = (props: TitleBlock) => {
   return (
     <header css={titleBlockStyle}>
-      <span css={rooflineStyle}>{props.roofline}</span>
-      <h1 css={titleStyle}>{props.title}</h1>
+      <span css={rooflineStyle(props.primary || false)}>{props.roofline}</span>
+      {props.primary ? (
+        <h1 css={primaryTitleStyle}>{props.title}</h1>
+      ) : (
+        <h2 css={secondaryTitleStyle}>{props.title}</h2>
+      )}
     </header>
   )
 }

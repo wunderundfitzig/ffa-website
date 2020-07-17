@@ -1,4 +1,4 @@
-import { object, string, array } from 'fefe'
+import { object, string, array, boolean, optional } from 'fefe'
 import { parseJsonURLString } from './jsonURLString'
 import { image } from './image'
 
@@ -10,6 +10,7 @@ export const imageLinksBlock = object(
           {
             title: string(),
             url: string(),
+            external: optional(boolean()),
             image: image,
           },
           { allowExcessProperties: true }

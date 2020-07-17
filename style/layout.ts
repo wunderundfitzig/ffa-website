@@ -15,9 +15,10 @@ export const container = css`
 export const block = css`
   padding-left: 30px;
   padding-right: 30px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   box-sizing: border-box;
-  background-color: ${transparentize(0.2, colors.beige)};
-  overflow: hidden;
+  background-color: ${transparentize(0.15, colors.beige)};
 
   @media (min-width: ${breakpoints.breakpointM}px) {
     padding-left: 45px;

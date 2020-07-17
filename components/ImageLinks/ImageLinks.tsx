@@ -7,15 +7,9 @@ const wrapperStyle = css`
   ${helpers.resetListStyles};
   ${layout.container};
   ${layout.block};
-  padding-top: 20px;
-  padding-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointS}px) {
     ${layout.grid({ columns: 3 })}
-  }
-
-  @media (min-width: ${breakpoints.breakpointXL}px) {
-    padding-bottom: 30px;
   }
 `
 
@@ -32,12 +26,17 @@ const LinkStlye = (imgURL: string) => css`
   background-size: cover;
   background-position: center;
   margin: 20px 0;
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    margin-bottom: 30px;
+  }
 `
 
 const linkTextStyle = css`
   ${typography.museoSlab};
-  background-color: ${transparentize(0.3, colors.darkGreen)};
-  font-size: 1.3em;
+  background-color: ${transparentize(0.2, colors.darkGreen)};
+  font-weight: 300;
+  font-size: 1.15em;
   box-sizing: border-box;
   padding: 20px;
   position: absolute;
@@ -63,7 +62,11 @@ const ImageLinks = (props: ImageLinksBlock) => {
     <ul css={wrapperStyle}>
       {props.links.map((link, idx) => (
         <li key={idx}>
-          <a css={LinkStlye(link.image.url)} href={link.url}>
+          <a
+            css={LinkStlye(link.image.url)}
+            href={link.url}
+            target={link.external ? '_blank' : ''}
+          >
             <span css={linkTextStyle}>{link.title}</span>
           </a>
         </li>

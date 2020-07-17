@@ -3,16 +3,14 @@ import { css } from '@emotion/core'
 import { layout, colors, breakpoints } from 'style'
 
 const wrapperStyle = (childCount: number) => css`
-  ${layout.container};
-  ${layout.block};
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     ${layout.grid({ columns: childCount })}
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
-    padding-bottom: 30px;
+    padding-bottom: 50px;
   }
 `
 
@@ -20,7 +18,7 @@ const columnStyle = (borderColor: string) => css`
   border-left: 8px solid ${borderColor};
   padding-left: 12px;
   margin-left: -12px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
     margin-left: 0;
@@ -30,6 +28,7 @@ const columnStyle = (borderColor: string) => css`
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     margin-left: 0;
+    margin-bottom: 0;
 
     &:not(:first-of-type) {
       border: 0;

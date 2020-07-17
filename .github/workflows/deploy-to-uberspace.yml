@@ -1,0 +1,78 @@
+name: deploy to uberspace
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install npm dependencies
+        run: npm ci
+      
+      - name: Run build task
+        run: npm run build
+      
+      - name: Create deploy folder
+        run: |
+          mkdir deploy
+          cp -a .next ./deploy
+          cp package.json ./deploy
+          cp -a node_modules ./deploy
+          cp -a public ./deploy
+
+      - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment
+        id: deployment
+        with:
+          token: "${{ github.token }}"
+          environment_url: "https://abenteuerzentrum.berlin"
+          production_environment: true
+          environment: uberspace
+      
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "deploy/"
+          REMOTE_HOST: ffaback.uber.space
+          REMOTE_USER: ffaback
+          TARGET: 'ffa-website'
+        
+      - name: Restart Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ffaback.uber.space
+          username: ffaback
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: supervisorctl restart ffa-website
+      
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: "${{ github.token }}"
+          state: "success"
+          environment_url: "https://abenteuerzentrum.berlin"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: "${{ github.token }}"
+          state: "failure"
+          environment_url: "https://abenteuerzentrum.berlin"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}

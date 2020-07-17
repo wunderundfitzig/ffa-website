@@ -3,6 +3,7 @@ import { css } from '@emotion/core'
 export const resetLinkStyles = css`
   color: inherit;
   text-decoration: none;
+
   &:hover {
     text-decoration: none;
   }
@@ -17,6 +18,11 @@ export const resetListStyles = css`
 export const resetDefinitionListStyles = css`
   margin: 0;
   padding: 0;
+
+  dt,
+  dd {
+    display: inline-block;
+  }
 
   dd {
     margin: 0;

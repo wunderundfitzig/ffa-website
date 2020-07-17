@@ -45,6 +45,12 @@ const pageLinks: NavigationItem[] = [
         route: '/[...page]',
         displayName: 'Unser Gelände',
       },
+      {
+        type: 'internal',
+        slug: '/ueber-uns/jobs-praktika',
+        route: '/[...page]',
+        displayName: 'Jobs & Praktika',
+      },
     ],
   },
   {
@@ -70,12 +76,6 @@ const pageLinks: NavigationItem[] = [
         slug: '/angebote/veranstaltungen',
         route: '/[...page]',
         displayName: 'Übergangsbegleitung',
-      },
-      {
-        type: 'internal',
-        slug: '/angebote/jobs-praktika',
-        route: '/[...page]',
-        displayName: 'Jobs & Praktika',
       },
     ],
   },

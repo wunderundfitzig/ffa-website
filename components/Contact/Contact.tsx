@@ -1,13 +1,19 @@
 import { css } from '@emotion/core'
-import { typography, breakpoints, helpers, colors } from 'style'
+import { typography, breakpoints, helpers, colors, layout } from 'style'
 import { ContactBlock } from 'lib/models/contactBlock'
 import Columns from 'components/Columns/Columns'
 import SocialLinks from 'components/SocialLinks/SocialLinks'
 
+const contactStyle = css`
+  ${layout.container};
+  ${layout.block};
+`
+
 const titleStyle = css`
-  ${typography.heading2};
+  ${typography.heading3};
   height: 30px;
-  margin-bottom: 0;
+  margin: 0;
+  margin-bottom: 0.5em;
 `
 
 const textStyle = css`
@@ -41,41 +47,43 @@ const linkStyle = css`
 
 const Contact = (props: ContactBlock) => {
   return (
-    <Columns>
-      <>
-        <h2 css={titleStyle}>Kontakt</h2>
-        <p css={textStyle}>{props.address}</p>
-      </>
-      <div css={rightColStyle}>
-        <dl css={phoneAndMailStyle}>
-          <dt>Büro:</dt>
-          <dd>{props.phone}</dd>
-          <dt>Mail:</dt>
-          <dd>
-            <a css={linkStyle} href={`mailto:${props.phone}`}>
-              {props.mail}
-            </a>
-          </dd>
-        </dl>
-        <SocialLinks
-          links={[
-            {
-              platform: 'instagram',
-              url: props.instagram,
-            },
-            {
-              platform: 'facebook',
-              url: props.facebook,
-            },
-            {
-              platform: 'youtube',
-              url: props.youtube,
-            },
-          ]}
-          color={colors.brown}
-        />
-      </div>
-    </Columns>
+    <section css={contactStyle}>
+      <Columns>
+        <>
+          <h2 css={titleStyle}>Kontakt</h2>
+          <p css={textStyle}>{props.address}</p>
+        </>
+        <div css={rightColStyle}>
+          <dl css={phoneAndMailStyle}>
+            <dt>Büro:</dt>
+            <dd>{props.phone}</dd>
+            <dt>Mail:</dt>
+            <dd>
+              <a css={linkStyle} href={`mailto:${props.phone}`}>
+                {props.mail}
+              </a>
+            </dd>
+          </dl>
+          <SocialLinks
+            links={[
+              {
+                platform: 'instagram',
+                url: props.instagram,
+              },
+              {
+                platform: 'facebook',
+                url: props.facebook,
+              },
+              {
+                platform: 'youtube',
+                url: props.youtube,
+              },
+            ]}
+            color={colors.brown}
+          />
+        </div>
+      </Columns>
+    </section>
   )
 }
 
