@@ -1,34 +1,53 @@
 import { css } from '@emotion/core'
 import { layout, colors, typography, breakpoints, helpers } from 'style'
-import { TeamBlock, TeamCategory, TeamMember } from 'lib/models/teamBlock'
+import { TeamMember } from 'lib/models/teamBlock'
 
 const memberStyle = css`
-  ${layout.grid({ columns: 2 })};
-  grid-template-columns: 40% 60%;
-  grid-template-areas: 'content image';
-  margin-bottom: 100px;
+  padding-left: 20px;
+  text-align: center;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    ${layout.grid({ columns: 2, rows: 2 })};
+    padding-left: 35px;
+    grid-template-columns: 45% 55%;
+    grid-template-areas:
+      'title image'
+      'content image';
+    margin-bottom: 100px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    grid-template-columns: 40% 60%;
+    padding-left: 80px;
+  }
 `
 
-const memberContentStyle = (color: string) => css`
+const memberContentStyle = css`
   grid-area: content;
-  padding-left: 80px;
   margin-bottom: 30%;
+  text-align: left;
+`
+
+const titleStyle = (color: string) => css`
+  ${typography.heading3};
+  grid-area: title;
   position: relative;
+  text-align: left;
 
   &::before {
     content: '';
     position: absolute;
-    left: 47px;
-    top: 12px;
+    left: -25px;
+    top: 8px;
     display: block;
     background-color: ${color};
-    width: 13px;
+    width: 11px;
     height: 150px;
-  }
-`
 
-const titleStyle = css`
-  ${typography.heading3};
+    @media (min-width: ${breakpoints.breakpointM}px) {
+      left: -30px;
+    }
+  }
 
   span {
     display: block;
@@ -41,10 +60,18 @@ const memberImageStyle = css`
   grid-area: image;
   justify-self: center;
   width: 280px;
+  max-width: 80%;
   border-radius: 100%;
-  height: auto;
-  position: sticky;
-  top: calc((100% - 300px) / 2 - 30px);
+  margin: 10px auto 30px;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    position: sticky;
+    top: 40px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    top: calc((100% - 300px) / 2 - 30px);
+  }
 `
 
 interface Props {
@@ -56,14 +83,10 @@ export default function Member(props: Props) {
 
   return (
     <div css={memberStyle}>
-      <div css={memberContentStyle(props.color)}>
-        <h3 css={titleStyle}>
-          {member.name}
-          <span>{member.role}</span>
-        </h3>
-        <div dangerouslySetInnerHTML={{ __html: member.text }} />
-        <p>{member.quote}</p>
-      </div>
+      <h3 css={titleStyle(props.color)}>
+        {member.name}
+        <span>{member.role}</span>
+      </h3>
       {member.headshot && (
         <img
           css={memberImageStyle}
@@ -71,6 +94,10 @@ export default function Member(props: Props) {
           src={member.headshot.url}
         />
       )}
+      <div css={memberContentStyle}>
+        <div dangerouslySetInnerHTML={{ __html: member.text }} />
+        <p>{member.quote}</p>
+      </div>
     </div>
   )
 }
