@@ -44,7 +44,7 @@ const mapWrapperStyle = css`
 const titleStyle = css`
   ${typography.heading2};
   max-width: 500px;
-  margin-top: 0.5em;
+  margin-top: 1.2em;
   margin-bottom: 1.5em;
   grid-area: title;
 `
