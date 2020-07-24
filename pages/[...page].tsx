@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { getBlocks } from 'lib/wordpressApi'
 import { WordpressBlock } from 'lib/models/wordpressBlock'
 import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
+import Title from 'components/Title/Title'
 
 function NotFound() {
   return (
@@ -11,7 +12,13 @@ function NotFound() {
         <title>Abenteuerzentrum Berlin | Seite nicht gefunden</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <p>Seite nicht gefunden</p>
+      <div>
+        <Title
+          primary
+          roofline='Hier ist leider ein Fehler passiert'
+          title='Diese Seite existiert nicht'
+        />
+      </div>
     </>
   )
 }
