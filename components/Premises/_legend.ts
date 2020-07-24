@@ -17,9 +17,9 @@ import wippeIcon from './_wippe.svg'
 
 const legend = [
   {
-    title: 'Gebäde',
+    title: 'Gebäude',
     items: [
-      { icon: buroIcon, name: 'Büro' },
+      { icon: buroIcon, name: 'Büro', highlight: true },
       { icon: kucheIcon, name: 'Küche' },
       { icon: bettIcon, name: 'Schlafräume' },
       { icon: veranstaltungIcon, name: 'Veranstaltungssaal' },
@@ -37,7 +37,7 @@ const legend = [
   {
     title: 'Gelände',
     items: [
-      { icon: eingangIcon, name: 'Eingang' },
+      { icon: eingangIcon, name: 'Eingang', highlight: true },
       { icon: picknickIcon, name: 'Picknick' },
       { icon: lagerfeuerIcon, name: 'Lagerfeuer' },
       { icon: grillplatzIcon, name: 'Grillplatz' },
@@ -46,7 +46,7 @@ const legend = [
   {
     title: 'Angebote',
     items: [
-      { icon: hochseilgartenIcon, name: 'Hochseilgarten' },
+      { icon: hochseilgartenIcon, name: 'Hochseilgarten', highlight: true },
       { icon: waldkitaIcon, name: 'Waldkita' },
       { icon: waldbuhneIcon, name: 'Waldbühne' },
       { icon: jutendorfIcon, name: 'Jurtendorf' },
