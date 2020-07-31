@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { NewsBlock } from 'lib/models/newsBlock'
+import { NewsBlock, NewsSliderBlock } from 'lib/models/newsBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import { colors, breakpoints, layout, helpers } from 'style'
 
@@ -43,15 +43,17 @@ function Inner(props: NewsBlock) {
   )
 }
 
-export default function NewsBanner(props: NewsBlock) {
+export default function NewsBanner(props: NewsSliderBlock) {
+  const slide = props.slides[0]
+
   return (
     <article css={newsBannerStyle} title='aktuell'>
-      {props.link ? (
-        <a css={linkStyle} href={props.link}>
-          <Inner {...props} />
+      {slide.link ? (
+        <a css={linkStyle} href={slide.link}>
+          <Inner {...slide} />
         </a>
       ) : (
-        <Inner {...props} />
+        <Inner {...slide} />
       )}
     </article>
   )
