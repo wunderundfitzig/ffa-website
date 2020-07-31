@@ -2,6 +2,8 @@ import { css } from '@emotion/core'
 import { NewsBlock, NewsSliderBlock } from 'lib/models/newsBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import { colors, breakpoints, layout, helpers } from 'style'
+import Slider from 'components/Slider/Slider'
+import { useState, useEffect } from 'react'
 
 const newsBannerStyle = css`
   width: 100% calc(100% - 40px);
@@ -43,18 +45,43 @@ function Inner(props: NewsBlock) {
   )
 }
 
+function Slide(props: NewsBlock) {
+  return props.link ? (
+    <a css={linkStyle} href={props.link}>
+      <Inner {...props} />
+    </a>
+  ) : (
+    <Inner {...props} />
+  )
+}
+
 export default function NewsBanner(props: NewsSliderBlock) {
-  const slide = props.slides[0]
+  const [offset, setOffset] = useState(props.slides.length)
+
+  function getSlide(idx: number) {
+    idx = idx % props.slides.length
+    return <Slide {...props.slides[idx]} />
+  }
+
+  useEffect(() => {
+    const handle = setInterval(() => {
+      setOffset((o) => o + 1)
+    }, 6000)
+
+    return () => {
+      clearInterval(handle)
+    }
+  }, [])
 
   return (
     <article css={newsBannerStyle} title='aktuell'>
-      {slide.link ? (
-        <a css={linkStyle} href={slide.link}>
-          <Inner {...slide} />
-        </a>
-      ) : (
-        <Inner {...slide} />
-      )}
+      <Slider onBackwardNavigation={() => {}} onForwardNavigation={() => {}}>
+        {{
+          previous: getSlide(offset - 1),
+          current: getSlide(offset),
+          next: getSlide(offset + 1),
+        }}
+      </Slider>
     </article>
   )
 }
