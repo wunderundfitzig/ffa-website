@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useLayoutEffect } from 'react'
 
 const sliderWrapperStyle = css`
   overflow: hidden;
@@ -24,15 +24,12 @@ const nextSlidesStyle = css`
 `
 
 interface Props {
-  children: {
-    current: React.ReactNode
-    previous?: React.ReactNode
-    next?: React.ReactNode
-  }
+  index: number
+  children: (index: number) => React.ReactNode
   /** called after user did navigate forward */
-  onBackwardNavigation: () => void
+  onBackwardNavigation: (newIndex: number) => void
   /** called after user did navigate backward */
-  onForwardNavigation: () => void
+  onForwardNavigation: (newIndex: number) => void
   className?: string
 }
 /**
@@ -40,9 +37,13 @@ interface Props {
  * backward and forward throgh content (on mobile with swipe gesture).
  */
 export default function Slider(props: Props) {
+  const internalIndex = useRef<number>(props.index)
   const contentRef = useRef<HTMLDivElement>(null)
   const touchStartPosition = useRef(null as React.Touch | null)
-  const { children: slides } = props
+  const getSlide = props.children
+  const previousSlide = getSlide(props.index - 1)
+  const currentSlide = getSlide(props.index)
+  const nextSlide = getSlide(props.index + 1)
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     if (contentRef.current !== null) contentRef.current.style.transition = ''
@@ -59,6 +60,7 @@ export default function Slider(props: Props) {
 
     if (Math.abs(diffX) < 20 || Math.abs(diffY) > Math.abs(diffX)) return
 
+    contentRef.current.style.transition = ''
     contentRef.current.style.transform = `translateX(${diffX}px)`
     e.preventDefault()
   }
@@ -77,18 +79,22 @@ export default function Slider(props: Props) {
     if (Math.abs(diff) < 100) return resetTransition({ animated: true })
 
     // cancel transition when there is no slide to go to
-    if (!slides.previous && !isForwardNavigation)
+    if (!previousSlide && !isForwardNavigation)
       return resetTransition({ animated: true })
-    if (!slides.next && isForwardNavigation)
+    if (!nextSlide && isForwardNavigation)
       return resetTransition({ animated: true })
 
     contentRef.current.style.transition = 'transform 0.5s'
     contentRef.current.style.transform = `translateX(${offset}px)`
 
     setTimeout(() => {
-      isForwardNavigation
-        ? props.onForwardNavigation()
-        : props.onBackwardNavigation()
+      if (isForwardNavigation) {
+        internalIndex.current = props.index + 1
+        props.onForwardNavigation(props.index + 1)
+      } else {
+        internalIndex.current = props.index - 1
+        props.onBackwardNavigation(props.index - 1)
+      }
     }, 500)
   }
 
@@ -100,22 +106,26 @@ export default function Slider(props: Props) {
   const resetTransition = ({ animated = false } = {}) => {
     if (contentRef.current === null) return
 
-    if (!animated) {
-      contentRef.current.style.transition = ''
-      contentRef.current.style.transform = ''
-    } else {
-      contentRef.current.style.transition = 'transform 0.5s'
-      contentRef.current.style.transform = `translateX(0px)`
-      setTimeout(() => {
-        if (contentRef.current === null) return
-
-        contentRef.current.style.transition = ''
-        contentRef.current.style.transform = ''
-      }, 500)
-    }
+    contentRef.current.style.transition = animated ? 'transform 0.5s' : ''
+    contentRef.current.style.transform = 'translateX(0px)'
   }
 
-  useEffect(resetTransition)
+  useLayoutEffect(() => {
+    if (contentRef.current === null) return
+    if (props.index === internalIndex.current) return resetTransition()
+
+    const offset = props.index > internalIndex.current ? 100 : -100
+
+    contentRef.current.style.transition = ''
+    contentRef.current.style.transform = `translateX(${offset}%)`
+    setTimeout(() => {
+      if (contentRef.current === null) return
+
+      contentRef.current.style.transition = 'transform 0.5s'
+      contentRef.current.style.transform = 'translateX(0%)'
+      internalIndex.current = props.index
+    }, 50)
+  }, [props.index])
 
   return (
     <div
@@ -126,9 +136,9 @@ export default function Slider(props: Props) {
       onTouchCancel={handleTouchCancel}
     >
       <div ref={contentRef}>
-        {slides.previous && <div css={prevSlidesStyle}>{slides.previous}</div>}
-        {slides.current}
-        {slides.next && <div css={nextSlidesStyle}>{slides.next}</div>}
+        <div css={prevSlidesStyle}>{previousSlide}</div>
+        {currentSlide}
+        <div css={nextSlidesStyle}>{nextSlide}</div>
       </div>
     </div>
   )

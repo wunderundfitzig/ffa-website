@@ -3,7 +3,7 @@ import { NewsBlock, NewsSliderBlock } from 'lib/models/newsBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import { colors, breakpoints, layout, helpers } from 'style'
 import Slider from 'components/Slider/Slider'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const newsBannerStyle = css`
   width: 100% calc(100% - 40px);
@@ -45,41 +45,43 @@ function Inner(props: NewsBlock) {
   )
 }
 
-function Slide(props: NewsBlock) {
-  return props.link ? (
-    <a css={linkStyle} href={props.link}>
-      <Inner {...props} />
-    </a>
-  ) : (
-    <Inner {...props} />
-  )
-}
-
 export default function NewsBanner(props: NewsSliderBlock) {
-  const [offset, setOffset] = useState(props.slides.length)
-
-  function getSlide(idx: number) {
-    idx = idx % props.slides.length
-    return <Slide {...props.slides[idx]} />
-  }
+  const intervalHandle = useRef<NodeJS.Timeout>()
+  const [index, setIndex] = useState(props.slides.length)
 
   useEffect(() => {
-    const handle = setInterval(() => {
-      setOffset((o) => o + 1)
+    intervalHandle.current = setInterval(() => {
+      setIndex((idx) => idx + 1)
     }, 6000)
 
     return () => {
-      clearInterval(handle)
+      intervalHandle.current && clearInterval(intervalHandle.current)
     }
   }, [])
 
+  function handleNavigation(newIndex: number) {
+    setIndex(newIndex)
+    intervalHandle.current && clearInterval(intervalHandle.current)
+  }
+
   return (
     <article css={newsBannerStyle} title='aktuell'>
-      <Slider onBackwardNavigation={() => {}} onForwardNavigation={() => {}}>
-        {{
-          previous: getSlide(offset - 1),
-          current: getSlide(offset),
-          next: getSlide(offset + 1),
+      <Slider
+        index={index}
+        onBackwardNavigation={handleNavigation}
+        onForwardNavigation={handleNavigation}
+      >
+        {(index) => {
+          const idx = index % props.slides.length
+          const slide = props.slides[idx]
+
+          return slide.link ? (
+            <a css={linkStyle} href={slide.link}>
+              <Inner {...slide} />
+            </a>
+          ) : (
+            <Inner {...slide} />
+          )
         }}
       </Slider>
     </article>
