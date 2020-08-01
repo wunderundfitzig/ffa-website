@@ -106,7 +106,6 @@ function Indicators(props: {
 export default function NewsBanner(props: NewsSliderBlock) {
   const intervalHandle = useRef<NodeJS.Timeout>()
   const [index, setIndex] = useState(0)
-  const currentIndex = index % props.slides.length
 
   useEffect(() => {
     if (props.slides.length <= 1) return
@@ -128,13 +127,13 @@ export default function NewsBanner(props: NewsSliderBlock) {
   return (
     <aside css={newsBannerStyle} title='aktuell'>
       <Indicators
-        currentIndex={currentIndex}
+        currentIndex={index % props.slides.length}
         slides={props.slides}
         onNavigation={handleNavigation}
       />
       <Slider
         css={sliderStyle}
-        index={currentIndex}
+        index={index}
         onBackwardNavigation={handleNavigation}
         onForwardNavigation={handleNavigation}
       >
