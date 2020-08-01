@@ -14,8 +14,8 @@ const wrapperStyle = (childCount: number) => css`
   }
 `
 
-const columnStyle = (borderColor: string) => css`
-  border-left: 8px solid ${borderColor};
+const columnStyle = css`
+  border-left: 8px solid ${colors.lightGreen};
   padding-left: 12px;
   margin-left: -12px;
   margin-bottom: 20px;
@@ -45,7 +45,7 @@ const Columns = (props: { children: ReactNode; borderColor?: string }) => {
   return (
     <div css={wrapperStyle(childCount)}>
       {React.Children.map(props.children, (child, idx) => (
-        <div key={idx} css={columnStyle(borderColor)}>
+        <div key={idx} css={columnStyle} style={{ borderColor }}>
           {child}
         </div>
       ))}
