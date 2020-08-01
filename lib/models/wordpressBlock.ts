@@ -9,6 +9,7 @@ import { contactBlock } from './contactBlock'
 import { wideImageBlock } from './wideImageBlock'
 import { teamBlock } from './teamBlock'
 import { premisesBlock } from './premisesBlock'
+import { compassBlock } from './compassBlock'
 
 const defaultBlock = object(
   {
@@ -38,6 +39,7 @@ const blockValidators = [
   makeValidator('lazyblock/event' as 'lazyblock/event', eventBlock),
   makeValidator('lazyblock/team' as 'lazyblock/team', teamBlock),
   makeValidator('lazyblock/premises' as 'lazyblock/premises', premisesBlock),
+  makeValidator('lazyblock/compass' as 'lazyblock/compass', compassBlock),
   makeValidator(
     'lazyblock/wide-image' as 'lazyblock/wide-image',
     wideImageBlock

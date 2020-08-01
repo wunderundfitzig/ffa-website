@@ -12,6 +12,7 @@ import Event from 'components/Event/Event'
 import ParseErrorDisplay from 'components/ParseErrorDisplay/ParseErrorDisplay'
 import TeamSection from 'components/TeamSection/TeamSection'
 import Premises from 'components/Premises/Premises'
+import Compass from 'components/Compass/Compass'
 
 const defaultBlockStyle = css`
   ${layout.container};
@@ -44,6 +45,8 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
             return <TeamSection key={idx} {...block.attrs} />
           case 'lazyblock/premises':
             return <Premises key={idx} {...block.attrs} />
+          case 'lazyblock/compass':
+            return <Compass key={idx} {...block.attrs} />
           case 'error':
             return <ParseErrorDisplay key={idx} {...block.attrs} />
           default:
