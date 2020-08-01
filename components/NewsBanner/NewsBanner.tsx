@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { NewsBlock, NewsSliderBlock } from 'lib/models/newsBlock'
+import { NewsBlock, NewsSliderBlock, newsBlock } from 'lib/models/newsBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import { colors, breakpoints, layout, helpers } from 'style'
 import Slider from 'components/Slider/Slider'
@@ -24,8 +24,8 @@ const sliderStyle = css`
 const buttonContainerStyle = css`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 15px;
 `
 
 const buttonStyle = css`
@@ -79,6 +79,30 @@ function Inner(props: NewsBlock) {
   )
 }
 
+function Indicators(props: {
+  slides: NewsBlock[]
+  currentIndex: number
+  onNavigation: (idx: number) => void
+}) {
+  if (props.slides.length <= 1) return null
+
+  return (
+    <div css={buttonContainerStyle}>
+      {props.slides.map((_, idx) => {
+        const isActive = props.currentIndex === idx
+        return (
+          <button
+            css={[buttonStyle, isActive && activeButtonStyle]}
+            onClick={() => {
+              props.onNavigation(idx)
+            }}
+          />
+        )
+      })}
+    </div>
+  )
+}
+
 export default function NewsBanner(props: NewsSliderBlock) {
   const intervalHandle = useRef<NodeJS.Timeout>()
   const [index, setIndex] = useState(0)
@@ -103,6 +127,11 @@ export default function NewsBanner(props: NewsSliderBlock) {
 
   return (
     <aside css={newsBannerStyle} title='aktuell'>
+      <Indicators
+        currentIndex={currentIndex}
+        slides={props.slides}
+        onNavigation={handleNavigation}
+      />
       <Slider
         css={sliderStyle}
         index={currentIndex}
@@ -123,22 +152,6 @@ export default function NewsBanner(props: NewsSliderBlock) {
           )
         }}
       </Slider>
-
-      {props.slides.length > 1 && (
-        <div css={buttonContainerStyle}>
-          {props.slides.map((_, idx) => {
-            const isActive = currentIndex === idx
-            return (
-              <button
-                css={[buttonStyle, isActive && activeButtonStyle]}
-                onClick={() => {
-                  handleNavigation(idx)
-                }}
-              />
-            )
-          })}
-        </div>
-      )}
     </aside>
   )
 }
