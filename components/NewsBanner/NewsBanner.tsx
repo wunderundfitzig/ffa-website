@@ -6,7 +6,7 @@ import Slider from 'components/Slider/Slider'
 import { useState, useEffect, useRef } from 'react'
 
 const newsBannerStyle = css`
-  width: 100% calc(100% - 40px);
+  width: 100%x;
   margin: 20px;
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
@@ -16,10 +16,16 @@ const newsBannerStyle = css`
   }
 `
 
+const sliderStyle = css`
+  margin: 0 -20px;
+`
+
 const linkStyle = css`
   display: block;
   ${helpers.resetLinkStyles};
   background-color: 'red';
+  height: 100%;
+  padding: 0 20px;
 `
 
 const contentStyle = css`
@@ -34,6 +40,7 @@ const callToActionStyle = css`
 function Inner(props: NewsBlock) {
   return (
     <SplitBanner
+      css={{ height: '100%' }}
       showBanderole
       color={colors.lightGreen}
       title={props.title}
@@ -67,6 +74,7 @@ export default function NewsBanner(props: NewsSliderBlock) {
   return (
     <article css={newsBannerStyle} title='aktuell'>
       <Slider
+        css={sliderStyle}
         index={index}
         onBackwardNavigation={handleNavigation}
         onForwardNavigation={handleNavigation}

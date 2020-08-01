@@ -106,6 +106,7 @@ interface Props {
   showBanderole?: boolean
   color: string
   textColor?: string
+  className?: string
   children: React.ReactNode
 }
 
@@ -113,7 +114,10 @@ const SplitBanner = (props: Props) => {
   const textColor = props.textColor || colors.brown
 
   return (
-    <div css={splitBannerStyle(props.color, textColor)}>
+    <div
+      css={splitBannerStyle(props.color, textColor)}
+      className={props.className}
+    >
       <figure css={imageStyle(props.image.url)} />
       <header css={headerStyle}>
         {props.showBanderole && <img css={banderoleStyle} src={banderole} />}
