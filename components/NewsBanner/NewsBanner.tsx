@@ -72,7 +72,7 @@ export default function NewsBanner(props: NewsSliderBlock) {
   }
 
   return (
-    <article css={newsBannerStyle} title='aktuell'>
+    <aside css={newsBannerStyle} title='aktuell'>
       <Slider
         css={sliderStyle}
         index={index}
@@ -92,6 +92,6 @@ export default function NewsBanner(props: NewsSliderBlock) {
           )
         }}
       </Slider>
-    </article>
+    </aside>
   )
 }
