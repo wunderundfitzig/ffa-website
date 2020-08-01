@@ -4,6 +4,7 @@ import SplitBanner from 'components/SplitBanner/SplitBanner'
 import { colors, breakpoints, layout, helpers } from 'style'
 import Slider from 'components/Slider/Slider'
 import { useState, useEffect, useRef } from 'react'
+import { button } from 'style/pattern'
 
 const newsBannerStyle = css`
   width: 100%x;
@@ -18,6 +19,32 @@ const newsBannerStyle = css`
 
 const sliderStyle = css`
   margin: 0 -20px;
+`
+
+const buttonContainerStyle = css`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+`
+
+const buttonStyle = css`
+  ${helpers.resetButtonStyles};
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  margin: 0 5px;
+  background-color: white;
+  opacity: 0.8;
+  transition: opacity 0.5s, transform 0.5s, background-color 0.5s;
+`
+
+const activeButtonStyle = css`
+  cursor: default;
+  opacity: 1;
+  transform: scale(1.5, 1.5);
+  background-color: ${colors.lightGreen};
 `
 
 const linkStyle = css`
@@ -54,9 +81,12 @@ function Inner(props: NewsBlock) {
 
 export default function NewsBanner(props: NewsSliderBlock) {
   const intervalHandle = useRef<NodeJS.Timeout>()
-  const [index, setIndex] = useState(props.slides.length)
+  const [index, setIndex] = useState(0)
+  const currentIndex = index % props.slides.length
 
   useEffect(() => {
+    if (props.slides.length <= 1) return
+
     intervalHandle.current = setInterval(() => {
       setIndex((idx) => idx + 1)
     }, 6000)
@@ -75,13 +105,14 @@ export default function NewsBanner(props: NewsSliderBlock) {
     <aside css={newsBannerStyle} title='aktuell'>
       <Slider
         css={sliderStyle}
-        index={index}
+        index={currentIndex}
         onBackwardNavigation={handleNavigation}
         onForwardNavigation={handleNavigation}
       >
         {(index) => {
-          const idx = index % props.slides.length
-          const slide = props.slides[idx]
+          const length = props.slides.length
+          const wrappedIndex = (index + length) % length
+          const slide = props.slides[wrappedIndex]
 
           return slide.link ? (
             <a css={linkStyle} href={slide.link}>
@@ -92,6 +123,22 @@ export default function NewsBanner(props: NewsSliderBlock) {
           )
         }}
       </Slider>
+
+      {props.slides.length > 1 && (
+        <div css={buttonContainerStyle}>
+          {props.slides.map((_, idx) => {
+            const isActive = currentIndex === idx
+            return (
+              <button
+                css={[buttonStyle, isActive && activeButtonStyle]}
+                onClick={() => {
+                  handleNavigation(idx)
+                }}
+              />
+            )
+          })}
+        </div>
+      )}
     </aside>
   )
 }
