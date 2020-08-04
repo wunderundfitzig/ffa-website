@@ -19,7 +19,7 @@ const splitBannerStyle = (backgroundColor: string, textColor: string) => css`
     ${layout.grid({ columns: 12, rows: 2 })};
     grid-template-rows: auto 1fr;
     grid-template-areas:
-      'title title   title   title   title   title   title image image image image image'
+      'title   title   title   title   title   title   title   image image image image image'
       'content content content content content content content image image image image image';
   }
 

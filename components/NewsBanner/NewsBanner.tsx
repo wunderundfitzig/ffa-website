@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
 import { useState, useEffect, useRef } from 'react'
 import { colors, breakpoints, layout, helpers } from 'style'
-import { isAtOrAboveBreakpoint } from 'style/breakpoints'
+import { isAtOrAboveBreakpoint, breakpointM } from 'style/breakpoints'
 import useWindowSize from 'lib/hooks/useWindowSize'
 import { NewsBlock, NewsSliderBlock } from 'lib/models/newsBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
@@ -67,7 +67,8 @@ const callToActionStyle = css`
 
 function Inner(props: NewsBlock) {
   const { width } = useWindowSize()
-  const showText = isAtOrAboveBreakpoint('m', width)
+  const showText = isAtOrAboveBreakpoint('m', width || breakpointM)
+
   return (
     <SplitBanner
       css={{ height: '100%' }}

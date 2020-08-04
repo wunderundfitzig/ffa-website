@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react'
 
-export default function useWindowSize() {
-  const getSize = (): { width: number; height: number } => ({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  })
+type Size = {
+  width: number | undefined
+  height: number | undefined
+}
+
+export default function useWindowSize(): Size {
+  const getSize = (): Size => {
+    if (!process.browser) return { width: undefined, height: undefined }
+
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    }
+  }
 
   const [windowSize, setWindowSize] = useState(getSize())
 
