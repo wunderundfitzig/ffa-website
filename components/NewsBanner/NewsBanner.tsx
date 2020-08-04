@@ -1,10 +1,11 @@
 import { css } from '@emotion/core'
-import { NewsBlock, NewsSliderBlock, newsBlock } from 'lib/models/newsBlock'
-import SplitBanner from 'components/SplitBanner/SplitBanner'
-import { colors, breakpoints, layout, helpers } from 'style'
-import Slider from 'components/Slider/Slider'
 import { useState, useEffect, useRef } from 'react'
-import { button } from 'style/pattern'
+import { colors, breakpoints, layout, helpers } from 'style'
+import { isAtOrAboveBreakpoint } from 'style/breakpoints'
+import useWindowSize from 'lib/hooks/useWindowSize'
+import { NewsBlock, NewsSliderBlock } from 'lib/models/newsBlock'
+import SplitBanner from 'components/SplitBanner/SplitBanner'
+import Slider from 'components/Slider/Slider'
 
 const newsBannerStyle = css`
   width: 100%x;
@@ -65,6 +66,8 @@ const callToActionStyle = css`
 `
 
 function Inner(props: NewsBlock) {
+  const { width } = useWindowSize()
+  const showText = isAtOrAboveBreakpoint('m', width)
   return (
     <SplitBanner
       css={{ height: '100%' }}
@@ -73,7 +76,7 @@ function Inner(props: NewsBlock) {
       title={props.title}
       image={props.image}
     >
-      <p css={contentStyle}>{props.content}</p>
+      {showText && <p css={contentStyle}>{props.content}</p>}
       <p css={callToActionStyle}>{props.call_to_action}</p>
     </SplitBanner>
   )
