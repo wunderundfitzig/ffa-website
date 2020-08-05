@@ -1,5 +1,5 @@
 import { object, string } from 'fefe'
-import { newsBlock } from './newsBlock'
+import { newsBlock, newsSliderBlock } from './newsBlock'
 import { titleBlock } from './titleBlock'
 import { columnsBlock } from './columnsBlock'
 import { eventBlock } from './eventBlock'
@@ -32,6 +32,10 @@ const makeValidator = <R, T>(name: T, validator: (value: unknown) => R) => ({
 
 const blockValidators = [
   makeValidator('lazyblock/news' as 'lazyblock/news', newsBlock),
+  makeValidator(
+    'lazyblock/news-slider' as 'lazyblock/news-slider',
+    newsSliderBlock
+  ),
   makeValidator('lazyblock/title' as 'lazyblock/title', titleBlock),
   makeValidator('lazyblock/columns' as 'lazyblock/columns', columnsBlock),
   makeValidator('lazyblock/collage' as 'lazyblock/collage', collageBlock),

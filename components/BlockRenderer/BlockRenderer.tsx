@@ -26,6 +26,8 @@ const BlockRenderer = (props: { blocks: WordpressBlock[] }) => {
       {props.blocks.map((block, idx) => {
         switch (block.blockName) {
           case 'lazyblock/news':
+            return <NewsBanner key={idx} {...{ slides: [block.attrs] }} />
+          case 'lazyblock/news-slider':
             return <NewsBanner key={idx} {...block.attrs} />
           case 'lazyblock/title':
             return <Title key={idx} {...block.attrs} />

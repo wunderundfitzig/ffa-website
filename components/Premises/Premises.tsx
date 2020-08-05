@@ -118,6 +118,10 @@ const legendListStyle = css`
   }
 `
 
+const highlightStyle = css`
+  color: ${colors.darkRed};
+`
+
 const Premises = (props: PremisesBlock) => {
   return (
     <section css={premisesStyle}>
@@ -134,7 +138,7 @@ const Premises = (props: PremisesBlock) => {
                 <h3 css={sectionTitleStyle}>{section.title}</h3>
                 <ul css={legendListStyle}>
                   {section.items.map((item) => (
-                    <li>
+                    <li css={item.highlight && highlightStyle}>
                       <img src={item.icon} alt={item.name} />
                       {item.name}
                     </li>

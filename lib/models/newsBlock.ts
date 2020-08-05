@@ -1,4 +1,4 @@
-import { object, string, optional } from 'fefe'
+import { object, string, optional, array } from 'fefe'
 import { image } from './image'
 import { parseJsonURLString } from './jsonURLString'
 
@@ -13,4 +13,12 @@ export const newsBlock = object(
   { allowExcessProperties: true }
 )
 
+export const newsSliderBlock = object(
+  {
+    slides: parseJsonURLString(array(newsBlock)),
+  },
+  { allowExcessProperties: true }
+)
+
 export type NewsBlock = ReturnType<typeof newsBlock>
+export type NewsSliderBlock = ReturnType<typeof newsSliderBlock>
