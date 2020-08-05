@@ -79,7 +79,12 @@ const graphStyle = css`
   }
 `
 
-const sectionColors = [colors.blue, colors.brown, colors.orange, colors.violett]
+const sectionColors = [
+  colors.blue,
+  colors.violett,
+  colors.orange,
+  colors.darkGreen,
+]
 
 export default function Compass(props: CompassBlock) {
   const graphRef = useRef<HTMLDivElement>(null)
@@ -115,7 +120,7 @@ export default function Compass(props: CompassBlock) {
         ))}
       </div>
       <div css={graphStyle} ref={graphRef}>
-        <Graph />
+        <Graph activeIndex={activeSectionIndex} />
       </div>
     </article>
   )
