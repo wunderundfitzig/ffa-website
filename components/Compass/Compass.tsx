@@ -7,6 +7,7 @@ import { transparentize } from 'polished'
 import Columns from 'components/Columns/Columns'
 import useWindowSize from 'lib/hooks/useWindowSize'
 import { isBelowBreakpoint } from 'style/breakpoints'
+import Graph from './_Graph'
 
 const compassStyle = css`
   ${layout.block};
@@ -62,10 +63,13 @@ const graphStyle = css`
   text-align: center;
   box-sizing: border-box;
   height: 300px;
-  padding: 20px;
+  margin: 0 -30px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
-    top: calc(50% - 150px);
+    top: calc(50% - 300px);
+    height: auto;
+    margin: 0 auto;
+    max-width: 450px;
   }
 
   svg {
@@ -84,7 +88,7 @@ export default function Compass(props: CompassBlock) {
   const isSmall = isBelowBreakpoint('l', width || 0)
   const sectionVisibility = useIntersectionObserver(refs.current, {
     topOffset: (height) =>
-      isSmall ? height - height * 0.15 : height * 0.5 + 100,
+      isSmall ? height - height * 0.15 : height * 0.5 + 0,
   })
 
   let activeSectionIndex = sectionVisibility.lastIndexOf(true)
@@ -111,12 +115,7 @@ export default function Compass(props: CompassBlock) {
         ))}
       </div>
       <div css={graphStyle} ref={graphRef}>
-        <svg viewBox='0 0 100 100'>
-          <circle cx={50} cy={50} r={50} fill={colors.blue} />
-          <text x={50} y={50} textAnchor='middle' fill='white'>
-            {props.sections[activeSectionIndex].section_title}
-          </text>
-        </svg>
+        <Graph />
       </div>
     </article>
   )
