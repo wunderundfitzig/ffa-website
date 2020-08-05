@@ -1,4 +1,5 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useReducer } from 'react'
+import useWindowSize from './useWindowSize'
 
 function reducer(
   state: Array<boolean>,
@@ -14,20 +15,22 @@ function reducer(
   )
 }
 
-// We pass refs to the observer so we can access
-// the actual reference to the dom node we are targeting
 export default function useIntersectionObserver(
   refs: Array<HTMLDivElement | null>,
   options: {
-    bottomOffset: string
+    topOffset: (height: number) => number
   }
 ) {
+  const { height } = useWindowSize()
   const [intersecting, dispatch] = useReducer(
     reducer,
     refs.map(() => false)
   )
 
   useEffect(() => {
+    if (height === undefined) return
+    const bottomOffset = (height - options.topOffset(height)) * -1
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -37,7 +40,7 @@ export default function useIntersectionObserver(
       {
         root: null,
         threshold: [0],
-        rootMargin: `${Number.MAX_SAFE_INTEGER}px 0px ${options.bottomOffset} 0px`,
+        rootMargin: `${Number.MAX_SAFE_INTEGER}px 0px ${bottomOffset}px 0px`,
       }
     )
 
@@ -50,7 +53,7 @@ export default function useIntersectionObserver(
     return () => {
       observer.disconnect()
     }
-  }, [refs])
+  }, [refs, height])
 
   return intersecting
 }

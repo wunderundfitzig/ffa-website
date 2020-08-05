@@ -55,7 +55,7 @@ export default function Compass(props: CompassBlock) {
   const graphRef = useRef<HTMLDivElement>(null)
   const refs = useRef<Array<HTMLDivElement | null>>([])
   const sectionVisibility = useIntersectionObserver(refs.current, {
-    bottomOffset: '-40%',
+    topOffset: () => 200,
   })
 
   let activeSectionIndex = sectionVisibility.lastIndexOf(true)
