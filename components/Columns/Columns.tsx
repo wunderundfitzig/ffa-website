@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, RefForwardingComponent } from 'react'
 import { css } from '@emotion/core'
 import { layout, colors, breakpoints } from 'style'
 
@@ -38,12 +38,17 @@ const columnStyle = css`
   }
 `
 
-const Columns = (props: { children: ReactNode; borderColor?: string }) => {
+interface Props {
+  children: ReactNode
+  borderColor?: string
+  className?: string
+}
+const Columns: RefForwardingComponent<HTMLDivElement, Props> = (props, ref) => {
   const borderColor = props.borderColor || colors.lightGreen
   const childCount = React.Children.count(props.children)
 
   return (
-    <div css={wrapperStyle(childCount)}>
+    <div ref={ref} css={wrapperStyle(childCount)} className={props.className}>
       {React.Children.map(props.children, (child, idx) => (
         <div key={idx} css={columnStyle} style={{ borderColor }}>
           {child}
@@ -53,4 +58,4 @@ const Columns = (props: { children: ReactNode; borderColor?: string }) => {
   )
 }
 
-export default Columns
+export default React.forwardRef(Columns)
