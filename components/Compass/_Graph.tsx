@@ -24,7 +24,7 @@ export default function Graph({ activeIndex }: Props) {
   })
 
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 168.564 168.634'>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='10 10 158.564 158.634'>
       <defs>
         <clipPath id='b'>
           <path

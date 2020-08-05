@@ -59,6 +59,7 @@ const activeSectionStyle = css`
 const graphStyle = css`
   position: sticky;
   top: 0;
+  background-color: ${colors.lightGreen};
   grid-area: graph;
   text-align: center;
   box-sizing: border-box;
@@ -66,6 +67,7 @@ const graphStyle = css`
   margin: 0 -30px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
+    background-color: none;
     top: calc(50% - 300px);
     height: auto;
     margin: 0 auto;
