@@ -15,10 +15,10 @@ const wrapperStyle = (childCount: number) => css`
 `
 
 const columnStyle = css`
-  border-left: 8px solid ${colors.lightGreen};
-  padding-left: 12px;
-  margin-left: -12px;
+  border-left: 10px solid ${colors.lightGreen};
+  padding-left: 20px;
   margin-bottom: 20px;
+  margin-left: -10px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
     margin-left: 0;
