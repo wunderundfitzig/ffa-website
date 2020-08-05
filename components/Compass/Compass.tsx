@@ -62,7 +62,7 @@ const graphStyle = css`
   grid-area: graph;
   text-align: center;
   box-sizing: border-box;
-  height: 300px;
+  height: 350px;
   margin: 0 -30px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
