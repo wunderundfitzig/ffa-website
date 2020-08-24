@@ -75,6 +75,7 @@ const graphStyle = css`
     margin: 0 auto;
     padding-top: 0;
     max-width: 450px;
+    width: 100%;
   }
 
   svg {
