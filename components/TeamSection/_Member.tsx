@@ -5,21 +5,6 @@ import { TeamMember } from 'lib/models/teamBlock'
 const memberStyle = css`
   padding-left: 20px;
   text-align: center;
-
-  @media (min-width: ${breakpoints.breakpointM}px) {
-    ${layout.grid({ columns: 2, rows: 2 })};
-    padding-left: 35px;
-    grid-template-columns: 45% 55%;
-    grid-template-areas:
-      'title image'
-      'content image';
-    margin-bottom: 100px;
-  }
-
-  @media (min-width: ${breakpoints.breakpointL}px) {
-    grid-template-columns: 40% 60%;
-    padding-left: 80px;
-  }
 `
 
 const memberContentStyle = css`
@@ -56,22 +41,8 @@ const titleStyle = (color: string) => css`
   }
 `
 
-const memberImageStyle = css`
-  grid-area: image;
-  justify-self: center;
-  width: 280px;
-  max-width: 80%;
-  border-radius: 100%;
-  margin: 10px auto 30px;
-
-  @media (min-width: ${breakpoints.breakpointM}px) {
-    position: sticky;
-    top: 40px;
-  }
-
-  @media (min-width: ${breakpoints.breakpointL}px) {
-    top: calc((100% - 300px) / 2 - 30px);
-  }
+const quoteStyle = css`
+  font-style: italic;
 `
 
 interface Props {
@@ -87,16 +58,11 @@ export default function Member(props: Props) {
         {member.name}
         <span>{member.role}</span>
       </h3>
-      {member.headshot && (
-        <img
-          css={memberImageStyle}
-          alt={member.name}
-          src={member.headshot.url}
-        />
-      )}
       <div css={memberContentStyle}>
         <div dangerouslySetInnerHTML={{ __html: member.text }} />
-        <p>{member.quote}</p>
+        <p css={quoteStyle} style={{ color: props.color }}>
+          {member.quote}
+        </p>
       </div>
     </div>
   )
