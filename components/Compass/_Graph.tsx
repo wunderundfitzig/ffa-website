@@ -2,7 +2,7 @@ import { css } from '@emotion/core'
 import { colors } from 'style'
 
 const circleClip = css`
-  transform-origin: center;
+  transform-origin: 84.3px 84.3px;
   transition: transform 0.5s;
 `
 
