@@ -1,9 +1,9 @@
 import { css } from '@emotion/core'
 import { colors } from 'style'
-import jedemImg from './_jedem.png'
-import kindImg from './_kind.png'
-import seinImg from './_sein.png'
-import abenteuerImg from './_abenteuer.png'
+import jedemImg from './_jedem.jpg'
+import kindImg from './_kind.jpg'
+import seinImg from './_sein.jpg'
+import abenteuerImg from './_abenteuer.jpg'
 
 const circleClip = css`
   transform-origin: 84.3px 84.3px;
