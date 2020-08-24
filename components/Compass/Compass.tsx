@@ -12,10 +12,8 @@ import Graph from './_Graph'
 const compassStyle = css`
   ${layout.block};
   ${layout.container};
-  background-color: ${transparentize(0.2, colors.lightGreen)};
+  background-color: ${colors.lightGreen};
   margin-bottom: 20px;
-  padding-bottom: 100px;
-  padding-top: 50px;
   display: grid;
   align-items: flex-start;
   grid-template-areas:
@@ -23,6 +21,9 @@ const compassStyle = css`
     'content';
 
   @media (min-width: ${breakpoints.breakpointL}px) {
+    padding-top: 50px;
+    padding-bottom: 100px;
+    background-color: ${transparentize(0.2, colors.lightGreen)};
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'content graph';
   }
@@ -65,12 +66,14 @@ const graphStyle = css`
   box-sizing: border-box;
   height: 350px;
   margin: 0 -30px;
+  padding-top: 20px;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
-    background-color: none;
+    background-color: transparent;
     top: calc(50% - 300px);
     height: auto;
     margin: 0 auto;
+    padding-top: 0;
     max-width: 450px;
   }
 
