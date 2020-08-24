@@ -1,12 +1,13 @@
 import { css } from '@emotion/core'
-import { CompassBlock } from 'lib/models/compassBlock'
-import { layout, colors, breakpoints } from 'style'
 import { useRef } from 'react'
-import useIntersectionObserver from 'lib/hooks/useIntersectionObserver'
 import { transparentize } from 'polished'
+
+import { CompassBlock } from 'lib/models/compassBlock'
+import useIntersectionObserver from 'lib/hooks/useIntersectionObserver'
+import useIsBelowBreakpoint from 'lib/hooks/useIsBelowBreakpoint'
+import { layout, colors, breakpoints } from 'style'
+
 import Columns from 'components/Columns/Columns'
-import useWindowSize from 'lib/hooks/useWindowSize'
-import { isBelowBreakpoint } from 'style/breakpoints'
 import Graph from './_Graph'
 
 const compassStyle = css`
@@ -95,15 +96,11 @@ const sectionColors = [
 export default function Compass(props: CompassBlock) {
   const graphRef = useRef<HTMLDivElement>(null)
   const refs = useRef<Array<HTMLDivElement | null>>([])
-  const { width } = useWindowSize()
-  const isSmall = isBelowBreakpoint('l', width || 0)
-  const sectionVisibility = useIntersectionObserver(refs.current, {
+  const isSmall = useIsBelowBreakpoint('l', true)
+  const activeSectionIndex = useIntersectionObserver(refs.current, {
     topOffset: (height) =>
       isSmall ? height - height * 0.15 : height * 0.5 + 0,
   })
-
-  let activeSectionIndex = sectionVisibility.lastIndexOf(true)
-  activeSectionIndex = activeSectionIndex === -1 ? 0 : activeSectionIndex
 
   return (
     <article css={compassStyle}>

@@ -1,13 +1,17 @@
 import { css } from '@emotion/core'
+import { useRef } from 'react'
 import { transparentize } from 'polished'
+
 import { layout, colors, breakpoints, helpers } from 'style'
 import { TeamBlock, TeamCategory } from 'lib/models/teamBlock'
+import useIntersectionObserver from 'lib/hooks/useIntersectionObserver'
+import useIsBelowBreakpoint from 'lib/hooks/useIsBelowBreakpoint'
+
 import WideImage from 'components/WideImage/WideImage'
 import TeamMember from './_Member'
 import leaveHouseImg from './_leave-house.svg'
 import leaveEducatorsImg from './_leave-educators.svg'
 import leaveKitaImg from './_leave-kita.svg'
-import { useState } from 'react'
 
 const teamContentStyle = css`
   ${layout.container};
@@ -100,7 +104,19 @@ function getBackgroundImage(category: TeamCategory) {
 export default function TeamSection(props: TeamBlock) {
   const color = getColor(props.category)
   const bgImage = getBackgroundImage(props.category)
-  const [activeMember, setActiveMember] = useState(props.members[0])
+  const refs = useRef<Array<HTMLLIElement | null>>([])
+  const isMedium = useIsBelowBreakpoint('l', true)
+  const isSmall = useIsBelowBreakpoint('m', true)
+
+  const activeSectionIndex = useIntersectionObserver(refs.current, {
+    topOffset: (height) => {
+      if (isMedium) return height - height * 0.7
+      if (isSmall) return height - height * 0.15
+      return height * 0.5
+    },
+  })
+
+  const activeMember = props.members[activeSectionIndex]
 
   return (
     <section>
@@ -121,7 +137,11 @@ export default function TeamSection(props: TeamBlock) {
         </div>
         <ul css={memberListStyle}>
           {props.members.map((member, i) => (
-            <li key={i}>
+            <li
+              key={i}
+              style={{ opacity: activeSectionIndex === i ? 1 : 0.5 }}
+              ref={(ref) => (refs.current[i] = ref)}
+            >
               <TeamMember member={member} color={color} />
             </li>
           ))}

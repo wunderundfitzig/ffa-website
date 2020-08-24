@@ -4,7 +4,7 @@ import useWindowSize from './useWindowSize'
 function reducer(
   state: Array<boolean>,
   action: {
-    refs: Array<HTMLDivElement | null>
+    refs: Array<HTMLElement | null>
     entry: IntersectionObserverEntry
   }
 ) {
@@ -16,7 +16,7 @@ function reducer(
 }
 
 export default function useIntersectionObserver(
-  refs: Array<HTMLDivElement | null>,
+  refs: Array<HTMLElement | null>,
   options: {
     topOffset: (height: number) => number
   }
@@ -26,6 +26,7 @@ export default function useIntersectionObserver(
     reducer,
     refs.map(() => false)
   )
+  let activeSectionIndex = intersecting.lastIndexOf(true)
 
   useEffect(() => {
     if (height === undefined) return
@@ -55,5 +56,5 @@ export default function useIntersectionObserver(
     }
   }, [refs, height])
 
-  return intersecting
+  return activeSectionIndex === -1 ? 0 : activeSectionIndex
 }
