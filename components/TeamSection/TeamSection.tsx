@@ -1,4 +1,5 @@
 import { css } from '@emotion/core'
+import { transparentize } from 'polished'
 import { layout, colors, breakpoints, helpers } from 'style'
 import { TeamBlock, TeamCategory } from 'lib/models/teamBlock'
 import WideImage from 'components/WideImage/WideImage'
@@ -6,31 +7,68 @@ import TeamMember from './_Member'
 import leaveHouseImg from './_leave-house.svg'
 import leaveEducatorsImg from './_leave-educators.svg'
 import leaveKitaImg from './_leave-kita.svg'
+import { useState } from 'react'
 
-const memberListStyle = (leaveImage: string) => css`
-  ${helpers.resetListStyles};
+const teamContentStyle = css`
   ${layout.container};
   ${layout.block};
   background-color: ${colors.lightGreen};
   padding-top: 20px;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
-    background-image: url(${leaveImage});
-    background-repeat: no-repeat;
-    background-size: calc(50% - 40px);
-    background-position: right 20px top 40px;
-    background-attachment: fixed;
+    ${layout.grid({ columns: 2, rows: 2 })};
+    align-items: start;
+    grid-template-columns: minmax(250px, 50%) 1fr;
+    grid-template-areas: 'members image';
+    background-color: ${transparentize(0.2, colors.lightGreen)};
+    margin-bottom: 100px;
     padding-top: 40px;
+    padding-right: 0;
   }
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
-    background-size: 470px;
-    background-position: right calc(50% - 230px) top calc(50% - 50px);
-    /* position: sticky; */
-    /* top: 0; */
-    /* height: 500px; */
-    /* max-height: 500px; */
-    /* overflow: scroll; */
+    grid-template-columns: 40% 60%;
+    padding-left: 80px;
+  }
+`
+
+const memberListStyle = css`
+  ${helpers.resetListStyles};
+  grid-area: members;
+`
+
+const activeMemberImageStyle = css`
+  grid-area: image;
+  position: sticky;
+  top: 0px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: ${colors.lightGreen};
+  z-index: 1;
+  margin-left: -30px;
+  margin-right: -30px;
+  padding: 40px;
+  border-bottom: 20px solid ${colors.lightGreen};
+  text-align: center;
+  box-sizing: border-box;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    margin: 0;
+    width: 100%;
+    border-bottom: 0;
+    background-color: transparent;
+    top: 40px;
+  }
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    top: calc((100% - 300px) / 2 - 30px);
+  }
+
+  img {
+    width: 280px;
+    max-width: 80%;
+    border-radius: 100%;
   }
 `
 
@@ -62,6 +100,7 @@ function getBackgroundImage(category: TeamCategory) {
 export default function TeamSection(props: TeamBlock) {
   const color = getColor(props.category)
   const bgImage = getBackgroundImage(props.category)
+  const [activeMember, setActiveMember] = useState(props.members[0])
 
   return (
     <section>
@@ -73,13 +112,21 @@ export default function TeamSection(props: TeamBlock) {
           color={color}
         />
       </header>
-      <ul css={memberListStyle(bgImage)}>
-        {props.members.map((member, i) => (
-          <li key={i}>
-            <TeamMember member={member} color={color} />
-          </li>
-        ))}
-      </ul>
+      <div css={teamContentStyle}>
+        <div
+          css={activeMemberImageStyle}
+          style={{ backgroundImage: `url(${bgImage})` }}
+        >
+          <img alt={activeMember.name} src={activeMember.headshot?.url} />
+        </div>
+        <ul css={memberListStyle}>
+          {props.members.map((member, i) => (
+            <li key={i}>
+              <TeamMember member={member} color={color} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   )
 }
