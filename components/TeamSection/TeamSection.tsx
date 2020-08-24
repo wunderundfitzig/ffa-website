@@ -12,6 +12,7 @@ import TeamMember from './_Member'
 import leaveHouseImg from './_leave-house.svg'
 import leaveEducatorsImg from './_leave-educators.svg'
 import leaveKitaImg from './_leave-kita.svg'
+import leaveOthersImg from './_leave-others.svg'
 
 const teamContentStyle = css`
   ${layout.container};
@@ -45,6 +46,9 @@ const activeMemberImageStyle = css`
   grid-area: image;
   position: sticky;
   top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -67,6 +71,8 @@ const activeMemberImageStyle = css`
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     top: calc((100% - 300px) / 2 - 30px);
+    padding: 70px;
+    min-height: 380px;
   }
 
   img {
@@ -96,8 +102,9 @@ function getBackgroundImage(category: TeamCategory) {
     case 'educators':
       return leaveEducatorsImg
     case 'kita':
-    case 'others':
       return leaveKitaImg
+    case 'others':
+      return leaveOthersImg
   }
 }
 
