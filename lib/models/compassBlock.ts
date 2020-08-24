@@ -13,7 +13,6 @@ const compassSection = object(
 
 export const compassBlock = object(
   {
-    title: string(),
     sections: parseJsonURLString(array(compassSection)),
   },
   { allowExcessProperties: true }
