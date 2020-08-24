@@ -8,11 +8,11 @@ function reducer(
     entry: IntersectionObserverEntry
   }
 ) {
-  return action.refs.map((ref, idx) =>
-    ref === action.entry.target
+  return action.refs.map((ref, idx) => {
+    return ref === action.entry.target
       ? action.entry.isIntersecting
       : state[idx] || false
-  )
+  })
 }
 
 export default function useIntersectionObserver(
@@ -40,7 +40,7 @@ export default function useIntersectionObserver(
       {
         root: null,
         threshold: [0],
-        rootMargin: `${Number.MAX_SAFE_INTEGER}px 0px ${bottomOffset}px 0px`,
+        rootMargin: `999999px 0px ${bottomOffset}px 0px`,
       }
     )
 
