@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { layout, colors, typography, breakpoints } from 'style'
+import { layout, colors, breakpoints } from 'style'
 import { CollageBlock } from 'lib/models/collageBlock'
 
 const wrapperStyle = css`
