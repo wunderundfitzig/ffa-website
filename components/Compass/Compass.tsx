@@ -66,14 +66,14 @@ const graphStyle = css`
   box-sizing: border-box;
   height: 350px;
   margin: 0 -30px;
-  padding-top: 20px;
+  padding: 20px 10px 0;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     background-color: transparent;
     top: calc(50% - 300px);
     height: auto;
     margin: 0 auto;
-    padding-top: 0;
+    padding: 0;
     max-width: 450px;
     width: 100%;
   }
