@@ -14,13 +14,16 @@ const wrapperStyle = css`
 `
 
 const titleStyle = css`
-  ${typography.heading2};
+  font-size: 1.2em;
   grid-column: span 2;
+  font-weight: normal;
   text-align: center;
   padding: 20px;
   margin: 0;
   color: white;
   background-color: ${colors.brown};
+  overflow-wrap: break-word;
+  hyphens: auto;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
     grid-column: span 1;

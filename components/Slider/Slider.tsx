@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { useRef, useLayoutEffect } from 'react'
+import { useRef, useLayoutEffect, useEffect } from 'react'
 
 const sliderWrapperStyle = css`
   position: relative;
@@ -18,6 +18,10 @@ const slideStyle = css`
   width: 100%;
   min-width: 100%;
 `
+
+// hack to silence warnig that I can't use layout effect for server rendering
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 interface Props {
   index: number
@@ -40,6 +44,14 @@ export default function Slider(props: Props) {
   const previousSlide = getSlide(props.index - 1)
   const currentSlide = getSlide(props.index)
   const nextSlide = getSlide(props.index + 1)
+
+  const setOffset = (offset: string | number, { animated = false } = {}) => {
+    if (slideTrack.current === null) return
+    if (typeof offset === 'number') offset = `${offset}px`
+
+    slideTrack.current.style.transition = animated ? 'transform 0.5s' : ''
+    slideTrack.current.style.transform = `translateX(${offset})`
+  }
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartPosition.current = e.changedTouches[0]
@@ -97,15 +109,7 @@ export default function Slider(props: Props) {
     setOffset(0)
   }
 
-  const setOffset = (offset: string | number, { animated = false } = {}) => {
-    if (slideTrack.current === null) return
-    if (typeof offset === 'number') offset = `${offset}px`
-
-    slideTrack.current.style.transition = animated ? 'transform 0.5s' : ''
-    slideTrack.current.style.transform = `translateX(${offset})`
-  }
-
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (props.index === internalIndex.current) return setOffset(0)
 
     const offset = props.index > internalIndex.current ? '100%' : '-100%'
