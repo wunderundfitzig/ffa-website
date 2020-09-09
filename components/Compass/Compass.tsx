@@ -15,27 +15,26 @@ const compassStyle = css`
   ${layout.container};
   background-color: ${colors.lightGreen};
   margin-bottom: 20px;
-  display: grid;
-  align-items: flex-start;
-  grid-template-areas:
-    'graph'
-    'content';
 
   @media (min-width: ${breakpoints.breakpointL}px) {
     padding-top: 50px;
     padding-bottom: 100px;
     background-color: ${transparentize(0.2, colors.lightGreen)};
     grid-template-columns: 1fr 1fr;
+    display: grid;
+    align-items: flex-start;
     grid-template-areas: 'content graph';
   }
 `
 
 const contentStyle = css`
   margin-top: 30px;
-
   grid-area: content;
-  margin-bottom: 20px;
-  padding-right: 60px;
+
+  @media (min-width: ${breakpoints.breakpointL}px) {
+    margin-bottom: 20px;
+    padding-right: 60px;
+  }
 `
 
 const sectionStyle = css`
@@ -60,7 +59,7 @@ const activeSectionStyle = css`
 
 const graphStyle = css`
   position: sticky;
-  top: 0;
+  bottom: 0;
   background-color: ${colors.lightGreen};
   grid-area: graph;
   text-align: center;
@@ -98,8 +97,7 @@ export default function Compass(props: CompassBlock) {
   const refs = useRef<Array<HTMLDivElement | null>>([])
   const isSmall = useIsBelowBreakpoint('l', true)
   const activeSectionIndex = useIntersectionObserver(refs.current, {
-    topOffset: (height) =>
-      isSmall ? height - height * 0.15 : height * 0.5 + 0,
+    topOffset: (height) => (isSmall ? height - 400 : height * 0.5 + 0),
   })
 
   return (
