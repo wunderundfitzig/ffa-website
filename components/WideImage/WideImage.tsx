@@ -7,7 +7,7 @@ const wideImageStyle = (url: string, color: string) => css`
   ${layout.container};
   box-sizing: border-box;
   height: 200px;
-  padding: 40px;
+  padding: 30px;
   margin: 20px auto;
   display: flex;
   align-items: center;
@@ -21,6 +21,7 @@ const wideImageStyle = (url: string, color: string) => css`
   @media (min-width: ${breakpoints.breakpointM}px) {
     height: 300px;
     border-width: 20px;
+    padding: 45px;
   }
 `
 
