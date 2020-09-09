@@ -96,6 +96,7 @@ function Indicators(props: {
         const isActive = props.currentIndex === idx
         return (
           <button
+            key={idx}
             css={[buttonStyle, isActive && activeButtonStyle]}
             onClick={() => {
               props.onNavigation(idx)

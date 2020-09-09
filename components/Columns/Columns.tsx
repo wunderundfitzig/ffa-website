@@ -2,18 +2,6 @@ import React, { ReactNode, RefForwardingComponent } from 'react'
 import { css } from '@emotion/core'
 import { layout, colors, breakpoints } from 'style'
 
-const wrapperStyle = (childCount: number) => css`
-  padding-bottom: 40px;
-
-  @media (min-width: ${breakpoints.breakpointL}px) {
-    ${layout.grid({ columns: childCount })}
-  }
-
-  @media (min-width: ${breakpoints.breakpointXL}px) {
-    padding-bottom: 50px;
-  }
-`
-
 const columnStyle = css`
   border-left: 10px solid ${colors.lightGreen};
   padding-left: 20px;
@@ -43,12 +31,26 @@ interface Props {
   borderColor?: string
   className?: string
 }
-const Columns: RefForwardingComponent<HTMLDivElement, Props> = (props, ref) => {
+const Columns: RefForwardingComponent<HTMLDivElement, Props> = (
+  props: Props,
+  ref
+) => {
   const borderColor = props.borderColor || colors.lightGreen
   const childCount = React.Children.count(props.children)
+  const wrapperStyle = css`
+    padding-bottom: 40px;
+
+    @media (min-width: ${breakpoints.breakpointL}px) {
+      ${layout.grid({ columns: childCount })}
+    }
+
+    @media (min-width: ${breakpoints.breakpointXL}px) {
+      padding-bottom: 50px;
+    }
+  `
 
   return (
-    <div ref={ref} css={wrapperStyle(childCount)} className={props.className}>
+    <div ref={ref} css={wrapperStyle} className={props.className}>
       {React.Children.map(props.children, (child, idx) => (
         <div key={idx} css={columnStyle} style={{ borderColor }}>
           {child}
