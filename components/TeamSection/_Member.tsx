@@ -1,15 +1,19 @@
 import { css } from '@emotion/core'
-import { layout, typography, breakpoints } from 'style'
+import { typography, breakpoints } from 'style'
 import { TeamMember } from 'lib/models/teamBlock'
 
 const memberStyle = css`
   padding-left: 20px;
+  margin-bottom: 30px;
   text-align: center;
+
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    margin-bottom: 30%;
+  }
 `
 
 const memberContentStyle = css`
   grid-area: content;
-  margin-bottom: 30%;
   text-align: left;
 `
 
