@@ -9,7 +9,6 @@ const Home = (props: { blocks: WordpressBlock[] }) => (
   <>
     <Head>
       <title>Abenteuerzentrum Berlin</title>
-      <link rel='icon' href='/favicon.ico' />
     </Head>
     <BlockRenderer blocks={props.blocks} />
     <Map />
