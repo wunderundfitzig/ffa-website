@@ -4,13 +4,15 @@ import { getBlocks } from 'lib/wordpressApi'
 import { WordpressBlock } from 'lib/models/wordpressBlock'
 import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
 import Title from 'components/Title/Title'
+import { useRouter } from 'next/router'
+import { block } from 'style/layout'
+import { TitleBlock } from 'lib/models/titleBlock'
 
 function NotFound() {
   return (
     <>
       <Head>
         <title>Abenteuerzentrum Berlin | Seite nicht gefunden</title>
-        <link rel='icon' href='/favicon.ico' />
       </Head>
       <div>
         <Title
@@ -23,14 +25,24 @@ function NotFound() {
   )
 }
 
+interface TitleBlockWrapper {
+  blockName: 'lazyblock/title'
+  attrs: TitleBlock
+}
+
 export default function Page(props: { blocks: WordpressBlock[] | null }) {
   if (props.blocks === null) return <NotFound />
+  const titleBlock = props.blocks.find(
+    (block) => block.blockName === 'lazyblock/title'
+  ) as TitleBlockWrapper | undefined
 
   return (
     <>
       <Head>
-        <title>Abenteuerzentrum Berlin</title>
-        <link rel='icon' href='/favicon.ico' />
+        <title>
+          Abenteuerzentrum Berlin{' '}
+          {titleBlock ? `| ${titleBlock.attrs.title}` : ''}
+        </title>
       </Head>
       <BlockRenderer blocks={props.blocks} />
     </>
