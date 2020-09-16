@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-unfetch'
 import { WordpressBlock, wordpressBlock } from './models/wordpressBlock'
 
 export async function getBlocks(
