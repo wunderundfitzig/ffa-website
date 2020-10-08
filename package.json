@@ -17,7 +17,7 @@
     "@emotion/core": "^10.0.28",
     "dotenv": "^8.2.0",
     "fefe": "^2.0.2",
-    "next": "^9.5.3",
+    "next": "^9.5.4",
     "next-images": "^1.4.0",
     "nextjs-redirect": "^5.0.0",
     "polished": "^3.5.2",
