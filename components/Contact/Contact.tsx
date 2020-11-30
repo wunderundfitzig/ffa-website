@@ -59,7 +59,7 @@ const Contact = (props: ContactBlock) => {
             <dd>{props.phone}</dd>
             <dt>Mail:</dt>
             <dd>
-              <a css={linkStyle} href={`mailto:${props.phone}`}>
+              <a css={linkStyle} href={`mailto:${props.mail}`}>
                 {props.mail}
               </a>
             </dd>
