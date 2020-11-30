@@ -57,7 +57,7 @@ const pageLinks: NavigationItem[] = [
     type: 'internal',
     slug: '/angebote',
     route: '/[...page]',
-    displayName: 'Unsere Angebote',
+    displayName: 'Angebote',
     children: [
       {
         type: 'internal',
@@ -83,7 +83,7 @@ const pageLinks: NavigationItem[] = [
     type: 'internal',
     slug: '/projekte',
     route: '/[...page]',
-    displayName: 'Unsere Projekte',
+    displayName: 'Projektberichte',
     children: [
       {
         type: 'internal',
