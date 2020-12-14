@@ -70,11 +70,11 @@ export default function Footer() {
             links={[
               {
                 platform: 'instagram',
-                url: 'https://www.instagram.com/abenteuerzentrum_berlin/',
+                url: 'https://www.instagram.com/abenteuerzentrum.berlin/',
               },
               {
                 platform: 'facebook',
-                url: 'https://www.facebook.com/abenteuerzentrumberlin',
+                url: 'https://www.facebook.com/abenteuerzentrum.berlin/',
               },
               {
                 platform: 'youtube',
