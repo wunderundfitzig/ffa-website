@@ -60,7 +60,7 @@ export default function Footer() {
         </p>
         <p>
           Büro: +49 30 8261317 <br />
-          Mail: abenteuerzentrum@fahrten-ferne-abenteuer.de <br />
+          Mail: kontakt@abenteuerzentrum.berlin <br />
           <Link href='[...page]' as='impressum'>
             <a>Impressum</a>
           </Link>
