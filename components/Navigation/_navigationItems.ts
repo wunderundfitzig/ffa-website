@@ -57,7 +57,7 @@ const pageLinks: NavigationItem[] = [
     type: 'internal',
     slug: '/angebote',
     route: '/[...page]',
-    displayName: 'Angebote',
+    displayName: 'Bildungsangebote',
     children: [
       {
         type: 'internal',
