@@ -77,6 +77,12 @@ const pageLinks: NavigationItem[] = [
         route: '/[...page]',
         displayName: 'Übergangsbegleitung',
       },
+      {
+        type: 'internal',
+        slug: '/projekte/internationaler-jugendaustausch',
+        route: '/[...page]',
+        displayName: 'Internationaler Jugendaustausch',
+      },
     ],
   },
   {
@@ -90,12 +96,6 @@ const pageLinks: NavigationItem[] = [
         slug: '/projekte/inisek',
         route: '/[...page]',
         displayName: 'INISEK',
-      },
-      {
-        type: 'internal',
-        slug: '/projekte/internationaler-jugendaustausch',
-        route: '/[...page]',
-        displayName: 'Internationaler Jugendaustausch',
       },
       {
         type: 'internal',
