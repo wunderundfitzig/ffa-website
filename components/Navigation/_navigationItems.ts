@@ -75,11 +75,17 @@ const pageLinks: NavigationItem[] = [
         type: 'internal',
         slug: '/angebote/veranstaltungen',
         route: '/[...page]',
-        displayName: 'Übergangsbegleitung',
+        displayName: 'Walk Away',
       },
       {
         type: 'internal',
-        slug: '/projekte/internationaler-jugendaustausch',
+        slug: '/angebote/baumhaus-bau',
+        route: '/[...page]',
+        displayName: 'Baumhaus Bau',
+      },
+      {
+        type: 'internal',
+        slug: '/angebote/internationaler-jugendaustausch',
         route: '/[...page]',
         displayName: 'Internationaler Jugendaustausch',
       },
@@ -90,20 +96,6 @@ const pageLinks: NavigationItem[] = [
     slug: '/projekte',
     route: '/[...page]',
     displayName: 'Projektberichte',
-    children: [
-      {
-        type: 'internal',
-        slug: '/projekte/inisek',
-        route: '/[...page]',
-        displayName: 'INISEK',
-      },
-      {
-        type: 'internal',
-        slug: '/projekte/natur-und-wildnispadagogik',
-        route: '/[...page]',
-        displayName: 'Natur- und Wildnispädagogik',
-      },
-    ],
   },
   {
     type: 'external',
