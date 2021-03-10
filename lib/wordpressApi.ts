@@ -1,13 +1,20 @@
 import { WordpressBlock, wordpressBlock } from './models/wordpressBlock'
 import { BlockMeta } from 'lib/types'
+import {
+  postList,
+  PostListItem,
+  postListItemFields,
+} from './models/postListItem'
+import { Category, categoryFields, categoryList } from './models/category'
 
 export async function getBlocks(
+  resource: 'pages' | 'posts',
   slugs: string[]
 ): Promise<WordpressBlock[] | null> {
   try {
     const pageSlug = slugs[slugs.length - 1]
     const wpLink = `https://ffaback.uber.space/${slugs.join('/')}/`
-    const url = `${process.env.WP_API_URL}/pages?slug=${pageSlug}&_fields=content.raw,blocks,link`
+    const url = `${process.env.WP_API_URL}/${resource}?slug=${pageSlug}&_fields=content.raw,blocks,link`
     const res = await fetch(url)
     let pages = await res.json()
 
@@ -30,36 +37,24 @@ export async function getBlocks(
   }
 }
 
-interface Category {
-  id: number
-  name: string
-  description: string
-}
 export async function getCategoryBySlug(slug: string): Promise<Category> {
-  const url = `${process.env.WP_API_URL}/categories?slug=${slug}&_fields=id,name,description`
+  const url = `${process.env.WP_API_URL}/categories?slug=${slug}&_fields=${categoryFields}`
   const res = await fetch(url)
   const categories = await res.json()
-  return categories[0]
-}
-
-export interface PostListItem {
-  title: { rendered: string }
-  date: string
-  slug: string
+  return categoryList(categories)[0]
 }
 
 export async function getPostList(
   categorySlug?: string
 ): Promise<PostListItem[]> {
-  const fields = 'title,date,slug'
   let url = ''
   if (categorySlug === undefined) {
-    url = `${process.env.WP_API_URL}/posts?_fields=${fields}`
+    url = `${process.env.WP_API_URL}/posts?_fields=${postListItemFields}`
   } else {
     const category = await getCategoryBySlug(categorySlug)
-    url = `${process.env.WP_API_URL}/posts?_fields=${fields}&categories=${category.id}`
+    url = `${process.env.WP_API_URL}/posts?_fields=${postListItemFields}&categories=${category.id}`
   }
   const res = await fetch(url)
   const posts = await res.json()
-  return posts as PostListItem[]
+  return postList(posts)
 }

@@ -48,8 +48,8 @@ export default function Page(props: { blocks: WordpressBlock[] | null }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slugs = context.query.page as string[]
-  const blocks = await getBlocks('pages', slugs)
+  const slug = context.query.post as string
+  const blocks = await getBlocks('posts', [slug])
   if (blocks === null) context.res.statusCode = 404
 
   return {
