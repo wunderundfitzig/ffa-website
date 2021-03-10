@@ -4,7 +4,7 @@ name: deploy to uberspace
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   deploy:
