@@ -1,6 +1,7 @@
-import { array, object, string } from 'fefe'
+import { array, object, optional, string } from 'fefe'
 
-export const postListItemFields = 'title,excerpt,date,slug'
+export const postListItemFields = 'title,excerpt,date,slug,_links,_embedded'
+export const postListItemEmbeds = 'wp:featuredmedia'
 
 const unrendered = (value: unknown): string => {
   const h = object(
@@ -10,12 +11,25 @@ const unrendered = (value: unknown): string => {
   return h.rendered.replace(/<[^>]*>/g, '').replace('[&hellip;]', '…')
 }
 
-export const postListItem = object({
-  title: unrendered,
-  excerpt: unrendered,
-  date: string(),
-  slug: string(),
-})
+export const postListItem = object(
+  {
+    title: unrendered,
+    excerpt: unrendered,
+    date: string(),
+    slug: string(),
+    _embedded: optional(
+      object({
+        'wp:featuredmedia': array(
+          object(
+            { source_url: optional(string()) },
+            { allowExcessProperties: true }
+          )
+        ),
+      })
+    ),
+  },
+  { allowExcessProperties: true }
+)
 
 export const postList = array(postListItem)
 

@@ -6,6 +6,7 @@ import useWindowSize from 'lib/hooks/useWindowSize'
 import { NewsBlock, NewsSliderBlock } from 'lib/models/newsBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import Slider from 'components/Slider/Slider'
+import Link from 'next/link'
 
 const newsBannerStyle = css`
   width: 100%x;
@@ -20,6 +21,11 @@ const newsBannerStyle = css`
 
 const sliderStyle = css`
   margin: 0 -20px;
+`
+
+const slideWrapperStyle = css`
+  padding: 0 20px;
+  height: 100%;
 `
 
 const buttonContainerStyle = css`
@@ -48,21 +54,13 @@ const activeButtonStyle = css`
   background-color: ${colors.lightGreen};
 `
 
-const linkStyle = css`
-  display: block;
-  ${helpers.resetLinkStyles};
-  background-color: 'red';
-  height: 100%;
-  padding: 0 20px;
-`
-
 const contentStyle = css`
   white-space: pre-wrap;
 `
 
 const callToActionStyle = css`
   font-weight: bold;
-  text-decoration: underline;
+  color: inherit;
 `
 
 function Inner(props: NewsBlock) {
@@ -70,16 +68,27 @@ function Inner(props: NewsBlock) {
   const showText = isAtOrAboveBreakpoint('m', width || breakpointM)
 
   return (
-    <SplitBanner
-      css={{ height: '100%' }}
-      showBanderole
-      color={colors.lightGreen}
-      title={props.title}
-      image={props.image}
-    >
-      {showText && <p css={contentStyle}>{props.content}</p>}
-      <p css={callToActionStyle}>{props.call_to_action}</p>
-    </SplitBanner>
+    <div css={slideWrapperStyle}>
+      <SplitBanner
+        css={{ height: '100%' }}
+        showBanderole
+        color={colors.lightGreen}
+        title={props.title}
+        image={props.image}
+        imageLink={props.link}
+      >
+        {showText && <p css={contentStyle}>{props.content}</p>}
+        <p css={callToActionStyle}>
+          {props.link ? (
+            <Link href={props.link} passHref>
+              <a css={callToActionStyle}>{props.call_to_action}</a>
+            </Link>
+          ) : (
+            props.call_to_action
+          )}
+        </p>
+      </SplitBanner>
+    </div>
   )
 }
 
@@ -147,13 +156,7 @@ export default function NewsBanner(props: NewsSliderBlock) {
           const wrappedIndex = (index + length) % length
           const slide = props.slides[wrappedIndex]
 
-          return slide.link ? (
-            <a css={linkStyle} href={slide.link}>
-              <Inner {...slide} />
-            </a>
-          ) : (
-            <Inner {...slide} />
-          )
+          return <Inner {...slide} />
         }}
       </Slider>
     </aside>
