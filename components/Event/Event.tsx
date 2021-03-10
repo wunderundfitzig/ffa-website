@@ -1,12 +1,5 @@
 import { css } from '@emotion/core'
-import {
-  colors,
-  layout,
-  typography,
-  breakpoints,
-  helpers,
-  pattern,
-} from 'style'
+import { colors, layout, typography, helpers, pattern } from 'style'
 import { EventBlock } from 'lib/models/eventBlock'
 import SplitBanner from 'components/SplitBanner/SplitBanner'
 import Columns from 'components/Columns/Columns'
@@ -31,12 +24,9 @@ const bannerContentStyle = css`
   }
 `
 
-const pdfLinkStyle = (textColor: string) => css`
-  color: ${textColor};
-`
-
 const registerButtonStyle = css`
   ${pattern.button};
+  margin-top: 1em;
 `
 
 const contentStyle = css`
@@ -113,7 +103,13 @@ function getColor(colorName: string): Color {
 }
 
 function ActionButton(props: { event: EventBlock }) {
-  console.log(props.event.registration_type)
+  if (props.event.booked_out) {
+    return (
+      <button disabled css={registerButtonStyle}>
+        Ausgebucht
+      </button>
+    )
+  }
   switch (props.event.registration_type) {
     default:
     case 'mail':
@@ -138,16 +134,29 @@ function ActionButton(props: { event: EventBlock }) {
           Anfrage senden
         </MailtoButton>
       )
+    case 'link':
+      if (!props.event.link) return null
+      return (
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href={props.event.link}
+          css={registerButtonStyle}
+        >
+          Online Anmeldung
+        </a>
+      )
     case 'pdf':
       if (!props.event.pdf) return null
       return (
         <a
           download
           target='_blank'
+          rel='noopener noreferrer'
           href={props.event.pdf.url}
           css={registerButtonStyle}
         >
-          Anmeldeformular
+          Anmeldeformular herunterladen
         </a>
       )
   }

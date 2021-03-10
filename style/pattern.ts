@@ -20,6 +20,14 @@ export const button = css`
   border-radius: 4px;
   font-size: 1.2em;
   cursor: pointer;
+  border: 0;
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+    color: ${colors.red};
+    cursor: not-allowed;
+  }
 `
 
 export const wysiwygContent = css`
