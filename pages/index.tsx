@@ -16,7 +16,7 @@ const Home = (props: { blocks: WordpressBlock[] }) => (
 )
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const blocks = await getBlocks(['home'])
+  const blocks = await getBlocks('pages', ['home'])
 
   return {
     props: { blocks }, // will be passed to the page component as props
