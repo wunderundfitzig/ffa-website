@@ -1,4 +1,12 @@
-import { object, string, array, optional } from 'fefe'
+import {
+  object,
+  string,
+  array,
+  optional,
+  enumerate,
+  boolean,
+  defaultTo,
+} from 'fefe'
 import { image } from './image'
 import { parseJsonURLString } from './jsonURLString'
 
@@ -29,9 +37,12 @@ export const eventBlock = object(
     content: optional(string()),
     info: parseJsonURLString(array(column)),
     // eslint-disable-next-line @typescript-eslint/camelcase
-    registration_type: string(),
+    booked_out: defaultTo(boolean(), false),
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    registration_type: enumerate('request', 'mail', 'pdf', 'link'),
     mail: optional(string()),
     pdf: optional(parseJsonURLString(pdf)),
+    link: optional(string()),
   },
   { allowExcessProperties: true }
 )
