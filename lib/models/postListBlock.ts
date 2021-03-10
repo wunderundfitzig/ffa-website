@@ -1,9 +1,9 @@
-import { object, string, optional, boolean } from 'fefe'
+import { object, string, optional, boolean, defaultTo } from 'fefe'
 import { PromiseResolvedType } from 'lib/types'
 import { getPostList } from 'lib/wordpressApi'
 
 const postListValidator = object(
-  { filter: boolean(), category: optional(string()) },
+  { filter: defaultTo(boolean(), false), category: optional(string()) },
   { allowExcessProperties: true }
 )
 
