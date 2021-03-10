@@ -95,7 +95,7 @@ const pageLinks: NavigationItem[] = [
     type: 'internal',
     slug: '/projekte',
     route: '/[...page]',
-    displayName: 'Projektberichte',
+    displayName: 'Blog',
   },
   {
     type: 'external',
