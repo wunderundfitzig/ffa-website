@@ -8,6 +8,7 @@ export const newsBlock = object(
     content: string(),
     image: parseJsonURLString(image),
     link: optional(string()),
+    // eslint-disable-next-line @typescript-eslint/camelcase
     call_to_action: optional(string()),
   },
   { allowExcessProperties: true }

@@ -1,4 +1,4 @@
-import { object, string } from 'fefe'
+import { FefeError, object, string } from 'fefe'
 import { newsBlock, newsSliderBlock } from './newsBlock'
 import { titleBlock } from './titleBlock'
 import { columnsBlock } from './columnsBlock'
@@ -10,6 +10,9 @@ import { wideImageBlock } from './wideImageBlock'
 import { teamBlock } from './teamBlock'
 import { premisesBlock } from './premisesBlock'
 import { compassBlock } from './compassBlock'
+import { postListBlock } from './postListBlock'
+import { BlockMeta, PromiseResolvedType } from 'lib/types'
+import { Validator } from 'react'
 
 const defaultBlock = object(
   {
@@ -19,15 +22,35 @@ const defaultBlock = object(
   { allowExcessProperties: true }
 )
 
-const makeValidator = <R, T>(name: T, validator: (value: unknown) => R) => ({
+const validateBlockMeta = <T>(value: unknown, name: T): BlockMeta<T> => {
+  if (typeof value !== 'object' || value === null) {
+    throw new FefeError(value, 'not an object')
+  }
+  if (!('attrs' in value)) {
+    throw new FefeError(value, 'missing member: attrs')
+  }
+  if (!('blockName' in value)) {
+    throw new FefeError(value, 'missing member: blockName')
+  }
+  if ((value as BlockMeta<T>).blockName !== name) {
+    throw new FefeError(value, 'wrong blockName')
+  }
+  return value as BlockMeta<T>
+}
+
+const makeValidator = <R, T>(
+  name: T,
+  validator: (value: unknown) => Promise<R> | R
+) => ({
   name: name,
-  validate: object(
-    {
-      blockName: (): T => name,
-      attrs: validator,
-    },
-    { allowExcessProperties: true }
-  ),
+  validate: async (value: unknown): Promise<{ blockName: T; attrs: R }> => {
+    const block = validateBlockMeta(value, name)
+    const attrs = await Promise.resolve(validator(block.attrs))
+    return {
+      blockName: name,
+      attrs,
+    }
+  },
 })
 
 const blockValidators = [
@@ -44,6 +67,7 @@ const blockValidators = [
   makeValidator('lazyblock/team' as 'lazyblock/team', teamBlock),
   makeValidator('lazyblock/premises' as 'lazyblock/premises', premisesBlock),
   makeValidator('lazyblock/compass' as 'lazyblock/compass', compassBlock),
+  makeValidator('lazyblock/posts' as 'lazyblock/posts', postListBlock),
   makeValidator(
     'lazyblock/wide-image' as 'lazyblock/wide-image',
     wideImageBlock
@@ -61,16 +85,18 @@ function makeErrorBlock(
   return { blockName: 'error', attrs: { errorMessage: message, block: block } }
 }
 
-export function wordpressBlock(block: { blockName: string }) {
+export async function wordpressBlock(block: BlockMeta<string>) {
   const validator = blockValidators.find(
     (validator) => validator.name === block.blockName
   )
   if (!validator) return defaultBlock(block)
   try {
-    return validator.validate(block)
+    return await validator.validate(block)
   } catch (e) {
     return makeErrorBlock(e.message, block)
   }
 }
 
-export type WordpressBlock = ReturnType<typeof wordpressBlock>
+export type WordpressBlock = PromiseResolvedType<
+  ReturnType<typeof wordpressBlock>
+>
