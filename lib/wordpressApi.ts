@@ -3,6 +3,7 @@ import { BlockMeta } from 'lib/types'
 import {
   postList,
   PostListItem,
+  postListItemEmbeds,
   postListItemFields,
 } from './models/postListItem'
 import { Category, categoryFields, categoryList } from './models/category'
@@ -49,10 +50,10 @@ export async function getPostList(
 ): Promise<PostListItem[]> {
   let url = ''
   if (categorySlug === undefined) {
-    url = `${process.env.WP_API_URL}/posts?_fields=${postListItemFields}`
+    url = `${process.env.WP_API_URL}/posts?_fields=${postListItemFields}&_embed=${postListItemEmbeds}`
   } else {
     const category = await getCategoryBySlug(categorySlug)
-    url = `${process.env.WP_API_URL}/posts?_fields=${postListItemFields}&categories=${category.id}`
+    url = `${process.env.WP_API_URL}/posts?_fields=${postListItemFields}&_embed=${postListItemEmbeds}&categories=${category.id}`
   }
   const res = await fetch(url)
   const posts = await res.json()

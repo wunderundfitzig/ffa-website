@@ -11,17 +11,22 @@ const postPreviewStyle = css`
   margin-top: 20px;
 `
 
+const callToActionStyle = css`
+  font-weight: bold;
+  color: inherit;
+`
+
 function PostPreview(props: PostListItem) {
   return (
     <SplitBanner
       title={props.title}
-      image={{ url: '' }}
+      image={{ url: props._embedded?.['wp:featuredmedia'][0].source_url || '' }}
       color={transparentize(0.15, colors.beige)}
     >
       <p>{props.excerpt}</p>
       <p>
-        <Link href={`/blog/posts/${props.slug}`}>
-          <a>read article</a>
+        <Link href={`/blog/posts/${props.slug}`} passHref>
+          <a css={callToActionStyle}>read article</a>
         </Link>
       </p>
     </SplitBanner>

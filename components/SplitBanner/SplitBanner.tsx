@@ -1,6 +1,7 @@
 import { css } from '@emotion/core'
 import { layout, typography, breakpoints, colors } from 'style'
 import banderole from './_banderole.png'
+import LinkableImage from './_LinkableImage'
 
 const splitBannerStyle = (backgroundColor: string, textColor: string) => css`
   ${layout.grid({ columns: 1, rows: 3 })};
@@ -36,18 +37,8 @@ const splitBannerStyle = (backgroundColor: string, textColor: string) => css`
   }
 `
 
-const imageStyle = (imageURL: string) => css`
+const imageStyle = css`
   grid-area: image;
-  background-image: url(${imageURL});
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  height: 150px;
-  margin: 0;
-
-  @media (min-width: ${breakpoints.breakpointM}px) {
-    height: 100%;
-  }
 `
 
 const headerStyle = css`
@@ -108,6 +99,7 @@ const contentStyle = css`
 
 interface Props {
   image: { url: string }
+  imageLink?: string
   title: string
   showBanderole?: boolean
   color: string
@@ -125,7 +117,11 @@ const SplitBanner = (props: Props) => {
       className={props.className}
     >
       {props.showBanderole && <img css={banderoleStyle} src={banderole} />}
-      <figure css={imageStyle(props.image.url)} />
+      <LinkableImage
+        css={imageStyle}
+        image={props.image}
+        link={props.imageLink}
+      />
       <header css={headerStyle}>
         <h2 css={titleStyle}>{props.title}</h2>
       </header>
