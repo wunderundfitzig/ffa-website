@@ -42,7 +42,7 @@ export async function getCategoryBySlug(slug: string): Promise<Category> {
   return categories[0]
 }
 
-interface PostListItem {
+export interface PostListItem {
   title: { rendered: string }
   date: string
   slug: string
