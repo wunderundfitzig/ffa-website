@@ -21,6 +21,7 @@ export const postListItem = object(
       object({
         'wp:featuredmedia': array(
           object(
+            // eslint-disable-next-line @typescript-eslint/camelcase
             { source_url: optional(string()) },
             { allowExcessProperties: true }
           )

@@ -17,15 +17,20 @@ const callToActionStyle = css`
 `
 
 function PostPreview(props: PostListItem) {
+  const href = `/blog/posts/${props.slug}`
+  const date = new Date(props.date)
+
   return (
     <SplitBanner
       title={props.title}
       image={{ url: props._embedded?.['wp:featuredmedia'][0].source_url || '' }}
+      imageLink={href}
       color={transparentize(0.15, colors.beige)}
     >
+      <p>{date.toLocaleDateString('de')}</p>
       <p>{props.excerpt}</p>
       <p>
-        <Link href={`/blog/posts/${props.slug}`} passHref>
+        <Link href={href} passHref>
           <a css={callToActionStyle}>read article</a>
         </Link>
       </p>

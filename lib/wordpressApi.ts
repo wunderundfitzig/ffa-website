@@ -7,17 +7,33 @@ import {
   postListItemFields,
 } from './models/postListItem'
 import { Category, categoryFields, categoryList } from './models/category'
-import { object, string } from 'fefe'
+import { array, object, optional, string } from 'fefe'
 
 const validatePageMeta = object(
   {
     title: object({ rendered: string() }),
+    date: string(),
+    _embedded: optional(
+      object({
+        'wp:featuredmedia': array(
+          object(
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            { source_url: optional(string()) },
+            { allowExcessProperties: true }
+          )
+        ),
+      })
+    ),
   },
   { allowExcessProperties: true }
 )
 
-type WordpressPage = { title: string; blocks: WordpressBlock[] }
-export type WordpressPost = WordpressPage
+export type WordpressPage = {
+  title: string
+  date: string
+  blocks: WordpressBlock[]
+  image?: { url: string }
+}
 
 export async function getBlocks(
   resource: 'pages' | 'posts',
@@ -26,8 +42,9 @@ export async function getBlocks(
   try {
     const pageSlug = slugs[slugs.length - 1]
     const wpLink = `https://ffaback.uber.space/${slugs.join('/')}/`
-    const extraFields = 'title'
-    const url = `${process.env.WP_API_URL}/${resource}?slug=${pageSlug}&_fields=content.raw,blocks,link,${extraFields}`
+    const fields = 'content.raw,blocks,link,title,date,_links,_embedded'
+    const embed = 'wp:featuredmedia'
+    const url = `${process.env.WP_API_URL}/${resource}?slug=${pageSlug}&_fields=${fields}&_embed=${embed}`
     const res = await fetch(url)
     let pages = await res.json()
 
@@ -38,7 +55,7 @@ export async function getBlocks(
       pages = pages.filter((p: { link: string }) => p.link === wpLink)
     }
     const pageMeta = validatePageMeta(pages[0])
-    console.log(pageMeta)
+    const imageUrl = pageMeta._embedded?.['wp:featuredmedia'][0].source_url
 
     const blocks: WordpressBlock[] = await Promise.all(
       pages[0].blocks
@@ -47,7 +64,12 @@ export async function getBlocks(
         )
         .map((block: BlockMeta<string>) => wordpressBlock(block))
     )
-    return { blocks, title: pageMeta.title.rendered }
+    return {
+      blocks,
+      date: pageMeta.date,
+      title: pageMeta.title.rendered,
+      image: imageUrl ? { url: imageUrl } : undefined,
+    }
   } catch (error) {
     return null
   }
