@@ -1,17 +1,15 @@
-import {
-  object,
-  string,
-  array,
-  optional,
-  enumerate,
-  boolean,
-  defaultTo,
-} from 'fefe'
+import { object, string, optional } from 'fefe'
 import { PromiseResolvedType } from 'lib/types'
 import { getPostList } from 'lib/wordpressApi'
 
+const postListValidator = object(
+  { category: optional(string()) },
+  { allowExcessProperties: true }
+)
+
 export const postListBlock = async (value: unknown) => {
-  const posts = await getPostList()
+  const p = postListValidator(value)
+  const posts = await getPostList(p.category)
   return { posts }
 }
 

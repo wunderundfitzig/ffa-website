@@ -12,7 +12,6 @@ import { premisesBlock } from './premisesBlock'
 import { compassBlock } from './compassBlock'
 import { postListBlock } from './postListBlock'
 import { BlockMeta, PromiseResolvedType } from 'lib/types'
-import { Validator } from 'react'
 
 const defaultBlock = object(
   {
