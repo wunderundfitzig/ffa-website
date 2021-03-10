@@ -16,10 +16,15 @@ const Home = (props: { blocks: WordpressBlock[] }) => (
 )
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const blocks = await getBlocks('pages', ['home'])
+  const res = await getBlocks('pages', ['home'])
+  if (res === null) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
-    props: { blocks }, // will be passed to the page component as props
+    props: { blocks: res.blocks }, // will be passed to the page component as props
   }
 }
 

@@ -7,15 +7,27 @@ import {
   postListItemFields,
 } from './models/postListItem'
 import { Category, categoryFields, categoryList } from './models/category'
+import { object, string } from 'fefe'
+
+const validatePageMeta = object(
+  {
+    title: object({ rendered: string() }),
+  },
+  { allowExcessProperties: true }
+)
+
+type WordpressPage = { title: string; blocks: WordpressBlock[] }
+export type WordpressPost = WordpressPage
 
 export async function getBlocks(
   resource: 'pages' | 'posts',
   slugs: string[]
-): Promise<WordpressBlock[] | null> {
+): Promise<WordpressPage | null> {
   try {
     const pageSlug = slugs[slugs.length - 1]
     const wpLink = `https://ffaback.uber.space/${slugs.join('/')}/`
-    const url = `${process.env.WP_API_URL}/${resource}?slug=${pageSlug}&_fields=content.raw,blocks,link`
+    const extraFields = 'title'
+    const url = `${process.env.WP_API_URL}/${resource}?slug=${pageSlug}&_fields=content.raw,blocks,link,${extraFields}`
     const res = await fetch(url)
     let pages = await res.json()
 
@@ -25,14 +37,17 @@ export async function getBlocks(
     if (pages.length > 1) {
       pages = pages.filter((p: { link: string }) => p.link === wpLink)
     }
+    const pageMeta = validatePageMeta(pages[0])
+    console.log(pageMeta)
 
-    return Promise.all(
+    const blocks: WordpressBlock[] = await Promise.all(
       pages[0].blocks
         .filter(
           (block: { blockName: string | null }) => block.blockName !== null
         )
         .map((block: BlockMeta<string>) => wordpressBlock(block))
     )
+    return { blocks, title: pageMeta.title.rendered }
   } catch (error) {
     return null
   }
