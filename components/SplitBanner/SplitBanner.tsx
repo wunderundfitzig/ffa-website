@@ -99,6 +99,7 @@ const contentStyle = css`
 
 interface Props {
   image: { url: string }
+  imagePriority?: boolean
   imageLink?: string
   title: string
   showBanderole?: boolean
@@ -119,6 +120,7 @@ const SplitBanner = (props: Props) => {
       {props.showBanderole && <img css={banderoleStyle} src={banderole} />}
       <LinkableImage
         css={imageStyle}
+        imagePriority={props.imagePriority}
         image={props.image}
         link={props.imageLink}
       />

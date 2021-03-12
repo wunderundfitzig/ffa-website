@@ -76,6 +76,7 @@ function Inner(props: NewsBlock) {
         title={props.title}
         image={props.image}
         imageLink={props.link}
+        imagePriority={true}
       >
         {showText && <p css={contentStyle}>{props.content}</p>}
         <p css={callToActionStyle}>

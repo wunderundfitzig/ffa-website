@@ -1,7 +1,8 @@
 import { css } from '@emotion/core'
+import Image from 'next/image'
 import { layout, colors, breakpoints, helpers, typography } from 'style'
 import { ImageLinksBlock } from 'lib/models/imageLinksBlock'
-import { transparentize } from 'polished'
+import { shade, transparentize } from 'polished'
 
 const wrapperStyle = css`
   ${helpers.resetListStyles};
@@ -37,18 +38,13 @@ const listItemStyle = css`
   }
 `
 
-const LinkStlye = (imgURL: string) => css`
+const LinkStlye = css`
   ${helpers.resetLinkStyles};
   position: relative;
   display: block;
   width: 100%;
   height: 100px;
   color: white;
-  background-color: ${colors.darkGreen};
-  background-image: url(${imgURL});
-  background-blend-mode: hard-light;
-  background-size: cover;
-  background-position: center;
   margin: 20px 0;
 
   @media (min-width: ${breakpoints.breakpointL}px) {
@@ -62,7 +58,7 @@ const LinkStlye = (imgURL: string) => css`
 
 const overlayStyle = css`
   position: absolute;
-  background-color: ${transparentize(0.2, colors.darkGreen)};
+  background-color: ${transparentize(0.15, shade(0.3, colors.darkGreen))};
   top: 0;
   left: 0;
   width: 100%;
@@ -93,10 +89,11 @@ const ImageLinks = (props: ImageLinksBlock) => {
       {props.links.map((link, idx) => (
         <li key={idx} css={listItemStyle}>
           <a
-            css={LinkStlye(link.image.url)}
+            css={LinkStlye}
             href={link.url}
             target={link.external ? '_blank' : ''}
           >
+            <Image src={link.image.url} layout='fill' objectFit='cover' />
             <span css={overlayStyle}></span>
             <span css={linkTextStyle}>{link.title}</span>
           </a>
