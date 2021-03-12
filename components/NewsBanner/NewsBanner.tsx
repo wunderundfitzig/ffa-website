@@ -16,6 +16,7 @@ const newsBannerStyle = css`
     ${layout.container};
     margin-top: 20px;
     margin-bottom: 20px;
+    overflow: visible;
   }
 `
 
