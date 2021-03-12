@@ -6,6 +6,7 @@ import * as colors from './colors'
 export const container = css`
   width: 100%;
   margin: 0 auto;
+  overflow: hidden;
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
     max-width: 1000px;
