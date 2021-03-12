@@ -38,6 +38,7 @@ const headerStyle = css`
 const wrapperStyle = css`
   ${layout.container}
   ${layout.grid()};
+  overflow: visible;
 `
 
 const logoStyle = css`
