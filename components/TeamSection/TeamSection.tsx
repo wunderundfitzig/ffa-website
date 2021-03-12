@@ -17,6 +17,7 @@ import leaveOthersImg from './_leave-others.svg'
 const teamContentStyle = css`
   ${layout.container};
   ${layout.block};
+  overflow: visible;
   background-color: ${colors.lightGreen};
   padding-top: 20px;
 

@@ -70,6 +70,7 @@ const banderoleStyle = css`
   width: 120px;
   top: -7px;
   right: -14px;
+  z-index: 1;
 
   @media (min-width: ${breakpoints.breakpointXL}px) {
     width: 140px;

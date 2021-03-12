@@ -13,6 +13,7 @@ import Graph from './_Graph'
 const compassStyle = css`
   ${layout.block};
   ${layout.container};
+  overflow: visible;
   background-color: ${colors.lightGreen};
   margin-bottom: 20px;
 

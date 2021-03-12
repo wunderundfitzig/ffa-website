@@ -41,8 +41,9 @@ const phoneAndMailStyle = css`
   }
 `
 
-const linkStyle = css`
+const mailStyle = css`
   ${helpers.resetLinkStyles};
+  word-break: break-all;
 `
 
 const Contact = (props: ContactBlock) => {
@@ -59,7 +60,7 @@ const Contact = (props: ContactBlock) => {
             <dd>{props.phone}</dd>
             <dt>Mail:</dt>
             <dd>
-              <a css={linkStyle} href={`mailto:${props.mail}`}>
+              <a css={mailStyle} href={`mailto:${props.mail}`}>
                 {props.mail}
               </a>
             </dd>
