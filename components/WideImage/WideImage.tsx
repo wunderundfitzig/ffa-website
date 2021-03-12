@@ -1,9 +1,10 @@
 import { css } from '@emotion/core'
+import Image from 'next/image'
 import { layout, colors, breakpoints, typography } from 'style'
 import { WideImageBlock } from 'lib/models/wideImageBlock'
 import { transparentize } from 'polished'
 
-const wideImageStyle = (url: string, color: string) => css`
+const wideImageStyle = (color: string) => css`
   ${layout.container};
   box-sizing: border-box;
   height: 200px;
@@ -12,11 +13,9 @@ const wideImageStyle = (url: string, color: string) => css`
   display: flex;
   align-items: center;
   position: relative;
-  background-image: url(${url});
-  background-size: cover;
-  background-position: center;
   border-right: 12px solid ${color};
   z-index: -2;
+  background-color: ${colors.brown};
 
   @media (min-width: ${breakpoints.breakpointM}px) {
     height: 300px;
@@ -38,6 +37,7 @@ const textOverlayStyle = css`
   white-space: pre-line;
   font-size: 1.3em;
   font-weight: 300;
+  z-index: 1;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
     max-width: 60%;
@@ -67,18 +67,30 @@ function Header(props: WideImageBlock) {
   const color = props.color || colors.darkGreen
 
   return (
-    <div css={[wideImageStyle(props.image.url, color), headerStyle]}>
+    <div css={[wideImageStyle(color), headerStyle]}>
+      <Image
+        src={props.image.url}
+        layout='fill'
+        objectFit='cover'
+        objectPosition='center'
+      />
       {hasText && <h2 css={textOverlayStyle}>{props.text}</h2>}
     </div>
   )
 }
 
-function Image(props: WideImageBlock) {
+function InnerImage(props: WideImageBlock) {
   const hasText = props.text !== undefined && props.text !== ''
   const color = props.color || colors.lightGreen
 
   return (
-    <figure css={wideImageStyle(props.image.url, color)}>
+    <figure css={wideImageStyle(color)}>
+      <Image
+        src={props.image.url}
+        layout='fill'
+        objectFit='cover'
+        objectPosition='center'
+      />
       {hasText && <p css={textOverlayStyle}>{props.text}</p>}
     </figure>
   )
@@ -86,5 +98,5 @@ function Image(props: WideImageBlock) {
 
 export default function WideImage(props: WideImageBlock) {
   if (props.asHeader) return <Header {...props} />
-  return <Image {...props} />
+  return <InnerImage {...props} />
 }

@@ -1,10 +1,12 @@
 import { css } from '@emotion/core'
 import Image from 'next/image'
+import { colors } from 'style'
 
 const imageStyle = css`
   position: relative;
   width: 100%;
   padding-bottom: 60%;
+  background-color: ${colors.brown};
 `
 
 interface Props {
