@@ -2,10 +2,10 @@ import { css } from '@emotion/core'
 import { useState, useEffect } from 'react'
 import { Router } from 'next/router'
 import { colors, breakpoints, helpers } from 'style'
+import navigationItems from 'lib/navigationItems'
 import mobileNavigationButton from './_mobileNavigationButton.svg'
 import closeIcon from './_closeIcon.svg'
 import NavigationLink from './_NavigationLink'
-import navigationItems from './_navigationItems'
 
 const buttonStyle = css`
   ${helpers.resetButtonStyles};

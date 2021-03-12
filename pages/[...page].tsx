@@ -2,8 +2,9 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getBlocks } from 'lib/wordpressApi'
 import { WordpressBlock } from 'lib/models/wordpressBlock'
-import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
 import { TitleBlock } from 'lib/models/titleBlock'
+import navigationItems from 'lib/navigationItems'
+import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
 
 interface TitleBlockWrapper {
   blockName: 'lazyblock/title'
@@ -29,9 +30,13 @@ export default function Page(props: { blocks: WordpressBlock[] }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = navigationItems
+    .map((na) => (na.type === 'internal' ? na.slug : undefined))
+    .filter((slug) => slug !== '/' && slug !== undefined) as string[]
+
   return {
     fallback: 'blocking',
-    paths: [],
+    paths: paths,
   }
 }
 

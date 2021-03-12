@@ -2,7 +2,7 @@ import { css } from '@emotion/core'
 import Link from 'next/link'
 import { colors, breakpoints, helpers, typography } from 'style'
 import useCurrentSlug from 'lib/hooks/useCurrentSlug'
-import { NavigationItem, InternalPage, ExternalPage } from './_navigationItems'
+import { NavigationItem, InternalPage, ExternalPage } from 'lib/navigationItems'
 
 const navigationLinkStyle = ({ isActive }: { isActive: boolean }) => css`
   ${typography.museoSlab};

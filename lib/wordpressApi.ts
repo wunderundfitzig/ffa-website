@@ -75,6 +75,16 @@ export async function getBlocks(
   }
 }
 
+const postSlugList = array(object({ slug: string() }))
+type PostSlugList = ReturnType<typeof postSlugList>
+
+export async function GetPostList(): Promise<PostSlugList> {
+  const url = `${process.env.WP_API_URL}/posts?_fields=slug}`
+  const res = await fetch(url)
+  const slugList = res.json()
+  return postSlugList(slugList)
+}
+
 export async function getCategoryBySlug(slug: string): Promise<Category> {
   const url = `${process.env.WP_API_URL}/categories?slug=${slug}&_fields=${categoryFields}`
   const res = await fetch(url)
