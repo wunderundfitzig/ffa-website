@@ -1,6 +1,7 @@
 import { css } from '@emotion/core'
 import { layout, colors, breakpoints } from 'style'
 import { CollageBlock } from 'lib/models/collageBlock'
+import CollageImage from './_CollageImage'
 
 const wrapperStyle = css`
   ${layout.container};
@@ -31,18 +32,7 @@ const titleStyle = css`
   }
 `
 
-const _imageStyle = (url: string) => css`
-  display: block;
-  background-image: url(${url});
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  padding-bottom: 60%;
-  margin: 0;
-`
-
-const firstImage = (url: string) => css`
-  ${_imageStyle(url)};
+const firstImage = css`
   grid-column: span 2;
   @media (min-width: ${breakpoints.breakpointM}px) {
     grid-column: span 1;
@@ -50,8 +40,7 @@ const firstImage = (url: string) => css`
   }
 `
 
-const secondImage = (url: string) => css`
-  ${_imageStyle(url)};
+const secondImage = css`
   grid-column: span 1;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
@@ -60,8 +49,7 @@ const secondImage = (url: string) => css`
   }
 `
 
-const thirdImage = (url: string) => css`
-  ${_imageStyle(url)};
+const thirdImage = css`
   grid-column: span 1;
 
   @media (min-width: ${breakpoints.breakpointM}px) {
@@ -70,8 +58,7 @@ const thirdImage = (url: string) => css`
   }
 `
 
-const lastImage = (url: string) => css`
-  ${_imageStyle(url)};
+const lastImage = css`
   grid-column: span 2;
   border-right: 12px solid ${colors.lightGreen};
   width: calc(100% - 12px);
@@ -88,10 +75,10 @@ const Collage = (props: CollageBlock) => {
   return (
     <div css={wrapperStyle}>
       <h2 css={titleStyle}>{props.title}</h2>
-      {props.image1 && <figure css={firstImage(props.image1.url)} />}
-      {props.image2 && <figure css={secondImage(props.image2.url)} />}
-      {props.image3 && <figure css={thirdImage(props.image3.url)} />}
-      {props.image4 && <figure css={lastImage(props.image4.url)} />}
+      {props.image1 && <CollageImage image={props.image1} css={firstImage} />}
+      {props.image2 && <CollageImage image={props.image2} css={secondImage} />}
+      {props.image3 && <CollageImage image={props.image3} css={thirdImage} />}
+      {props.image4 && <CollageImage image={props.image4} css={lastImage} />}
     </div>
   )
 }

@@ -16,7 +16,14 @@ const imageStyle = css`
 `
 
 function InnerImage(props: { url: string }) {
-  return <Image src={props.url} layout='fill' />
+  return (
+    <Image
+      src={props.url}
+      layout='fill'
+      objectFit='cover'
+      objectPosition='center'
+    />
+  )
 }
 
 interface Props {
