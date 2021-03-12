@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getBlocks } from 'lib/wordpressApi'
 import { WordpressBlock } from 'lib/models/wordpressBlock'
@@ -15,7 +15,7 @@ const Home = (props: { blocks: WordpressBlock[] }) => (
   </>
 )
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await getBlocks('pages', ['home'])
   if (res === null) {
     return {
@@ -24,6 +24,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 
   return {
+    revalidate: 1,
     props: { blocks: res.blocks }, // will be passed to the page component as props
   }
 }

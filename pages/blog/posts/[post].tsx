@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getBlocks, WordpressPage } from 'lib/wordpressApi'
 import BlockRenderer from 'components/BlockRenderer/BlockRenderer'
@@ -37,8 +37,15 @@ export default function Page(props: WordpressPage) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.query.post as string
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    fallback: 'blocking',
+    paths: [],
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const slug = context.params?.post as string
   const res = await getBlocks('posts', [slug])
   if (res === null) return { notFound: true }
 

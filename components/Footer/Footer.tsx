@@ -61,7 +61,7 @@ export default function Footer() {
         <p>
           Büro: +49 30 8261317 <br />
           Mail: kontakt@abenteuerzentrum.berlin <br />
-          <Link href='[...page]' as='impressum'>
+          <Link href='/impressum'>
             <a>Impressum</a>
           </Link>
         </p>
