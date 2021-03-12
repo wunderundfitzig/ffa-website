@@ -32,14 +32,14 @@ function InnerImage(props: { url: string; priority?: boolean }) {
 interface Props {
   className?: string
   image: { url: string }
-  imagePriority?: boolean
+  preloadImage?: boolean
   link?: string
 }
 export default function LinkableImage(props: Props) {
   if (props.link === undefined) {
     return (
       <div css={imageStyle} className={props.className}>
-        <InnerImage priority={props.imagePriority} {...props.image} />
+        <InnerImage priority={props.preloadImage} {...props.image} />
       </div>
     )
   }
@@ -47,7 +47,7 @@ export default function LinkableImage(props: Props) {
     <div css={imageStyle} className={props.className}>
       <Link href={props.link}>
         <a>
-          <InnerImage priority={props.imagePriority} {...props.image} />
+          <InnerImage priority={props.preloadImage} {...props.image} />
         </a>
       </Link>
     </div>
