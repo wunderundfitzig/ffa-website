@@ -29,6 +29,7 @@ jobs:
           mkdir deploy
           cp -a .next ./deploy
           cp next.config.js ./deploy
+          cp .env ./deploy
           cp package.json ./deploy
           cp -a node_modules ./deploy
           cp -a public ./deploy
