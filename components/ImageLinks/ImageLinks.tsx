@@ -93,7 +93,12 @@ const ImageLinks = (props: ImageLinksBlock) => {
             href={link.url}
             target={link.external ? '_blank' : ''}
           >
-            <Image src={link.image.url} layout='fill' objectFit='cover' />
+            <Image
+              unoptimized
+              src={link.image.url}
+              layout='fill'
+              objectFit='cover'
+            />
             <span css={overlayStyle}></span>
             <span css={linkTextStyle}>{link.title}</span>
           </a>

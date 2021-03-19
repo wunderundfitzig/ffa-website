@@ -69,6 +69,7 @@ function Header(props: WideImageBlock) {
   return (
     <div css={[wideImageStyle(color), headerStyle]}>
       <Image
+        unoptimized
         src={props.image.url}
         layout='fill'
         objectFit='cover'
@@ -86,6 +87,7 @@ function InnerImage(props: WideImageBlock) {
   return (
     <figure css={wideImageStyle(color)}>
       <Image
+        unoptimized
         src={props.image.url}
         layout='fill'
         objectFit='cover'

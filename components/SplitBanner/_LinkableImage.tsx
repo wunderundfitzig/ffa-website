@@ -19,6 +19,7 @@ const imageStyle = css`
 function InnerImage(props: { url: string; priority?: boolean }) {
   return (
     <Image
+      unoptimized
       priority={props.priority}
       key={props.url}
       src={props.url}

@@ -17,6 +17,7 @@ export default function CollageImage(props: Props) {
   return (
     <div className={props.className} css={imageStyle}>
       <Image
+        unoptimized
         src={props.image.url}
         layout='fill'
         objectFit='cover'

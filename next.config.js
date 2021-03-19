@@ -9,6 +9,5 @@ module.exports = {
   },
   images: {
     domains: ['ffaback.uber.space'],
-    deviceSizes: [640, 750, 1080, 1200, 1920]
   },
 }
