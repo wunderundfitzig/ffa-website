@@ -7,5 +7,8 @@ module.exports = {
   env: {
     WP_API_URL: process.env.WP_API_URL,
   },
-  images: { domains: ['ffaback.uber.space'] },
+  images: {
+    domains: ['ffaback.uber.space'],
+    deviceSizes: [640, 750, 1080, 1200, 1920]
+  },
 }
