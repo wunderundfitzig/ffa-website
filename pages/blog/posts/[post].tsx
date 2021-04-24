@@ -50,6 +50,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   if (res === null) return { notFound: true }
 
   return {
+    revalidate: 1,
     props: res,
   }
 }
