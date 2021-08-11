@@ -78,7 +78,7 @@ export default function Footer() {
               },
               {
                 platform: 'youtube',
-                url: 'https://www.youtube.com/channel/UCjxdcpNTrGA2Go9njDYYWcA',
+                url: 'https://www.youtube.com/channel/UCHxzdTZIEd8TtovFVXKzuOw',
               },
             ]}
             color='white'
