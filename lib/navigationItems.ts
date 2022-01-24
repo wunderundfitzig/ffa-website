@@ -51,15 +51,20 @@ const pageLinks: NavigationItem[] = [
     slug: '/angebote',
     displayName: 'Bildungsangebote',
     children: [
-      {
-        type: 'internal',
-        slug: '/angebote/erlebnispadagogik',
-        displayName: 'Erlebnispädagogik',
-      },
-      {
+       {
         type: 'internal',
         slug: '/angebote/fortbildungen',
         displayName: 'Fortbildungen',
+      },
+       {
+        type: 'internal',
+        slug: '/angebote/internationaler-jugendaustausch',
+        displayName: 'Internationale Projekte',
+      },
+       {
+        type: 'internal',
+        slug: '/angebote/baumhaus-bau',
+        displayName: 'Feriencamps',
       },
       {
         type: 'internal',
@@ -68,13 +73,8 @@ const pageLinks: NavigationItem[] = [
       },
       {
         type: 'internal',
-        slug: '/angebote/baumhaus-bau',
-        displayName: 'Feriencamps',
-      },
-      {
-        type: 'internal',
-        slug: '/angebote/internationaler-jugendaustausch',
-        displayName: 'Internationale Projekte',
+        slug: '/angebote/erlebnispadagogik',
+        displayName: 'Erlebnispädagogik',
       },
     ],
   },
