@@ -64,17 +64,17 @@ const pageLinks: NavigationItem[] = [
       {
         type: 'internal',
         slug: '/angebote/veranstaltungen',
-        displayName: 'Walk Away',
+        displayName: ' Naturpädagogik',
       },
       {
         type: 'internal',
         slug: '/angebote/baumhaus-bau',
-        displayName: 'Baumhaus Bau',
+        displayName: 'Feriencamps',
       },
       {
         type: 'internal',
         slug: '/angebote/internationaler-jugendaustausch',
-        displayName: 'Internationaler Jugendaustausch',
+        displayName: 'Internationale Projekte',
       },
     ],
   },
