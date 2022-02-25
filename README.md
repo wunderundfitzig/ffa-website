@@ -57,4 +57,4 @@ To deploy to the live site create a pull request to merge into master.
   });
   ```
   
-  (This is basically a custom wordpress plugin)
+  (This is just a very simple wordpress plugin)
