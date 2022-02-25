@@ -41,11 +41,20 @@ To deploy to the live site create a pull request to merge into master.
 - Set the "Site URl" in the wordpress page settings to the frontend url: https://abenteuerzentrum.berlin.  
   
   This will break gutenberg because it will look for the `rest_url` under the frontend domain.  
-  To fix this add the following to the functions.php of the template:
+  To fix this create a file `fix-rest-url.php` in `wp-content/plugins/fix-rest-url` with following to content:
 
   ```php
+  <?php
+
+  /**
+   * Plugin Name:       Fix Rest URL
+   * Description:       A WordPress plugin that updates the REST URL to use the site URL instead of the home URL.
+   */
+
   add_filter('rest_url', function($url) {
       $url = str_replace(home_url(), site_url().'/index.php', $url);
       return $url;
-  })`
+  });
   ```
+  
+  (This is basically a custom wordpress plugin)
