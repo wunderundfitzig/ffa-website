@@ -146,11 +146,7 @@ const highlightStyle = css`
   color: ${colors.darkRed};
 
   img {
-    /* background: white; */
-    border-radius: 100%;
-    box-sizing: border-box;
-    /* padding: 0.4em; */
-    filter: brightness(150%) saturate(220%) hue-rotate(337deg);
+    filter: brightness(146%) saturate(340%) hue-rotate(359deg);
   }
 `
 
