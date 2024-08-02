@@ -82,6 +82,38 @@ const pageLinks: NavigationItem[] = [
     type: 'internal',
     slug: '/fuer-schulen',
     displayName: 'Für Schulen',
+    children: [
+      {
+        type: 'internal',
+        slug: '/fuer-schulen/erlebnispadagogik',
+        displayName: 'Erlebnispädagogik',
+      },
+      {
+        type: 'internal',
+        slug: '/fuer-schulen/wildnispadagogik',
+        displayName: 'Wildnispädagogik',
+      },
+      {
+        type: 'internal',
+        slug: '/fuer-schulen/naturpadagogik',
+        displayName: 'Naturpädagogik',
+      },
+      {
+        type: 'internal',
+        slug: '/fuer-schulen/konfliktlotsen',
+        displayName: 'Konfliktlotsen',
+      },
+      {
+        type: 'internal',
+        slug: '/fuer-schulen/resilienztraining',
+        displayName: 'Resilienztraining',
+      },
+      {
+        type: 'internal',
+        slug: '/fuer-schulen/fur-lehrer_innen',
+        displayName: 'Für Lehrer*innen',
+      },
+    ],
   },
   {
     type: 'internal',
