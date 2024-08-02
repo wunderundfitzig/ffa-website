@@ -9,6 +9,7 @@ import { Fragment } from 'react'
 const premisesStyle = css`
   ${layout.container};
   margin-bottom: 20px;
+  overflow: visible;
 `
 
 const descriptionTextStyle = css`
@@ -29,15 +30,22 @@ const mapWrapperStyle = css`
   background-color: ${transparentize(0.2, colors.lightGreen)};
   margin: 0 auto;
 
-  @media (min-width: ${breakpoints.breakpointL}px) {
+  @media (min-width: ${breakpoints.breakpointM}px) {
     display: grid;
     width: 100%;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr minmax(50%, 400px);
+    justify-items: center;
     grid-template-rows: auto 1fr;
-    grid-column-gap: 30px;
+    grid-column-gap: 60px;
     grid-template-areas:
       'title title'
       'left right';
+  }
+
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    grid-template-columns: auto 1fr;
+    justify-items: flex-start;
+    grid-row-gap: 30px;
   }
 `
 
@@ -53,6 +61,16 @@ const mapImageStyle = css`
   width: 100%;
   margin-bottom: 30px;
   grid-area: right;
+  position: sticky;
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    top: 2em;
+  }
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    position: static;
+    margin-top: 100px;
+    margin-left: -150px;
+    width: calc(100% + 150px);
+  }
 `
 
 const legendStyle = css`
@@ -61,6 +79,12 @@ const legendStyle = css`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr;
     grid-column-gap: 30px;
+  }
+  @media (min-width: ${breakpoints.breakpointM}px) {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: ${breakpoints.breakpointXL}px) {
+    grid-template-columns: 1fr 1fr;
   }
 `
 
@@ -120,6 +144,14 @@ const legendListStyle = css`
 
 const highlightStyle = css`
   color: ${colors.darkRed};
+
+  img {
+    /* background: white; */
+    border-radius: 100%;
+    box-sizing: border-box;
+    /* padding: 0.4em; */
+    filter: brightness(150%) saturate(220%) hue-rotate(337deg);
+  }
 `
 
 const Premises = (props: PremisesBlock) => {
@@ -138,7 +170,7 @@ const Premises = (props: PremisesBlock) => {
                 <h3 css={sectionTitleStyle}>{section.title}</h3>
                 <ul css={legendListStyle}>
                   {section.items.map((item) => (
-                    <li css={item.highlight && highlightStyle}>
+                    <li key={item.name} css={item.highlight && highlightStyle}>
                       <img src={item.icon} alt={item.name} />
                       {item.name}
                     </li>

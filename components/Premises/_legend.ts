@@ -1,5 +1,4 @@
 import bettIcon from './_bett.svg'
-import bolzplatzIcon from './_bolzplatz.svg'
 import buroIcon from './_buro.svg'
 import eingangIcon from './_eingang.svg'
 import grillplatzIcon from './_grillplatz.svg'
@@ -13,7 +12,9 @@ import tischtennisIcon from './_tischtennis.svg'
 import veranstaltungIcon from './_veranstaltung.svg'
 import waldbuhneIcon from './_waldbuhne.svg'
 import waldkitaIcon from './_waldkita.svg'
-import wippeIcon from './_wippe.svg'
+import zeltIcon from './_zelt.svg'
+import baumhausIcon from './_baumhaus.svg'
+import ponyIcon from './_pony.svg'
 
 const legend = [
   {
@@ -28,10 +29,9 @@ const legend = [
   {
     title: 'Aktivitäten',
     items: [
+      { icon: ponyIcon, name: 'Ponyreiten', highlight: true },
+      { icon: schaukelnIcon, name: 'Spielplatz' },
       { icon: tischtennisIcon, name: 'Tischtennisplatten' },
-      { icon: wippeIcon, name: 'Wippe' },
-      { icon: schaukelnIcon, name: 'Schaukeln' },
-      { icon: bolzplatzIcon, name: 'Bolzplatz' },
     ],
   },
   {
@@ -44,12 +44,20 @@ const legend = [
     ],
   },
   {
+    title: 'Übernachtungshaus',
+    items: [
+      { icon: bettIcon, name: 'Übernachtungshaus' },
+      { icon: baumhausIcon, name: 'Baumhausdorf' },
+      { icon: jutendorfIcon, name: 'Jurtendorf' },
+      { icon: zeltIcon, name: 'Zeltplatz' },
+    ],
+  },
+  {
     title: 'Angebote',
     items: [
       { icon: hochseilgartenIcon, name: 'Hochseilgarten', highlight: true },
       { icon: waldkitaIcon, name: 'Waldkita' },
       { icon: waldbuhneIcon, name: 'Waldbühne' },
-      { icon: jutendorfIcon, name: 'Jurtendorf' },
     ],
   },
 ]
