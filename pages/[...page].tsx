@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slugs = context.params?.page as string[]
   const res = await getBlocks('pages', slugs)
-  if (res === null) return { notFound: true }
+  if (res === null) return { revalidate: 1, notFound: true }
 
   return {
     revalidate: 1,
