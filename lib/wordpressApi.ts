@@ -41,7 +41,7 @@ export async function getBlocks(
 ): Promise<WordpressPage | null> {
   try {
     const pageSlug = slugs[slugs.length - 1]
-    const wpLink = `https://ffaback.uber.space/${slugs.join('/')}/`
+    const wpLink = `https://abenteuerzentrum.berlin/${slugs.join('/')}/`
     const fields = 'content.raw,blocks,link,title,date,_links,_embedded'
     const embed = 'wp:featuredmedia'
     const url = `${process.env.WP_API_URL}/${resource}?slug=${pageSlug}&_fields=${fields}&_embed=${embed}`
@@ -71,6 +71,7 @@ export async function getBlocks(
       image: imageUrl ? { url: imageUrl } : undefined,
     }
   } catch (error) {
+    console.error(error)
     return null
   }
 }
