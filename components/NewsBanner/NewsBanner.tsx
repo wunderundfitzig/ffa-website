@@ -82,8 +82,8 @@ function Inner(props: NewsBlock) {
         {showText && <p css={contentStyle}>{props.content}</p>}
         <p css={callToActionStyle}>
           {props.link ? (
-            <Link href={props.link} passHref>
-              <a css={callToActionStyle}>{props.call_to_action}</a>
+            <Link href={props.link} css={callToActionStyle}>
+              {props.call_to_action}
             </Link>
           ) : (
             props.call_to_action

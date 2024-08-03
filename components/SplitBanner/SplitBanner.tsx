@@ -118,7 +118,7 @@ const SplitBanner = (props: Props) => {
       css={splitBannerStyle(props.color, textColor)}
       className={props.className}
     >
-      {props.showBanderole && <img css={banderoleStyle} src={banderole} />}
+      {props.showBanderole && <img css={banderoleStyle} src={banderole.src} />}
       <LinkableImage
         css={imageStyle}
         preloadImage={props.preloadImage}

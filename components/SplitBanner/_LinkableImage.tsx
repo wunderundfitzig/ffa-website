@@ -19,6 +19,7 @@ const imageStyle = css`
 function InnerImage(props: { url: string; priority?: boolean }) {
   return (
     <Image
+      alt=''
       unoptimized
       priority={props.priority}
       key={props.url}
@@ -47,9 +48,7 @@ export default function LinkableImage(props: Props) {
   return (
     <div css={imageStyle} className={props.className}>
       <Link href={props.link}>
-        <a>
-          <InnerImage priority={props.preloadImage} {...props.image} />
-        </a>
+        <InnerImage priority={props.preloadImage} {...props.image} />
       </Link>
     </div>
   )

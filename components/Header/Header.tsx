@@ -85,10 +85,8 @@ const navigationStyle = css`
 const Header = () => (
   <header css={headerStyle}>
     <div css={wrapperStyle}>
-      <Link passHref href='/'>
-        <a css={logoStyle}>
-          <img alt='Fahrten Ferne Abenteuer' src={logo} />
-        </a>
+      <Link css={logoStyle} href='/'>
+        <img alt='Fahrten Ferne Abenteuer' src={logo} />
       </Link>
       <p css={titleStyle}>Abenteuerzentrum Berlin</p>
       <Navigation css={navigationStyle} />

@@ -134,7 +134,7 @@ export default function Graph({ activeIndex }: Props) {
             width='58.227'
             height='43.67'
             transform='translate(78.64 38.724) rotate(13.633)'
-            href={kindImg}
+            href={kindImg.src}
           />
         </g>
         <g clipPath='url(#c)'>
@@ -142,7 +142,7 @@ export default function Graph({ activeIndex }: Props) {
             width='71.665'
             height='47.776'
             transform='translate(32.045 40.183)'
-            href={jedemImg}
+            href={jedemImg.src}
           />
         </g>
         <g clipPath='url(#e)'>
@@ -150,7 +150,7 @@ export default function Graph({ activeIndex }: Props) {
             width='82.009'
             height='61.506'
             transform='matrix(0.883, 0.469, -0.469, 0.883, 42.063, 64.841)'
-            href={seinImg}
+            href={seinImg.src}
           />
         </g>
         <g clipPath='url(#f)'>
@@ -158,7 +158,7 @@ export default function Graph({ activeIndex }: Props) {
             width='63.795'
             height='47.902'
             transform='matrix(1, -0.012, 0.012, 1, 68.196, 80.288)'
-            href={abenteuerImg}
+            href={abenteuerImg.src}
           />
         </g>
       </g>

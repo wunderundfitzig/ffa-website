@@ -92,7 +92,7 @@ export async function wordpressBlock(block: BlockMeta<string>) {
   try {
     return await validator.validate(block)
   } catch (e) {
-    return makeErrorBlock(e.message, block)
+    return makeErrorBlock((e as Error).message, block)
   }
 }
 

@@ -51,7 +51,7 @@ const GlobalStyles = () => (
           ${typography.museoSans};
           margin: 0;
           padding: 0;
-          background-image: url(${woodBackground});
+          background-image: url(${woodBackground.src});
           background-size: 100%;
           font-size: 16px;
           font-weight: 500;

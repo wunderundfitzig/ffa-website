@@ -119,8 +119,8 @@ function InternalLink(page: InternalPage) {
   const linkStyle = navigationLinkStyle({ isActive: isActive })
 
   return (
-    <Link passHref href={page.slug}>
-      <a css={linkStyle}>{page.displayName}</a>
+    <Link css={linkStyle} href={page.slug}>
+      {page.displayName}
     </Link>
   )
 }

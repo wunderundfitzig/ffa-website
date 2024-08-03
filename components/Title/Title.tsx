@@ -53,7 +53,7 @@ const _titleStyle = css`
     content: '';
     position: absolute;
     height: 100px;
-    background-image: url(${flag});
+    background-image: url(${flag.src});
     background-repeat: no-repeat;
     background-size: 100%;
   }

@@ -94,6 +94,7 @@ const ImageLinks = (props: ImageLinksBlock) => {
             target={link.external ? '_blank' : ''}
           >
             <Image
+              alt=''
               unoptimized
               src={link.image.url}
               layout='fill'

@@ -30,8 +30,8 @@ function PostPreview(props: PostListItem) {
       <p>{date.toLocaleDateString('de')}</p>
       <p>{props.excerpt}</p>
       <p>
-        <Link href={href} passHref>
-          <a css={callToActionStyle}>read article</a>
+        <Link href={href} css={callToActionStyle}>
+          read article
         </Link>
       </p>
     </SplitBanner>
