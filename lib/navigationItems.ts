@@ -76,6 +76,11 @@ const pageLinks: NavigationItem[] = [
         slug: '/angebote/erlebnispadagogik',
         displayName: 'Erlebnispädagogik',
       },
+      {
+        type: 'internal',
+        slug: '/angebote/jahresbegleitung',
+        displayName: 'Jahresbegleitung',
+      },
     ],
   },
   {
